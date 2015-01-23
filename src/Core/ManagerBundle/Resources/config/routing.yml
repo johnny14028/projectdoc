@@ -1,0 +1,3 @@
+core_manager_homepage:
+    path:     /administracion
+    defaults: { _controller: CoreManagerBundle:Default:index }

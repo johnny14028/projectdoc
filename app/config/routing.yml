@@ -1,3 +1,7 @@
+core_manager:
+    resource: "@CoreManagerBundle/Resources/config/routing.yml"
+    prefix:   /
+
 core_default:
     resource: "@CoreDefaultBundle/Resources/config/routing.yml"
     prefix:   /

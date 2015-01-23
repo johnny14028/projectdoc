@@ -1,0 +1,4 @@
+services:
+#    core_manager.example:
+#        class: Core\ManagerBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
