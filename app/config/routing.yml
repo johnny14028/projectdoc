@@ -1,0 +1,7 @@
+theme_default:
+    resource: "@ThemeDefaultBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
