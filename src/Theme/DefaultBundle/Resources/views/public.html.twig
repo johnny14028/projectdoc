@@ -18,62 +18,9 @@
 {% endblock %}
 {% block body %}
     {% block header %}
-        <nav id="head-nav" class="navbar navbar-fixed-top">
-            <div class="container">
-                <div class="row">
-                    <div class="navbar-header">
-                        <button type="button" data-toggle="collapse" data-target="#menu-top-header" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand"><img src="{{ asset('bundles/themedefault/img/logo.png') }}" alt="Project DOC"></a>
-                    </div>
-                    <div id="menu-top-header" class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#" class="active">Descargas</a></li>
-                            <li><a href="#">Documentation</a></li>
-                            <li><a href="#">Get Involved</a></li>
-                        </ul>
-                        <form action="/buscar.php" role="buscar" class="navbar-form pull-right col-xs-12">
-                            <div class="form-group">
-                                <input type="text" placeholder="Buscar" class="form-control pull-left">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <section id="breadcrum">
-            <div class="container">
-                <div class="row">
-                    <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">page1</a></li>
-                        <li><a href="#">page2</a></li>
-                        <li><a href="#">page3</a></li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-        <section id="welcome">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Bienvenida</h1>
-                        <p>
-                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                        </p>
-                        <p>
-                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>       
+        {% include "ThemeDefaultBundle::menu.html.twig" %}
+        {% include "ThemeDefaultBundle::breadcrumb.html.twig" %}
+        {% include "ThemeDefaultBundle::welcome.html.twig" %}       
     {% endblock %}
     <section id="contenido">
         <div class="container">
@@ -81,72 +28,12 @@
                 {% block content %}
                     {% block left %}
                         <div class="col-xs-12 col-md-8">
-                            <section class="box_main_project">
-                                <article>
-                                    <h2>22 Jan 2015 PHP 5.4.37 Released</h2>
-                                    <p> 
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem><a href="#">prueba de un enlace</a>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    </p>
-                                </article>
-                                <article>
-                                    <h2>Ejemplo de para poner código se pone entre etiquetas 'pre'</h2>
-                                    <div class="box_code_project">
-                                        <pre><span class="blue_code">&lt;p&gt;la clase es 'blue_code'&lt;/p&gt;<br></span><span class="green_code">&lt;p&gt;la clase es 'green_code'&lt;/p&gt;<br></span><span class="red_code">&lt;p&gt;la clase es 'red_code'&lt;/p&gt;<br></span><span class="gray_code">&lt;p&gt;la clase es 'gray_code'&lt;/p&gt;</span></pre>
-                                    </div>
-                                </article>
-                                <article>
-                                    <h2>22 Jan 2015 PHP 5.4.37 Released</h2>
-                                    <p> 
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem><a href="#">prueba de un enlace</a>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    </p>
-                                </article>
-                                <article>
-                                    <h2>22 Jan 2015 PHP 5.4.37 Released</h2>
-                                    <p> 
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem><a href="#">prueba de un enlace</a>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
-                                    </p>
-                                </article>
-                            </section>
+                            {% include "ThemeDefaultBundle::leftContent.html.twig" %}
                         </div>                   
                     {% endblock %}
                     {% block right %}
                         <div class="col-xs-12 col-md-4 col-lg-4">
-                            <section class="box_minor_project">
-                                <article class="enlaces_directos">
-                                    <h3>Enlaces directos</h3>
-                                    <ul>
-                                        <li><a href="#">Enlace número 1</a></li>
-                                        <li><a href="#">Enlace número 2</a></li>
-                                        <li><a href="#">Enlace número 3</a></li>
-                                        <li><a href="#">Enlace número 4</a></li>
-                                        <li><a href="#">Enlace número 5</a></li>
-                                        <li><a href="#">Enlace número 6</a></li>
-                                    </ul>
-                                </article>
-                                <article class="enlaces_resultados">
-                                    <h3>Enlaces resultados</h3>
-                                    <ul>
-                                        <li><a href="#">Enlace número 1</a></li>
-                                        <li><a href="#">Enlace número 2</a></li>
-                                        <li><a href="#">Enlace número 3</a></li>
-                                        <li><a href="#">Enlace número 4</a></li>
-                                        <li><a href="#">Enlace número 5</a></li>
-                                        <li><a href="#">Enlace número 6</a></li>
-                                    </ul>
-                                </article>
-                            </section>
+                            {% include "ThemeDefaultBundle::rightContent.html.twig" %}
                         </div>                   
                     {% endblock %}
                 {% endblock %}
@@ -154,12 +41,6 @@
         </div>
     </section>
     {% block footer %}
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <p>Todos los derecheos reservador por PUCP Virtual</p>
-                </div>
-            </div>
-        </footer>       
+        {% include "ThemeDefaultBundle::footerContent.html.twig" %}    
     {% endblock %}        
 {% endblock %}
