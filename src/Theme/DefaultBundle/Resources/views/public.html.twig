@@ -2,108 +2,164 @@
 {# enlasa los archivos CSS y Javascript adecuados #}
 {% block title %}Projectdoc{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/bootstrap.min.css') }}">
-    <link href="{{ asset('bundles/themedefault/css/offcanvas.css') }}" rel="stylesheet" type="text/css" />    
+    <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/normalize.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/bootstrap-theme.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/estilo.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/ui.totop.css') }}" type="text/css">
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('bundles/themedefault/js/jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/themedefault/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('bundles/themedefault/js/ie10-viewport-bug-workaround.js') }}"></script>
-    <script src="{{ asset('bundles/themedefault/js/offcanvas.js') }}"></script>
+    <script src="{{ asset('bundles/themedefault/js/jquery.ui.totop.js') }}"></script>
+    <script src="{{ asset('bundles/themedefault/js/script.js') }}"></script>
+    <script src="{{ asset('bundles/themedefault/js/easing.js') }}"></script>
 {% endblock %}
 {% block body %}
     {% block header %}
-        <nav class="navbar navbar-fixed-top navbar-inverse">
+        <nav id="head-nav" class="navbar navbar-fixed-top">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" data-toggle="collapse" data-target="#menu-top-header" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand"><img src="{{ asset('bundles/themedefault/img/logo.png') }}" alt="Project DOC"></a>
+                    </div>
+                    <div id="menu-top-header" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#" class="active">Descargas</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Get Involved</a></li>
+                        </ul>
+                        <form action="/buscar.php" role="buscar" class="navbar-form pull-right col-xs-12">
+                            <div class="form-group">
+                                <input type="text" placeholder="Buscar" class="form-control pull-left">
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div><!-- /.nav-collapse -->
-            </div><!-- /.container -->
-        </nav><!-- /.navbar -->        
-    {% endblock %}
-    <div class="container">
-        <div class="row row-offcanvas row-offcanvas-right">
-            {% block content %}
-                {% block left %}
-                    <div class="col-xs-12 col-sm-9">
-                        <p class="pull-right visible-xs">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </div>
+        </nav>
+        <section id="breadcrum">
+            <div class="container">
+                <div class="row">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">page1</a></li>
+                        <li><a href="#">page2</a></li>
+                        <li><a href="#">page3</a></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <section id="welcome">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Bienvenida</h1>
+                        <p>
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
                         </p>
-                        <div class="jumbotron">
-                            <h1>Hello, world!</h1>
-                            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-lg-4">
-                                <h2>Heading</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                            </div><!--/.col-xs-6.col-lg-4-->
-                            <div class="col-xs-6 col-lg-4">
-                                <h2>Heading</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                            </div><!--/.col-xs-6.col-lg-4-->
-                            <div class="col-xs-6 col-lg-4">
-                                <h2>Heading</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                            </div><!--/.col-xs-6.col-lg-4-->
-                            <div class="col-xs-6 col-lg-4">
-                                <h2>Heading</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                            </div><!--/.col-xs-6.col-lg-4-->
-                            <div class="col-xs-6 col-lg-4">
-                                <h2>Heading</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                            </div><!--/.col-xs-6.col-lg-4-->
-                            <div class="col-xs-6 col-lg-4">
-                                <h2>Heading</h2>
-                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                            </div><!--/.col-xs-6.col-lg-4-->
-                        </div><!--/row-->
-                    </div><!--/.col-xs-12.col-sm-9-->                    
+                        <p>
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>       
+    {% endblock %}
+    <section id="contenido">
+        <div class="container">
+            <div class="row">
+                {% block content %}
+                    {% block left %}
+                        <div class="col-xs-12 col-md-8">
+                            <section class="box_main_project">
+                                <article>
+                                    <h2>22 Jan 2015 PHP 5.4.37 Released</h2>
+                                    <p> 
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem><a href="#">prueba de un enlace</a>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    </p>
+                                </article>
+                                <article>
+                                    <h2>Ejemplo de para poner código se pone entre etiquetas 'pre'</h2>
+                                    <div class="box_code_project">
+                                        <pre><span class="blue_code">&lt;p&gt;la clase es 'blue_code'&lt;/p&gt;<br></span><span class="green_code">&lt;p&gt;la clase es 'green_code'&lt;/p&gt;<br></span><span class="red_code">&lt;p&gt;la clase es 'red_code'&lt;/p&gt;<br></span><span class="gray_code">&lt;p&gt;la clase es 'gray_code'&lt;/p&gt;</span></pre>
+                                    </div>
+                                </article>
+                                <article>
+                                    <h2>22 Jan 2015 PHP 5.4.37 Released</h2>
+                                    <p> 
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem><a href="#">prueba de un enlace</a>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    </p>
+                                </article>
+                                <article>
+                                    <h2>22 Jan 2015 PHP 5.4.37 Released</h2>
+                                    <p> 
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem><a href="#">prueba de un enlace</a>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    <Lorem>ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, odit.</Lorem>
+                                    </p>
+                                </article>
+                            </section>
+                        </div>                   
+                    {% endblock %}
+                    {% block right %}
+                        <div class="col-xs-12 col-md-4 col-lg-4">
+                            <section class="box_minor_project">
+                                <article class="enlaces_directos">
+                                    <h3>Enlaces directos</h3>
+                                    <ul>
+                                        <li><a href="#">Enlace número 1</a></li>
+                                        <li><a href="#">Enlace número 2</a></li>
+                                        <li><a href="#">Enlace número 3</a></li>
+                                        <li><a href="#">Enlace número 4</a></li>
+                                        <li><a href="#">Enlace número 5</a></li>
+                                        <li><a href="#">Enlace número 6</a></li>
+                                    </ul>
+                                </article>
+                                <article class="enlaces_resultados">
+                                    <h3>Enlaces resultados</h3>
+                                    <ul>
+                                        <li><a href="#">Enlace número 1</a></li>
+                                        <li><a href="#">Enlace número 2</a></li>
+                                        <li><a href="#">Enlace número 3</a></li>
+                                        <li><a href="#">Enlace número 4</a></li>
+                                        <li><a href="#">Enlace número 5</a></li>
+                                        <li><a href="#">Enlace número 6</a></li>
+                                    </ul>
+                                </article>
+                            </section>
+                        </div>                   
+                    {% endblock %}
                 {% endblock %}
-                {% block right %}
-                    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                            <a href="#" class="list-group-item">Link</a>
-                        </div>
-                    </div><!--/.sidebar-offcanvas-->                    
-                {% endblock %}
-            {% endblock %}
+            </div>
         </div>
-    </div>
+    </section>
     {% block footer %}
-        <hr>
-
         <footer>
-            <p>&copy; Company 2014</p>
-        </footer>        
+            <div class="container">
+                <div class="row">
+                    <p>Todos los derecheos reservador por PUCP Virtual</p>
+                </div>
+            </div>
+        </footer>       
     {% endblock %}        
 {% endblock %}
