@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/bootstrap-theme.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/estilo.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/ui.totop.css') }}" type="text/css">
-
-    <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/custom.css') }}" type="text/css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500">
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('bundles/themedefault/js/jquery.min.js') }}"></script>
@@ -25,26 +22,24 @@
         {% include "ThemeDefaultBundle::breadcrumb.html.twig" %}
         {% include "ThemeDefaultBundle::welcome.html.twig" %}       
     {% endblock %}
-    {% block bienvenido %}
-        <section id="contenido">
-            <div class="container">
-                <div class="row">
-                    {% block content %}
-                        {% block left %}
-                            <div class="col-xs-12">
-                                {% include "ThemeDefaultBundle::leftContent.html.twig" %}
-                            </div>                   
-                        {% endblock %}
-                        <!-- {% block right %}
-                            <div class="col-xs-12 col-md-4 col-lg-4">
-                                {% include "ThemeDefaultBundle::rightContent.html.twig" %}
-                            </div>                   
-                        {% endblock %} -->
+    <section id="contenido">
+        <div class="container">
+            <div class="row">
+                {% block content %}
+                    {% block left %}
+                        <div class="col-xs-12">
+                            {% include "ThemeDefaultBundle::leftContent.html.twig" %}
+                        </div>                   
                     {% endblock %}
-                </div>
+                    <!-- {% block right %}
+                        <div class="col-xs-12 col-md-4 col-lg-4">
+                            {% include "ThemeDefaultBundle::rightContent.html.twig" %}
+                        </div>                   
+                    {% endblock %} -->
+                {% endblock %}
             </div>
-        </section>        
-    {% endblock %}
+        </div>
+    </section>
     {% block footer %}
         {% include "ThemeDefaultBundle::footerContent.html.twig" %}    
     {% endblock %}        

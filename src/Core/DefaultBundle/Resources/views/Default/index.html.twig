@@ -1,1 +1,191 @@
 {% extends "Theme"~theme|capitalize~"Bundle::public.html.twig" %}
+{% block header %}
+    {% include "ThemeDefaultBundle::menu.html.twig" %}     
+{% endblock %}
+
+{% block bienvenido %}
+	<section id="part-slider">
+		<div class="container">
+			<h1>Bienvenido al Equipo de Desarrollo PUCP Virtual</h1>
+			<p>Intentamos aprender y no matarnos en el intento...</p>
+			<hr>
+			<ul class="slide-project-doc">
+				<li class="group"> 
+					<a href="#"> <img src="{{ asset('bundles/themedefault/img/slide/slide-1.jpg') }}" alt="" /> </a>
+					<div class="rs-caption rs-bottom">
+						<h3>Caption Area 1</h3>
+						<p>Description 1</p>
+					</div>
+				</li>
+
+				<li class="group"> 
+					<a href="#"> <img src="{{ asset('bundles/themedefault/img/slide/slide-2.jpg') }}" alt="" /> </a>
+					<div class="rs-caption rs-bottom">
+						<h3>Caption Area 2</h3>
+						<p>Description 2</p>
+					</div>
+				</li>
+
+				<li class="group"> 
+					<a href="#"> <img src="{{ asset('bundles/themedefault/img/slide/slide-3.jpg') }}" alt="" /> </a>
+					<div class="rs-caption rs-bottom">
+						<h3>Caption Area 3</h3>
+						<p>Description 3</p>
+					</div>
+				</li>
+
+				<li class="group"> 
+					<a href="#"> <img src="{{ asset('bundles/themedefault/img/slide/slide-4.jpg') }}" alt="" /> </a>
+					<div class="rs-caption rs-bottom">
+						<h3>Caption Area 4</h3>
+						<p>Description 4</p>
+					</div>
+				</li>
+
+				<li class="group"> 
+					<a href="#"> <img src="{{ asset('bundles/themedefault/img/slide/slide-5.jpg') }}" alt="" /> </a>
+					<div class="rs-caption rs-bottom">
+						<h3>Caption Area 5</h3>
+						<p>Description 5</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section id="part-clients">
+		<div class="container">
+			<h2>Algunos de nuestros clientes...</h2>
+			<p>Los cuales nos piden cosas fáciles y descabelladas!</p>
+			<hr>
+			<div class="row">
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-1.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-2.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-3.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-4.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-5.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-6.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-7.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-8.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-9.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+				<article class="col-xs-12 col-md-6 col-lg-4">
+					<figure>
+						<img src="{{ asset('bundles/themedefault/img/clientes/cliente-10.png') }}" alt="">
+						<p class="name_client">Descripción del cliente</p>
+						<p class="descripcion_cliente">Descripción del trabajo realizado al cliente</p>
+					</figure>
+				</article>
+			</div>
+		</div>
+	</section>
+	<section id="part-team">
+		<div class="container">
+			<h2>El equipo encargado de hacer la "Magia"</h2>
+			<p>Cada uno con distintos perfiles...</p>
+			<hr>
+			<div class="row">
+				<article class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+					<img src="{{ asset('bundles/themedefault/img/equipo/team-1.png') }}" alt="">
+					<h2>Nombre del miembro del equipo</h2>
+					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime voluptatibus sit officia, est nemo eveniet aspernatur in numquam laboriosam. Facere consequatur, officia quasi ea numquam voluptatibus odit minus placeat ipsum suscipit, architecto velit dolorum nemo.</h3>
+				</article>
+				<article class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+					<img src="{{ asset('bundles/themedefault/img/equipo/team-2.png') }}" alt="">
+					<h2>Nombre del miembro del equipo</h2>
+					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae vitae repellat eveniet soluta quae impedit dolorem harum animi odit, ipsa possimus cumque consequuntur explicabo. Aspernatur vel mollitia possimus harum qui facilis soluta in eveniet inventore.</h3>
+				</article>
+				<article class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+					<img src="{{ asset('bundles/themedefault/img/equipo/team-3.png') }}" alt="">
+					<h2>Nombre del miembro del equipo</h2>
+					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam eligendi distinctio delectus, nisi provident nihil esse consequatur perspiciatis eum, doloribus minima. At maiores nisi sequi mollitia dignissimos, nostrum necessitatibus consequatur animi quis esse! Doloribus, aperiam.</h3>
+				</article>
+				<article class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+					<img src="{{ asset('bundles/themedefault/img/equipo/team-4.png') }}" alt="">
+					<h2>Nombre del miembro del equipo</h2>
+					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti eos asperiores rerum itaque pariatur! Odit maiores magni, blanditiis suscipit iusto ex numquam, at assumenda deserunt quas totam pariatur tempore placeat. Sit dolores possimus delectus dolorem.</h3>
+				</article>
+				<article class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+					<img src="{{ asset('bundles/themedefault/img/equipo/team-5.png') }}" alt="">
+					<h2>Nombre del miembro del equipo</h2>
+					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae soluta blanditiis fugiat molestias suscipit ullam maxime atque. Quisquam reprehenderit quis, unde fugiat quam illo, non, consequuntur, esse deserunt magni optio maxime minima sed? Delectus, mollitia.</h3>
+				</article>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+{% block stylesheets %}
+ {{ parent() }}
+ <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/refineslide.css') }}" />
+ <link rel="stylesheet" href="{{ asset('bundles/themedefault/css/refineslide-theme-dark.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/themedefault/js/jquery.refineslide.js') }}"></script>
+	<script>
+	$(function () {
+		$('.slide-project-doc').refineSlide({
+			maxWidth: 1200,
+			fallback3d : 'sliceV',
+			autoPlay : true,
+			useThumbs : false,
+			useArrows : true,
+			transitionDuration : 800
+		});
+	});
+	</script>
+{% endblock %}

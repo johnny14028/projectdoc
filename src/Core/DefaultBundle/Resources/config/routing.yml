@@ -1,3 +1,9 @@
 core_default_homepage:
     path:     /
     defaults: { _controller: CoreDefaultBundle:Default:index }
+core_default_descargas:
+    pattern: /descargas/
+    defaults: { _controller: CoreDefaultBundle:Default:descargas }
+core_default_documentacion:
+    pattern: /documentacion/
+    defaults: { _controller: CoreDefaultBundle:Default:documentacion }
