@@ -1,0 +1,98 @@
+<div id="pap_lista">
+    <ul>
+        <!--        <li>
+                    <a href="javascript:mcomunicacion(<?php echo $workstationId ?>,<?php echo $puestoId ?>);">Método de comunicación</a>
+                    <span class="flecha">&nbsp;</span>
+                </li>
+                <li>
+                    <a href="javascript:microambiente(<?php echo $workstationId ?>,<?php echo $puestoId ?>);">Arquitectura de microambiente</a>
+                    <span class="flecha">&nbsp;</span>
+                </li>-->
+        <li>
+            <a href="javascript:adaptacion(<?php echo $workstationId ?>,<?php echo $puestoId ?>, <?php echo $objPuesto->id_status ?>);" class="pap_active_menu">Plan de adaptación al puesto</a>
+            <span class="flecha">&nbsp;</span>
+        </li>
+        <li>
+            <a href="#" class="pap_active_menu">Hitos de seguimiento</a>
+            <span class="flecha">&nbsp;</span>
+        </li>
+        <li>
+            <a href="#" class="pap_active_menu"><?php echo $objActivity->chr_name ?></a>
+        </li>
+    </ul>     
+</div>
+<div id="pap_seccion">
+    <div class="pap_titulo">
+        <h2 class="pap_left">Cargo / Puesto: <?php echo $objPuesto->chr_name ?></h2>
+    </div>
+
+    <form id="pap_form_hitos" action="" name="frmHito" method="POST">
+        <input type="hidden" name="subject" value="saveHito" >
+        <input type="hidden" name="urlAjax" value="ajax.php" >
+        <input type="hidden" name="activityId" value="<?php echo $objActivity->id ?>" >        
+        <input type="hidden" name="puestoId" id="puestoId" value="<?php echo $puestoId ?>" >        
+        <input type="hidden" name="workstationId" id="workstationId" value="<?php echo $objPuesto->id_workstation ?>" >        
+        <input type="hidden" name="statusId" id="statusId" value="<?php echo $objPuesto->id_status ?>" >        
+        <table id="tableHito">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Hito / Reunión</th>
+                    <th>¿Cuál es el objetivo?</th>
+                    <th>¿Quienes participan?</th>
+                    <th>Fecha</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if(is_array($hitos) && count($hitos)>0): ?>
+                <?php $cont=1; ?>
+                <?php foreach ($hitos as $indice=>$objHito): ?>
+                <tr id="hito_<?php echo $objHito->id ?>">
+                    <td>
+                        <?php echo $cont ?><input type="hidden" name="id[]" value="<?php echo $objHito->id ?>">
+                    </td>
+                    <td>
+                        <textarea name="txtHito[]" style="width:111px"><?php echo $objHito->txt_description ?></textarea>
+            </td>
+            <td>
+            <textarea name="txtTarget[]"  style="width:111px"><?php echo $objHito->txt_target ?></textarea>
+            </td>
+            <td>
+            <textarea name="txtParticipant[]" style="width:111px"><?php echo $objHito->txt_participant ?></textarea>
+            </td>
+            <td>
+                <select name="dateHito[]" id="selectWeek">
+                    <?php for($i=1;$i<13;$i++): ?>
+                        <?php if($objHito->int_timedeadline == $i): ?>
+                            <option selected="selected" value="<?php echo $i ?>">Semana <?php echo $i ?></option>
+                            <?php else: ?>
+                            <option value="<?php echo $i ?>">Semana <?php echo $i ?></option>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </select>
+            </td>
+            <td>
+                <button onclick="deleteHito(<?php echo $objHito->id ?>, true);return false;">Quitar fila</button>
+            </td>
+            </tr>
+            <?php $cont++; ?>
+            <?php endforeach; ?>
+            <?php endif; ?>
+            </tbody>
+        </table>
+        <div class="stripe">
+            <!--			<button>+Añadir hito</button>
+                                    <button>Guardar avance</button>
+                                    <button>Volver a la lista de puesto</button>-->
+            <button name="btnSave" onclick="saveHito();
+                    return false;">Guardar</button>
+            <button name="btnSave" onclick="adaptacion(<?php echo $workstationId ?>,<?php echo $puestoId ?>, <?php echo $objPuesto->id_status ?>);
+                    return false;">Cancelar</button>
+<!--            <button name="btnCancel" onclick="cancelComunicacion(<?php echo $workstationId ?>);
+                    return false;">Volver a la lista de puestos</button> -->
+            <button name="btnCancel" onclick="addNewHito(<?php echo $objActivity->id ?>);
+                    return false;">+Agregar hito</button> 
+        </div>
+    </form>
+</div>

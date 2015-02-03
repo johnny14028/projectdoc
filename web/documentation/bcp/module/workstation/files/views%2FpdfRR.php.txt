@@ -1,0 +1,59 @@
+<html>
+<body>
+	<!-- <div id="pap_cabecera" style="width: 100%;padding: 10px;height: 45px;background-color: #014785;">
+		<img src="img/logo-bcp-blue.jpg" style="margin: 5px 15px 5px 0;float:right">
+	</div> -->
+
+	<div class="pap_contenedor">
+		<p style="color: #014785;text-align: center;font-size: 15px;">Formato Roles y Responsabilidades</p>
+
+		<p style="text-transforma:capitalize;color: #014785;text-align: left;font-size: 13px;"><?php echo $nombreUser ?></p>
+
+		<table style="color: #666666;border: 2px dotted #014785;">
+			<thead style="color: #ffffff;text-align:center;">
+				<tr style="background-color:#014785;">
+					<th style="padding: 13px;font-size:14px;">Roles y Responsabilidades</th>
+				</tr>
+			</thead>
+			<tbody>
+				  <tr>
+				    <td style="border-top: 2px dotted #014785; width:740px;">
+				    	<p style="color: #F36E29;font-size: 13px;">1. Nombre del Puesto</p>
+				    	<p><?php echo $objPuesto->chr_name ?></p>
+				    </td>
+				  </tr>
+				  <tr>
+				    <td style="border-top: 2px dotted #014785;">
+				    	<p style="color: #F36E29;font-size: 13px;">2 .Misión del Puesto</p>
+				    	<p class="pap_parrafo"><?php echo $objPuesto->txt_vision ?></p>
+				    </td>
+				  </tr>
+                                <?php if(is_array($activities) && count($activities)>0): ?>
+                                    <?php $cont=0 ?>
+                                    <?php foreach($activities as $index=>$objActivity): ?>
+                                        <tr>
+                                              <td style="border-top: 2px dotted #014785;">
+                                                  <p style="color: #014785;font-size: 14px;">Actividad <?php echo intval($cont+1) ?> :</p>
+                                                      <p class="pap_parrafo"><?php echo $objActivity->chr_name ?></p>
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                              <p style="color: #F36E29;font-size: 13px;">Pasos claves de la actividad</p>
+                                              <p class="pap_parrafo"><?php echo $objActivity->txt_como_lo_logro ?></p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                              <p style="color: #F36E29;font-size: 13px;">¿Qué resultados se esperan de mi trabajo?</p>
+                                              <p class="pap_parrafo"><?php echo $objActivity->txt_resultado_trabajo ?></p>
+                                          </td>
+                                        </tr>
+                                        <?php $cont++ ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

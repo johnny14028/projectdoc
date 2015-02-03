@@ -1,0 +1,215 @@
+<div id="pap_lista">
+    <ul>
+        <!--        <li>
+                    <a href="javascript:mcomunicacion(<?php echo $workstationId ?>,<?php echo $puestoId ?>);">Método de comunicación</a>
+                    <span class="flecha">&nbsp;</span>
+                </li>
+                <li>
+                    <a href="javascript:microambiente(<?php echo $workstationId ?>,<?php echo $puestoId ?>);">Arquitectura de microambiente</a>
+                    <span class="flecha">&nbsp;</span>
+                </li>-->
+        <li>
+            <a href="javascript:adaptacion(<?php echo $workstationId ?>,<?php echo $puestoId ?>, <?php echo $objPuesto->id_status ?>);" class="pap_active_menu">Plan de adaptación al puesto</a>
+            <span class="flecha">&nbsp;</span>
+        </li>
+        <li>
+            <a href="#" class="pap_active_menu">Hitos de seguimiento</a>
+        </li>
+    </ul>     
+</div>
+<div id="pap_seccion">
+    <div class="pap_titulo">
+        <h2 class="pap_left">Cargo / Puesto: <?php echo $objPuesto->chr_name ?></h2>
+        <input type="hidden" name="role" id="role" value="<?php echo $strRole ?>" />
+    </div>
+    <div style="overflow-x: scroll;">
+    <table id="TableElaboracion">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Actividades</th>
+                <th>Técnica de Aprendizaje</th>
+                <th>Quién enseñará</th>
+                <th>Cómo y por cuanto tiempo</th>
+                <th>Material / Herramientas</th>
+                <th>Apoyo del jefe directo</th>
+                <th>Factores Críticos de éxito</th>
+                <th>Hitos de seguimiento</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th><span class="pap_alert" title="Se muestran las actividades principales que necesita realizar el colaborador para cumplir la misión del puesto."></span></th>
+                <th><span class="pap_alert" title="Vendrían a ser las “Técnicas de Enseñanza” que se encuentran en el material que se entregó en el taller presencial. Elegir un máximo de 3, manteniendo un orden de aprendizaje lógico."></span></th>
+                <th><span class="pap_alert" title="Elegir al cargo experto en la actividad, no a la persona."></span></th>
+                <th><span class="pap_alert" title="Redactar los pasos clave, elegir los más representativos. Utilizar verbos en infinitivo."></span></th>
+                <th><span class="pap_alert" title="Medios físicos que requerirá el nuevo colaborador para desarrollar los pasos clave."></span></th>
+                <th><span class="pap_alert" title="Enumerar las acciones del jefe para apoyar al nuevo colaborador a desarrollar sus actividades. Utilizar verbos en infinitivo."></span></th>
+                <th><span class="pap_alert" title="Requisitos que a criterio del Jefe se deben tomar en cuenta para garantizar el desarrollo de la actividad."></span></th>
+                <th><span class="pap_alert" title="Colocar las reuniones de seguimiento como hitos en los que se va a acompañar a la nueva incorporación en su  proceso de adaptación al puesto."></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (is_array($actividades) && count($actividades) > 0): ?>
+                <?php
+                $cont = 0;
+                $texto = '<span class="pap_gray">click para ingresar texto</span>';
+                ?>
+                    <?php foreach ($actividades as $indice => $actividad): ?>             
+                    <tr id="puesto_adaptacion_<?php echo $actividad->id ?>">
+                        <td><?php echo intval($cont + 1) ?></td>
+                        <td style="min-width: 117px;">
+                            <?php
+                            if (strlen(trim($actividad->chr_name)) == 0) {
+                                echo '';
+                            } else {
+                                if (strlen(trim($actividad->chr_name)) <= 65) {
+                                    if ($actividad->chr_name == '...') {
+                                        echo '';
+                                    } else {
+                                        echo $actividad->chr_name;
+                                    }
+                                } else {
+                                    echo substr($actividad->chr_name, 0, 65) . '...';
+                                }
+                            }
+                            ?>                            
+                        </td>
+                        <td style="min-width: 117px;"><div id="activity_tecnica_<?php echo $actividad->id ?>" onclick="showBox('tecnica',<?php echo $actividad->id ?>, '<?php echo $actividad->chr_name ?>');
+                                        return false;">
+                                <?php
+                                if (strlen(trim($actividad->txt_tecnica_aprendizaje)) == 0) {
+                                    echo $texto;
+                                } else {
+                                    if (strlen(trim($actividad->txt_tecnica_aprendizaje)) <= 65) {
+                                        if ($actividad->txt_tecnica_aprendizaje == '...') {
+                                            echo $texto;
+                                        } else {
+                                            echo $actividad->txt_tecnica_aprendizaje;
+                                        }
+                                    } else {
+                                        echo substr($actividad->txt_tecnica_aprendizaje, 0, 65) . '...';
+                                    }
+                                }
+                                ?>
+                            </div></td>
+                        <td style="min-width: 117px;"><div id="activity_quien_<?php echo $actividad->id ?>" onclick="showBox('quien',<?php echo $actividad->id ?>, '<?php echo $actividad->chr_name ?>');
+                                        return false;">
+                                <?php
+                                if (strlen(trim($actividad->txt_quien_enseniara)) == 0) {
+                                    echo $texto;
+                                } else {
+                                    if (strlen(trim($actividad->txt_quien_enseniara)) <= 65) {
+                                        if ($actividad->txt_quien_enseniara == '...') {
+                                            echo $texto;
+                                        } else {
+                                            echo $actividad->txt_quien_enseniara;
+                                        }
+                                    } else {
+                                        echo substr($actividad->txt_quien_enseniara, 0, 65) . '...';
+                                    }
+                                }
+                                ?>                                
+                            </div></td>
+                        <td style="min-width: 117px;"><div id="activity_cuanto_<?php echo $actividad->id ?>" onclick="showBox('cuanto',<?php echo $actividad->id ?>, '<?php echo $actividad->chr_name ?>');
+                                        return false;">
+                                <?php
+                                if (strlen(trim($actividad->txt_como_cuanto_tiempo)) == 0) {
+                                    echo $texto;
+                                } else {
+                                    if (strlen(trim($actividad->txt_como_cuanto_tiempo)) <= 65) {
+                                        if ($actividad->txt_como_cuanto_tiempo == '...') {
+                                            echo $texto;
+                                        } else {
+                                            echo $actividad->txt_como_cuanto_tiempo;
+                                        }
+                                    } else {
+                                        echo substr($actividad->txt_como_cuanto_tiempo, 0, 65) . '...';
+                                    }
+                                }
+                                ?>                                 
+                            </div></td>
+                        <td style="min-width: 117px;"><div id="activity_material_<?php echo $actividad->id ?>" onclick="showBox('material',<?php echo $actividad->id ?>, '<?php echo $actividad->chr_name ?>');
+                                        return false;">
+                                <?php
+                                if (strlen(trim($actividad->txt_material_herramienta)) == 0) {
+                                    echo $texto;
+                                } else {
+                                    if (strlen(trim($actividad->txt_material_herramienta)) <= 65) {
+                                        if ($actividad->txt_material_herramienta == '...') {
+                                            echo $texto;
+                                        } else {
+                                            echo $actividad->txt_material_herramienta;
+                                        }
+                                    } else {
+                                        echo substr($actividad->txt_material_herramienta, 0, 65) . '...';
+                                    }
+                                }
+                                ?>                                
+                            </div></td>
+                        <td style="min-width: 117px;"><div id="activity_apoyo_<?php echo $actividad->id ?>" onclick="showBox('apoyo',<?php echo $actividad->id ?>, '<?php echo $actividad->chr_name ?>');
+                                        return false;">
+                                <?php
+                                if (strlen(trim($actividad->txt_apoyo_jefe_directo)) == 0) {
+                                    echo $texto;
+                                } else {
+                                    if (strlen(trim($actividad->txt_apoyo_jefe_directo)) <= 65) {
+                                        if ($actividad->txt_apoyo_jefe_directo == '...') {
+                                            echo $texto;
+                                        } else {
+                                            echo $actividad->txt_apoyo_jefe_directo;
+                                        }
+                                    } else {
+                                        echo substr($actividad->txt_apoyo_jefe_directo, 0, 65) . '...';
+                                    }
+                                }
+                                ?>                                
+                            </div></td>
+                        <td style="min-width: 117px;"><div id="activity_factores_<?php echo $actividad->id ?>" onclick="showBox('factores',<?php echo $actividad->id ?>, '<?php echo $actividad->chr_name ?>');
+                                        return false;">
+                                <?php
+                                if (strlen(trim($actividad->txt_factores_exito)) == 0) {
+                                    echo $texto;
+                                } else {
+                                    if (strlen(trim($actividad->txt_factores_exito)) <= 65) {
+                                        if ($actividad->txt_factores_exito == '...') {
+                                            echo $texto;
+                                        } else {
+                                            echo $actividad->txt_factores_exito;
+                                        }
+                                    } else {
+                                        echo substr($actividad->txt_factores_exito, 0, 65) . '...';
+                                    }
+                                }
+                                ?>                                
+                            </div></td>
+                        <td style="min-width: 117px;">
+                            <button name="btnAddHito" id="btnAddHito" onclick="hitos(<?php echo $workstationId ?>,<?php echo $objPuesto->id ?>, <?php echo $actividad->id ?>);
+                                        return false;">+Agregar hitos</button>
+                            <button onclick="showFeedback(<?php echo $objPuesto->id ?>, 'activity_hito', <?php echo $objWorkstation->tutor ?>, <?php echo $objPuesto->id_status ?>,<?php echo $actividad->id ?>);
+                                        return false;" name="btnFeedback">Mensaje del tutor</button>                            
+                        </td>
+
+                    </tr>
+                    <?php $cont++ ?>
+                <?php endforeach; ?>            
+            <?php else: ?>
+                <tr>
+                    <td colspan="9">No se encontró ninguna actividad registrado</td>
+                </tr>             
+            <?php endif; ?>            
+        </tbody>
+    </table>        
+    </div>
+
+    <form>
+<!--        <input class="pap_left" type="submit" value="Enviar">
+        <input class="pap_left" type="submit" value="Cancelar">-->
+        <button name="btnSave" onclick="saveStep(<?php echo $objPuesto->id ?>);
+                return false;">Guardar avance</button>
+        <button name="btnCancel" onclick="cancelComunicacion(<?php echo $workstationId ?>);
+                return false;">Volver a la lista de puestos</button>        
+    </form>
+</div>
+<div id="pap_dialog"></div>
+<div id="pap_dialog_hito" title="+Agregar Hitos"></div>
+<div id="pap_dialog_feedback"></div>

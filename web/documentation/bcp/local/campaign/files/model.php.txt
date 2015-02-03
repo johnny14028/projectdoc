@@ -1,0 +1,66 @@
+<?php
+
+global $DB, $USER, $CFG;
+
+class model {
+
+    public function isAdmin($userId) {
+        global $DB, $USER, $CFG;
+        $returnValue = FALSE;
+        $objConfigSitesAdmin = $DB->get_record('config', array('name' => 'siteadmins'));
+        $adminsId = explode(",", $objConfigSitesAdmin->value);
+        //verificamos si el userId esta en el array de admins
+        if (in_array($userId, $adminsId)) {
+            $returnValue = TRUE;
+        }
+        return $returnValue;
+    }
+
+    public function isEdited($page) {
+        global $DB, $USER, $CFG;
+        $returnValue = FALSE;
+        $objPage = $DB->get_record('local_campaign_page', array('chr_name' => $page));
+        if (is_object($objPage)) {
+            if ($objPage->is_edited=='1') {
+                $returnValue = TRUE;
+            }
+        }else{
+            $returnValue = FALSE;
+        }
+        return $returnValue;
+    }
+
+
+    public function get_image($image){
+        global $DB;
+        return $DB->get_record('files',array('id'=>$image));  
+    }
+
+    public function get_all(){
+
+     global $DB;
+        $sql = "SELECT *
+                FROM {local_campaign_courses} 
+                ORDER BY timecreated";
+
+        $params = array();
+
+        return $DB->get_records_sql($sql,$params);
+    }
+
+        public function get_one(){
+          global $DB;
+        $sql = "SELECT n.id,n.image
+                FROM {local_campaign_oferta} n 
+                where n.id = 1";
+
+        $params = array();
+
+        return $DB->get_records_sql($sql,$params);
+    }
+
+
+
+
+}
+

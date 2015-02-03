@@ -1,0 +1,124 @@
+<?php
+
+include('../../config.php');
+//include('lib.php');
+//include('model.php');
+include('form.php');
+global $DB;
+
+$PAGE->set_url('/local/bcp/addtogroup.php');
+
+require_login();
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+$name = 'Agregar a Grupos';
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($name);
+
+$PAGE->set_title($name);
+
+$PAGE->set_heading($name);
+
+//$u = new BCP_Utils();
+
+//$model = new BCP_Model();
+
+$mform = new addtogroup_form();
+
+echo $OUTPUT->header();
+
+
+if (!($data = $mform->get_data())){
+  $mform->display();
+  echo $OUTPUT->footer();
+  exit;
+}else{
+
+$content = $mform->get_file_content('users');
+    $cont = explode("\n",$content);
+
+
+   
+        $sql="SELECT u.id, p.id AS grupo,u.username
+        FROM  {user} u
+        INNER JOIN  {role_assignments} r ON u.id = r.userid
+        INNER JOIN  {context} c ON r.contextid = c.id
+        INNER JOIN  {course} o ON o.id = c.instanceid
+        INNER JOIN  {groups} p ON p.courseid = o.id
+        and u.username =?
+        AND p.id =?";
+   
+   
+
+    $i=0;
+    $numero_fila=0;
+    $existentes = array();
+    while($cont[$i]!=NULL){
+
+        $value = $cont[$i]; 
+        $cont1 = explode(',',$value);
+        $iduser = array_shift($cont1);
+        //$grupos= print_r ($cont1);
+
+         
+         foreach ($cont1 as $v) {
+            $j=0;
+            $iduser = strtolower($iduser);
+            $parameters=array($iduser,$cont1[$j] => $v); 
+            
+            $usu= $DB->get_record_sql($sql,$parameters);
+
+
+            if($usu!=NULL){
+
+               $condicion = array('groupid'=>$usu->grupo, 
+                                  'userid'=>$usu->id);
+
+            if(!$DB->record_exists('groups_members',$condicion)){
+
+                   $insert = array('groupid'=>$usu->grupo, 
+                                   'userid'=>$usu->id,
+                                   'timeadded'=>strtotime(date('d-m-Y H:i')));
+                   
+                   $DB->insert_record('groups_members',$insert);
+
+              }
+              else{
+              $existentes[$i]['id'] = $usu->id;
+              $existentes[$i]['grupo'] = $usu->grupo;
+              $existentes[$i]['username'] = $usu->username;
+            }
+
+             }
+
+         $j++;
+        }
+        
+        $i++;
+        $numero_fila++; 
+
+    }
+
+ if(count($existentes) > 0){
+     echo html_writer::tag('h1',"Estos Usuarios ya pertencen a grupo");
+
+         echo html_writer::start_tag('table');
+         foreach($existentes as $usu){
+            $usu = (object)$usu;
+            echo html_writer::start_tag('tr');
+                echo html_writer::tag('td',$usu->username);
+                echo html_writer::tag('td',$usu->grupo);         
+            echo html_writer::end_tag('tr');
+         }
+            
+         echo html_writer::end_tag('table');
+}
+
+    echo $OUTPUT->footer(); 
+    exit;
+}
+
+

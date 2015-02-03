@@ -1,0 +1,26 @@
+<?php
+//filtramos si se va visualizar el link de editar vista
+if($isAdmin && $isEdited){
+    echo '<a href="?page='.$view.'&action=edit">Editar</a>';
+}
+?>
+<div id="cat_catalogo">
+	<div class="cat_content clearfix">
+		<h1 class="cat_title_main">Catálogo</h1>
+	</div>
+
+	<div class="cat_content clearfix">
+		<div class="cat_lado_izq cat_ancho_60">
+			
+			<p class="cat_parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ipsa aliquam dolore tempore ipsam optio eaque architecto dicta rerum beatae mollitia sed doloremque illo quo aliquid nobis fugiat doloribus, quasi!</p>
+		</div>
+		<div class="cat_lado_der cat_ancho_30">
+			<img src="pix/logo-catalogo.png" alt="" style="width:100%; height: auto;">
+		</div>
+	</div>
+
+	<div class="cat_content clearfix">
+		<h2 class="cat_subtitle_main">Reconocimiento</h2>
+		<img src="pix/reconocimiento.png" alt="">
+	</div>
+</div>

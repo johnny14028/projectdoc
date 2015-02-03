@@ -1,0 +1,28 @@
+<?php
+
+defined('MOODLE_INTERNAL') || die;
+
+require_once($CFG->dirroot.'/lib/formslib.php');
+
+class alex_delete_form extends moodleform {
+
+    // Define the form
+    function definition() {
+        $mform =& $this->_form;
+
+        $data =& $this->_customdata;
+
+    
+        $mform->addElement('header', 'items',get_string('items','local_eliminar'));
+
+        $mform->addElement('filepicker', 'users', get_string('user','local_eliminar'), null,array('maxbytes' => 20000, 'accepted_types' => '*'));
+
+        //$mform->addElement('text', 'usuario',get_string('user','local_eliminar'));
+       
+        
+        $mform->addElement('submit', 'submit', get_string('delete','local_eliminar'));
+
+       
+    }
+}
+

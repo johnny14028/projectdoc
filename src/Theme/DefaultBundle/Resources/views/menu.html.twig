@@ -8,18 +8,18 @@
                 <div id="menu-top-header" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{{path('core_default_descargas')}}" class="active">Descargas</a></li>
-                        <li><a href="{{path('core_default_documentacion')}}">Documentación</a></li>
+                        <li><a href="#">Manuales</a></li>
                         <li><a href="{{path('core_default_involucrarse')}}">Involucrarse</a></li>
-                        <li><a href="{{path('core_default_catalogo')}}">Catalogo</a></li>
+                        <li><a href="{{path('core_default_catalogo')}}">Catálogo</a></li>
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                            Proyectos <span class="caret"></span>
+                            Documentación <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">BCP</a></li>
-                                <li><a href="#">BBVA</a></li>
-                                <li><a href="#">Mibanco</a></li>
-                                <li><a href="#">Unesco</a></li>
+                                <li><a href="{{path('core_default_documentacion', {'project': 'bcp'})}}">BCP</a></li>
+                                <li><a href="{{path('core_default_documentacion', {'project': 'bbva'})}}">BBVA</a></li>
+                                <li><a href="{{path('core_default_documentacion', {'project': 'mibanco'})}}">Mibanco</a></li>
+                                <li><a href="{{path('core_default_documentacion', {'project': 'unesco'})}}">Unesco</a></li>
                             </ul>
                         </li>
                     </ul>

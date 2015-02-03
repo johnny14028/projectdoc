@@ -1,0 +1,60 @@
+<?php
+
+include('../../config.php');
+include('lib.php');
+include('model.php');
+
+$PAGE->set_url('/local/bcp/togroup.php');
+
+require_login();
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+$name = 'Guardando';
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($name);
+
+$PAGE->set_title($name);
+
+$PAGE->set_heading($name);
+
+$u = new BCP_Utils();
+
+$model = new BCP_Model();
+
+
+echo $OUTPUT->header();
+
+$ids = $SESSION->bcp['togroup'];
+
+$groupid = $ids['groupid'];
+
+if(empty($groupid)){
+	echo 'Error ID de grupo vacio *';
+	echo $OUTPUT->footer();	
+	exit;
+}
+foreach($ids as $id => $username){
+
+	if($id == 'groupid') continue;
+
+	try {
+		$model->addtogroup($id,$groupid);
+		echo "Se agrego con existo al usuario: $username";
+	} catch (Exception $e) {
+	    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+	}
+		
+
+
+}
+
+unset($SESSION->bcp['togroup']);
+
+echo $OUTPUT->footer();	
+exit;
+
+
+

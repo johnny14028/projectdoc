@@ -1,0 +1,103 @@
+<?php
+
+include('../../config.php');
+global $DB;
+$user =$USER->id;
+
+if(isset($_GET['submit'])){
+
+	$curso = $_GET['idcurso'];
+     $name = $DB->get_record('course',array('id'=>$curso),'id,fullname');
+     $context = context_course::instance($curso);
+
+		$matr['contextid'] = $context->id;
+		$matr['userid'] = $user;
+		$matr['roleid'] = '5';
+		$matr['timemodified'] = strtotime(date('Y-m-d H:i:s'));
+		$matr['itmeid'] = '0';
+		$matr['sortorder'] = '0';
+
+
+		  $roleid = $DB->insert_record('role_assignments',$matr,true);
+
+
+		$enrol['userid'] = $user;
+		$enrol['status'] = '0';
+		$enrol['enrolid'] = '1';
+		$enrol['timestart'] = strtotime(date('Y-m-d H:i:s'));
+		$enrol['timeend'] = '0';
+		$enrol['modifierid'] = '2';
+		$enrol['timecreated'] =  strtotime(date('Y-m-d H:i:s'));
+		$enrol['timemodified'] =  strtotime(date('Y-m-d H:i:s'));
+
+          $DB->insert_record('user_enrolments',$enrol,true);
+ 
+       echo html_writer::tag('h1', 'Felicidades Ud se ha Inscrito en el curso:'.' '.$name->fullname);
+	//redirect(new moodle_url('/local/campaign/view.php',array('page'=>'oferta')));
+}else{
+
+$courseid = required_param('courseid',PARAM_INT);
+
+
+ 
+        $sql = "SELECT r.userid
+				FROM  {user} u INNER JOIN  {user_enrolments} ue 
+				ON ue.userid = u.id
+				INNER JOIN  {enrol} e ON e.id = ue.enrolid
+				INNER JOIN  {role_assignments} r ON u.id = r.userid
+				INNER JOIN  {context} ctx ON ctx.id = r.contextid
+				AND contextlevel =50
+				INNER JOIN  {course} c ON c.id = ctx.instanceid
+				AND c.id = e.courseid
+				WHERE r.roleid =5
+				AND c.id = ?
+				AND u.id = ?";
+
+        $params = array($courseid,$user);
+
+       $usuario = $DB->get_record_sql($sql,$params);
+       $name = $DB->get_record('course',array('id'=>$courseid),'id,fullname');
+
+echo html_writer::start_tag('form');
+
+		if (is_object($usuario)){
+
+		     echo html_writer::start_tag('div', array('class' => 'msg-confirmacion-inscripcion'));
+		        echo html_writer::tag('h1', 'Estimado colaborador, usted se encuentra inscrito en el curso'.' '.$name->fullname);
+		        // echo html_writer::tag('p', 'Usted podrá acceder a la Induccion digital a partir del Lunes 20 de octubre.');
+		     echo html_writer::end_tag('div');
+
+
+
+		}else{
+
+
+		 echo html_writer::start_tag('div', array('class' => 'msg-confirmacion-inscripcion'));
+		        echo html_writer::tag('h1', 'Estimado colaborador, usted está a punto de confirmar su inscripción al curso'.' '.$name->fullname);
+		        // echo html_writer::tag('p', 'Usted podrá acceder a la Induccion digital a partir del Lunes 20 de octubre.');
+		        echo html_writer::tag('p', 'Me comprometo a participar activamente y rendir las evaluaciones del mismo, sin perjudicar mi desempeño ni las obligaciones propias de mi rol.');
+		        
+		     echo html_writer::end_tag('div');
+
+
+			echo html_writer::empty_tag('input',array('value'=>$courseid,'type'=>'hidden','name'=>'idcurso'));
+
+			echo html_writer::empty_tag('input',array('value'=>'Confirmar Inscripcion','type'=>'submit','name'=>'submit'));
+		    
+
+
+		}
+
+	
+
+echo html_writer::end_tag('form');
+
+
+
+
+
+
+
+}
+
+

@@ -1,0 +1,71 @@
+<?php
+
+require_once($CFG->libdir.'/formslib.php');
+
+class news_form extends moodleform {
+
+    function definition() {
+    	global $DB;
+
+        $mform =& $this->_form;
+        $data = $this->_customdata;
+
+        $categories = $DB->get_records_menu('news_categories',array(),'name','id,name');
+
+        $categories = array(0 => 'Seleccione..') + (array)$categories;
+
+        $mform->addElement('hidden','id',$data['id']);
+        $mform->addElement('text','title',get_string('title','local_news'));
+        $mform->addElement('select','category',get_string('category','local_news'),$categories);
+        $mform->addElement('filemanager', 'image', get_string('image','local_news'), null,array('subdirs' => 0,'maxfiles' => 1));
+        $mform->addElement('editor', 'content', get_string('content','local_news'),null);
+
+        $mform->setType('title',PARAM_TEXT);
+        $mform->setType('id',PARAM_INT);
+
+
+        $mform->addRule('title',get_string('required'),'required','','cliente',false,false);
+        $mform->addRule('image',get_string('required'),'required','','cliente',false,false);
+        $mform->addRule('content',get_string('required'),'required','','cliente',false,false);
+
+        if(!empty($data['id'])){
+            $data = $DB->get_record('news_entry',array('id'=>$data['id']), 'id,title,image,body,categoryid');
+            $mform->setDefault('title',$data->title);
+            $mform->setDefault('content',array('text'=>$data->body));
+            $mform->setDefault('category',$data->categoryid);
+        }
+
+        $this->add_action_buttons();
+
+    }
+}
+
+
+class news_form_categorie extends moodleform {
+
+    function definition() {
+        global $DB;
+
+        $mform =& $this->_form;
+        $data = $this->_customdata;
+
+        $mform->addElement('hidden','id',$data['id']);
+        $mform->addElement('text','name',get_string('name','local_news'));
+
+        $mform->setType('name',PARAM_TEXT);
+        $mform->setType('id',PARAM_INT);
+
+
+        $mform->addRule('name',get_string('required'),'required','','cliente',false,false);
+
+        if(!empty($data['id'])){
+            $data = $DB->get_record('news_categories',array('id'=>$data['id']), 'id,name');
+            $mform->setDefault('name',$data->name);
+        }
+
+        $this->add_action_buttons();
+
+    }
+}
+
+

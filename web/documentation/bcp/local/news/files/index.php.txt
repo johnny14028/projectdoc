@@ -1,0 +1,121 @@
+<?php
+
+include('../../config.php');
+include('model.php');
+
+
+$url = new moodle_url('/local/news/index.php');
+
+$PAGE->set_url($url);
+
+require_login();
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+has_capability('local/news:create',$context);
+
+$name = get_string('pluginname','local_news');
+
+$model = new news_Model();
+
+$news = $model->get_all();
+
+$banner =$model->get_one();
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($name);
+
+$PAGE->set_title($name);
+
+$PAGE->set_heading($name);
+
+if(isset($_GET['redirect'])){
+	ob_start();
+	header('location: '.$_GET['redirect']);
+	ob_end_clean();
+}
+echo $OUTPUT->header();
+
+$newlink = new moodle_url('/local/news/edit.php',array('id'=>0));
+$categroylink = new moodle_url('/local/news/category.php');
+
+$v = array("<p>", "</p>");
+
+foreach($banner as $n){
+
+$n->image = $model->get_image($n->image);
+$link= str_replace($v, "", $n->body);
+$edituri = new moodle_url('/local/news/edit.php',array('id'=>$n->id));
+$deleteuri = new moodle_url('/local/news/delete.php',array('id'=>$n->id));
+
+//$link = new moodle_url($link);
+
+$uri = $CFG->wwwroot.'/pluginfile.php/'.$n->image->contextid.'/'.$n->image->component.'/'.$n->image->filearea.'/'.$n->image->itemid.'/'.$n->image->filename;
+	
+	$img =  html_writer::empty_tag('img',array('src'=>$uri, 'style'=>'width: 100%'));
+   
+		echo html_writer::start_tag('div',array('class'=>'new-image'));
+		echo html_writer::tag('a',$img,array('target'=>'_blank', 'href'=>'index.php?redirect='.$link));
+		  echo html_writer::start_tag('div',array('class'=>'btn_news'));
+			if(is_siteadmin()){
+				echo html_writer::tag('a',get_string('edit'),array('href'=>$edituri));
+				echo html_writer::tag('a',get_string('delete'),array('href'=>$deleteuri));
+				echo html_writer::tag('a',get_string('addnew','local_news'),array('href'=>$newlink));
+				echo html_writer::tag('a',get_string('category','local_news'),array('href'=>$categroylink));
+			}
+			echo html_writer::end_tag('div');
+	     echo html_writer::end_tag('div');
+}
+
+echo html_writer::start_tag('div', array('id'=>'title-news'));
+	echo html_writer::tag('h3','Noticias y Novedades');
+echo html_writer::end_tag('div');
+
+if(is_siteadmin()){
+	if(count($banner) == 0){
+		echo html_writer::start_tag('div',array('class'=>'btn_news'));
+			echo html_writer::tag('a','Agregar Banner',array('href'=>$newlink));
+		echo html_writer::end_tag('div');
+	}
+}
+//echo html_writer::start_tag('table',array('align'=>'center'));
+
+
+
+	foreach($news as $n){	
+
+		$n->date = date('d-m-Y',$n->timecreated);
+		$n->image = $model->get_image($n->image);
+		if(empty($n->category)) $n->category = ' - ';
+
+		$uri = $CFG->wwwroot.'/pluginfile.php/'.$n->image->contextid.'/'.$n->image->component.'/'.$n->image->filearea.'/'.$n->image->itemid.'/'.$n->image->filename;
+		//$img = html_writer::empty_tag('img',array('src'=>$uri,'style'=>'width: 100px!important;'));
+		$viewuri = new moodle_url('/local/news/view.php',array('id'=>$n->id));
+		$edituri = new moodle_url('/local/news/edit.php',array('id'=>$n->id));
+		$deleteuri = new moodle_url('/local/news/delete.php',array('id'=>$n->id));
+
+		echo html_writer::start_tag('div', array('class'=>'new-front-page'));
+			echo html_writer::tag('h2',$n->title);
+			//echo html_writer::tag('img',$img);	
+			echo html_writer::empty_tag('img',array('src'=>$uri,'style'=>'width: 150px!important; height:88px!important'));
+			echo html_writer::start_tag('div',array('class'=>'btn_news'));
+				echo html_writer::tag('a',get_string('view','local_news'),array('href'=>$viewuri));
+				if(is_siteadmin()){
+				echo html_writer::tag('a',get_string('edit'),array('href'=>$edituri));
+				echo html_writer::tag('a',get_string('delete'),array('href'=>$deleteuri));
+			}
+			echo html_writer::end_tag('div');
+	    echo html_writer::end_tag('div');
+	}
+
+	if(count($news) == 0){
+		echo html_writer::start_tag('tr');
+			echo html_writer::tag('td',get_string('norecords','local_news'),array('colspan'=>5));
+		echo html_writer::end_tag('tr');		
+
+	}
+
+//echo html_writer::end_tag('table');
+
+echo $OUTPUT->footer();	

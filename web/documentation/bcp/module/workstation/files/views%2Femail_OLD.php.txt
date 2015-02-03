@@ -1,0 +1,24 @@
+<!--<div id="pap_mail" style="background-color: #ededed; width: 740px;margin: 0 auto;padding: 10px;font-family: Arial;">
+    <p class="name" style="color: #135092;font-weight: bold;font-size: 14px;border-bottom: 1px solid #cccccc;padding: 5px 0;">Nombre del Puesto:
+        <span class="orange-bcp" style="color: #f36e29;font-weight: lighter;font-size: 13px;"><?php echo $objPuesto->chr_name ?></span></p>
+    <p class="name" style="color: #135092;font-weight: bold;font-size: 14px;border-bottom: 1px solid #cccccc;padding: 5px 0;">Estado: 
+        <span class="orange-bcp" style="color: #f36e29;font-weight: lighter;font-size: 13px;"><?php echo $objPuesto->chr_status ?></span></p>
+    <p class="name" style="color: #135092;font-weight: bold;font-size: 14px;border-bottom: 1px solid #cccccc;padding: 5px 0;">Informe: 
+        <span class="orange-bcp" style="color: #f36e29;font-weight: lighter;font-size: 13px;"><?php echo $objPuesto->chr_notice ?></span></p>
+</div>-->
+
+	<div id="pap_mail" style="font-family: Arial;font-size: 13px;width: 500px;margin: 0 auto;background-color: #ededed;padding: 10px;">
+		<p class="name" style="color: #858585;font-weight: bold;">Tarea 1:
+			<span class="orange-bcp" style="color: #ec7b1e;font-weight: lighter;font-style: italic;"><strong>Redacción de Roles y Responsabilidades</strong> que pertenece al <strong><?php echo $objCourse->fullname ?></strong> ha sido corregido por tu tutor.</span>
+		</p>
+		<p class="name" style="color: #858585;font-weight: bold;">Puesto: 
+			<span class="orange-bcp" style="color: #ec7b1e;font-weight: lighter;font-style: italic;"><?php echo $objPuesto->chr_name ?></span>
+		</p>
+		<p class="name" style="color: #858585;font-weight: bold;">Feedback del tutor: 
+			<span class="orange-bcp" style="color: #ec7b1e;font-weight: lighter;font-style: italic;"><?php echo $objPuesto->txt_feedback_activity ?></span>
+		</p>
+		<p class="pap_mensaje" style="text-align: center;color: #858585;font-size: 13px;">
+			<span>Por favor ingresa a <a target="_blank" class="pap_link" style="font-weight: bolder;color: #ec7b1e;" href='http://www.campusbcp.com'>Campus BCP</a> para realizar el ajuste a tu trabajo.</span>
+		</p>
+	</div>
+

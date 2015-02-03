@@ -1,0 +1,29 @@
+<?php
+
+/***** EXTRA FUNCTION TO BCP MODULE *****/
+
+Class BCP_Utils{
+
+	public function change_username(&$usernames){
+		$usernames = explode("\n",$usernames);
+		array_walk($usernames,array($this, 'removesp'));
+		$usernames = array_unique($usernames);
+	}
+
+	private function removesp(&$value,$key){
+		$value = "'".strtolower(trim($value))."'";
+
+	}
+
+	public function recover(&$usernames){
+		array_walk($usernames,array($this, 'removes'));
+	}
+
+	public function removes(&$value,$key){
+		$value = str_replace("'","",$value); 
+	}
+
+}
+
+
+

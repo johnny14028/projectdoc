@@ -1,0 +1,10 @@
+<?php
+
+$string['alex:view'] = 'View plugin';
+$string['pluginname'] = 'test Mod';
+$string['items'] = 'Global Items';
+$string['name'] = 'Name';
+$string['send*'] = 'Enviar';
+$string['courses'] = 'Course';
+$string['addtogroups'] ='Agregar a Grupos';
+

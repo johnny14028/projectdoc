@@ -1,0 +1,8 @@
+<?php
+
+defined('MOODLE_INTERNAL') || die;
+
+$plugin->version   = 2012061700;
+$plugin->release   = '2.0';
+$plugin->requires  = 2012061700; 
+$plugin->component = 'local_library';

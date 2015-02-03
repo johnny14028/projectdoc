@@ -1,0 +1,198 @@
+<?php
+
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
+require_once(dirname(__FILE__) . '/lib.php');
+require_once(dirname(__FILE__) . '/locallib.php');
+
+$isXmlHttpRequest = TRUE;
+//if ($isXmlHttpRequest) {
+$post = $_POST;
+switch ($post['subject']) {
+    case 'filter':
+        $text = $post['text'];
+        $courseId = $post['courseId'];
+        $metadataId = $post['metadata'];
+        $error = 0;
+        $message= '';
+        $page = 0;
+        $objLocalLib = new locallib();
+        $limitfrom = intval($objLocalLib->getCantidadPaginator() * $page);
+        $users = $objLocalLib->getUserByCourse($courseId, '', 0, 'u.*', '', $limitfrom, $objLocalLib->getCantidadPaginator(), $text);
+        $html = $objLocalLib->htmlTableUserFilter($users, $courseId, $metadataId);
+        echo json_encode(array(
+            'error'=>$error,
+            'message'=>$message,
+            'text'=>$text,
+            'metadata'=>$metadataId,
+            'count'=> count($users),
+            'html'=>$html
+                ));
+        break;
+    case 'paginator':
+        if (isset($post['page'])) {
+            $page = $post['page'] - 1;
+            $metadataId = $post['metadata'];
+            $objLocalLib = new locallib();
+            $limitfrom = intval($objLocalLib->getCantidadPaginator() * $page);
+            $users = $objLocalLib->getUserByCourse($post['course'], '', 0, 'u.*', '', $limitfrom, $objLocalLib->getCantidadPaginator());
+            $html = $objLocalLib->htmlListaUsuario($users, $post['course'], $metadataId);
+            echo $html;
+        }
+        break;
+    case 'addField':
+        if (isset($post['field'])) {
+            $field = $_POST['field'];
+            $metadata = $_POST['metadata'];
+            $objLocalLib = new locallib();
+            $objLocalLib->addField($field, $metadata);
+            echo $objLocalLib->htmlListaCampos($metadata);
+        }
+        break;
+    case 'getValueField':
+        if (isset($post['field'])) {
+            $field = $_POST['field'];
+            $type = $_POST['type'];
+            $objLocalLib = new locallib();
+            $returnValue = $objLocalLib->getValueField($field, $type);
+            echo $returnValue;
+        }
+        break;
+    case 'saveField':
+        $field = $_POST['field'];
+        $type = $_POST['type'];
+        $value = $_POST['value'];
+        $objLocalLib = new locallib();
+        $returnValue = $objLocalLib->saveValueField($field, $type, $value);
+        echo $returnValue;
+        break;
+    case 'deleteField':
+        $field = $_POST['field'];
+        $objLocalLib = new locallib();
+        $objLocalLib->deleteField($field);
+        break;
+    case 'status':
+        $returnValue = 1;
+        $field = $_POST['field'];
+        $status = $_POST['status'];
+        if ($status) {
+            $objLocalLib = new locallib();
+            if ($objLocalLib->isValid($field)) {
+                $objLocalLib->editStatusField($field, $status);
+                $returnValue = 1;
+            } else {
+                $returnValue = 0;
+            }
+        } else {
+            $objLocalLib = new locallib();
+            $objLocalLib->editStatusField($field, $status);
+        }
+        echo $returnValue;
+        break;
+    case 'global':
+        $field = $_POST['field'];
+        $status = $_POST['status'];
+        $objLocalLib = new locallib();
+        $objLocalLib->setGlobal($field, $status);
+        break;
+    case 'initLoad':
+        $course = $_POST['course'];
+        $page = $post['page'] - 1;
+        $objLocalLib = new locallib();
+        $limitfrom = intval($objLocalLib->getCantidadPaginator() * $page);
+        $users = $objLocalLib->getUserByCourse($course, '', 0, 'u.*', '', $limitfrom, $objLocalLib->getCantidadPaginator());
+        $html = $objLocalLib->htmlListaUsuario($users, $course, $post['metadata']);
+        echo $html;
+        break;
+    case 'addExistingFields':
+        $moodleFields = $_POST['checkFieldMoodle'];
+        $courseFields = $_POST['checkFieldCourse'];
+        $course = $_POST['course'];
+        $metadataId = $_POST['metadata'];
+        //Agregamos los campos adicionales
+        $objLocalLib = new locallib();
+        $objLocalLib->importField($moodleFields, $courseFields, $course, $metadataId);
+        break;
+    case 'readCsv':
+        $metadataId = $_POST['metadata'];
+        $objLocalLib = new locallib();
+        $objLocalLib->readCsv($metadataId);
+        break;
+    case 'getValueFieldUser':
+        if (isset($post['field'])) {
+            $field = $_POST['field'];
+            $name = $_POST['name'];
+            $user = $_POST['user'];
+            $objLocalLib = new locallib();
+            $returnValue = $objLocalLib->getValueField($field, $name, $user);
+            echo $returnValue;
+        }
+        break;
+    case 'saveFieldExtra':
+        $field = $_POST['field'];
+        $name = $_POST['name'];
+        $value = $_POST['value'];
+        $user = $_POST['user'];
+        $objLocalLib = new locallib();
+        $returnValue = $objLocalLib->saveValueFieldExtra($field, $name, $value, $user);
+        echo $returnValue;        
+        break;
+    case 'order':
+        $field = $_POST['field'];
+        $order = $_POST['order'];
+        $mode = $_POST['mode'];
+        $objLocalLib = new locallib();
+        $returnValue = $objLocalLib->order($field, $order, $mode);
+        $metadata = $objLocalLib->getMetadataByField($field);
+        echo $objLocalLib->htmlListaCampos($metadata);
+        break;
+    case 'campospersonalizados':
+        $metadata = $_POST['metadata'];
+        $objLocalLib = new locallib();
+        echo $objLocalLib->htmlListaCampos($metadata);
+        break;
+    case 'category':
+        $categoryId = $_POST['category'];
+        $fieldId = $_POST['field'];
+        $objLocalLib = new locallib();
+        $objLocalLib->setCategory($fieldId, $categoryId);
+        echo '1';
+        break;
+    default:
+        //var_dump($_GET['subject']);
+        //var_dump($_REQUEST['subject']);
+        if (isset($_GET['subject'])) {
+            switch ($_GET['subject']) {
+                case 'import':
+                    $valid_exts = array('csv'); // valid extensions
+                    $max_size = 2000 * 1024; // max file size
+                    $path = 'uploads/'; // upload directory
+
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        if (!empty($_FILES['fileCsv'])) {
+                            // get uploaded file extension
+                            $ext = strtolower(pathinfo($_FILES['fileCsv']['name'], PATHINFO_EXTENSION));
+                            // looking for format and size validity
+                            if (in_array($ext, $valid_exts) AND $_FILES['fileCsv']['size'] < $max_size) {
+                                //$path = $path . uniqid() . '.' . $ext;
+                                $path = $path . $_SESSION['USER']->id . '.' . $ext;
+                                // move uploaded file from temp to uploads directory
+                                if (move_uploaded_file($_FILES['fileCsv']['tmp_name'], $path)) {
+                                    //echo "<img src='$path' />";
+                                    echo '1'; //'Porfavor espere un momento mientras procesamos la data...';
+                                }
+                            } else {
+                                echo '2'; //'Archivo invalido, solo formatos CSV';
+                            }
+                        } else {
+                            echo '3'; //'No es posible subir este archivo';
+                        }
+                    } else {
+                        echo '4'; //'Error: No es posible ejecutar el requerimiento de subida de archivos';
+                    }
+                    break;
+            }
+        }
+        break;
+}
+//}
+

@@ -1,0 +1,60 @@
+<div id="pap_seccion">
+    <div class="pap_titulo">
+        <h2 class="pap_left">Lista de puestos a planificar</h2>
+        </div>
+        <span class="pap_leyend">En esta página podrás visualizar los puestos a planificar.
+<!--            <ul>
+                <li>
+                    1. Los puestos que cuentan con el estado “ validado por el tutor”  están listos para ser planificados
+                </li>
+                <li>
+                    2. Ingresa a Planificación para crear tu plan de inducción por puesto.
+                </li>
+                <li>
+                    3. Los puestos que cuentan con el estado “corregido por el tutor” están pendientes de tu edición.
+                </li>
+            </ul>-->
+        <ol type="1">
+            <li>Los puestos que cuentan con el estado “Corregido por el tutor” están pendientes de tu edición.</li>
+            <li>Ingresa a Planificación para crear tu plan de inducción por puesto. Te pedimos tomar en cuenta la recomendación del tutor para la corrección del puesto, para poder visualizar lo escrito por tu tutor ingresa al botón “Mensaje del tutor”.</li>
+            <li>Después de realizar su corrección no olvidar “Guardar avance”.</li>
+            <li>Los puestos que cuentan con el estado “Tarea aprobada” están listos para ser planificados.</li>
+        </ol>            
+        </span>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Puesto</th>
+                <th>Creado por</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (is_array($puestos) && count($puestos) > 0): ?>
+                <?php $cont = 0 ?>
+                <?php foreach ($puestos as $indice => $puesto): ?>
+                    <tr id="puesto_plan_<?php echo $puesto->id ?>">
+                        <td><?php echo intval($cont + 1) ?></td>
+                        <td><?php echo $puesto->chr_name ?></td>
+                        <td><?php echo ucfirst(strtolower($puesto->chr_name_user)) ?></td>
+                        <td><?php echo $puesto->chr_status ?></td>
+                        <td>
+                            <a alt="Ir a" title="Planificación" href="javascript:adaptacion(<?php echo $objWorkstation->id ?>,<?php echo $puesto->id ?>, <?php echo $puesto->id_status ?>);"><span class="pap_see">&nbsp;</span></a>
+                            <a alt="Generar PDF" title="Generar cronograma de seguimiento" target="_blank" href="?puestoId=<?php echo $puesto->id ?>&type=planificacion"><span class="pap_create">&nbsp;</span></a>
+                        </td>
+                    </tr>
+                    <?php $cont++ ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5">No se encontró ningun puesto registrado</td>
+                </tr>            
+            <?php endif; ?>            
+        </tbody>
+    </table>
+    <div id="pap_pager">
+    </div>
+</div>

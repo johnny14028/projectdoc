@@ -1,0 +1,58 @@
+<?php
+
+include('../../config.php');
+include('model.php');
+
+$id = required_param('id',PARAM_INT);
+
+$urlMain = new moodle_url('/local/news/index.php');
+$url = new moodle_url('/local/news/index.php',array('id'=>$id));
+
+$PAGE->set_url($url);
+
+require_login();
+
+$name = get_string('pluginname','local_news');
+
+$model = new news_Model();
+
+$new = $model->get_new($id);
+
+if(!$new){
+	redirect(new moodle_url('/'));
+}
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($new->title);
+
+$PAGE->set_title($new->title);
+
+$PAGE->set_heading($new->title);
+
+echo $OUTPUT->header();
+
+$new->image = $model->get_image($new->image);
+
+$uri = $CFG->wwwroot.'/pluginfile.php/'.$new->image->contextid.'/'.$new->image->component.'/'.$new->image->filearea.'/'.$new->image->itemid.'/'.$new->image->filename;
+
+	
+echo html_writer::start_tag('div',array('class'=>'new-full-view'));
+    echo html_writer::tag('h2',$new->title);
+	echo html_writer::start_tag('div',array('class'=>'new-image'));
+		echo html_writer::empty_tag('img',array('src'=>$uri));
+	echo html_writer::end_tag('div');
+
+	echo html_writer::start_tag('div',array('class'=>'new-content'));
+		echo html_writer::tag('div',$new->body);
+	echo html_writer::end_tag('div');
+
+echo html_writer::end_tag('div');
+
+echo html_writer::start_tag('div', array('class'=>'btn_back_home'));
+	echo html_writer::tag('a','Volver al inicio',array('href'=>$urlMain, 'target'=>'_self'));
+echo html_writer::end_tag('div');
+
+echo $OUTPUT->footer();	

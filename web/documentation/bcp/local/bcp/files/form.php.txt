@@ -1,0 +1,53 @@
+<?php
+
+require_once($CFG->libdir.'/formslib.php');
+
+class addtogroup_form extends moodleform {
+
+    function definition() {
+
+        $mform =& $this->_form;
+
+        $mform->addElement('header', 'addheader', get_string('addtogroups','local_grupos')); 
+
+        $mform->addElement('filepicker', 'users', 'Usuarios*', null,array('maxbytes' => 20000, 'accepted_types' => '*'));
+
+       //        
+
+        $mform->addElement('submit', 'send', 'Send*');
+      }
+}
+
+class add_form extends moodleform {
+
+    function definition() {
+
+        $mform =& $this->_form;
+
+        $mform->addElement('header', 'addheader', 'Actualizar MatrÃ­cula'); 
+
+        $mform->addElement('filepicker', 'users', 'Usuarios*', null,array('maxbytes' => 20000, 'accepted_types' => '*'));
+
+        $mform->addElement('submit', 'send', 'Cambiar');
+      }
+}
+
+
+
+class order_form extends moodleform {
+
+    function definition() {
+
+        $mform =& $this->_form;
+
+        $mform->addElement('header', 'addheader', 'Ordenar Usuarios'); 
+
+        $mform->addElement('filepicker', 'users', 'Usuarios*', null,array('maxbytes' => 20000, 'accepted_types' => '*'));
+
+        $mform->addElement('text','courseid','ID del Curso'); 
+
+        $mform->addRule('courseid', get_string('required'), 'nonzero', '0', 'client', false, false);
+
+        $mform->addElement('submit', 'send', 'Ordenar');
+      }
+}

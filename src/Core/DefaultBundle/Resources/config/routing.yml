@@ -4,15 +4,19 @@ core_default_homepage:
 core_default_descargas:
     pattern: /descargas/
     defaults: { _controller: CoreDefaultBundle:Default:descargas }
-core_default_documentacion:
-    pattern: /documentacion/
-    defaults: { _controller: CoreDefaultBundle:Default:documentacion }
 core_default_catalogo:
     pattern: /catalogo/
     defaults: { _controller: CoreDefaultBundle:Default:catalogo }
 core_default_involucrarse:
-    pattern: /catalogo/
+    pattern: /involucrarse/
     defaults: { _controller: CoreDefaultBundle:Default:involucrarse }
 core_default_buscar:
     pattern: /buscar/
     defaults: { _controller: CoreDefaultBundle:Default:involucrarse }
+#URL de la documentación de cada proyecto
+core_default_documentacion:
+    pattern: /documentacion/{project}/
+    defaults: { _controller: CoreDefaultBundle:Default:documentacion }
+core_default_viewdoc:
+    pattern: /documentacion/{project}/{type}/{name}/
+    defaults: { _controller: CoreDefaultBundle:Default:viewdoc }

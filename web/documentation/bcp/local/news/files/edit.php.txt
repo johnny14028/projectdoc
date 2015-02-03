@@ -1,0 +1,99 @@
+<?php
+
+include('../../config.php');
+include('forms.php');
+include('model.php');
+
+$id = required_param('id',PARAM_INT);
+
+$url = new moodle_url('/local/news/edit.php',array('id'=>$id));
+
+$PAGE->set_url($url);
+
+require_login();
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+$PAGE->set_context($context);
+
+require_capability('local/news:create',$context);
+
+$name = get_string('addnew','local_news');
+
+$model = new news_Model();
+
+$mform = new news_form($url,array('id'=>$id));
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($name);
+
+$PAGE->set_title($name);
+
+$PAGE->set_heading($name);
+
+if($mform->is_cancelled()){
+	redirect(new moodle_url('/local/news/index.php'));
+}elseif($data = $mform->get_data()){
+
+	$record = new stdClass();
+
+	if(!empty($data->id)){
+		$record->id = $data->id;
+		$type = 'update_record';
+	}else{
+		$record->id = null;
+		$type = 'insert_record';
+	}
+
+	$record->title = $data->title;
+
+	$record->categoryid = $data->category;
+
+	$record->body = $data->content['text'];
+
+	$record->timecreated = time();
+
+	$record->image = 0;
+
+	$id = $DB->$type('news_entry',$record,true);
+
+	if(empty($record->id)) $record->id = (int)$id;
+
+	file_save_draft_area_files($data->image, $context->id, 'local_news', 'image',$record->id , array('subdirs' => 0, 'maxfiles' => 1));
+
+	$sql = "SELECT id 
+			FROM {files} 
+			WHERE component = ? AND itemid = ? AND filesize > 0 ";
+
+	$params = array('local_news',$record->id);
+
+
+	$record->image = $fileid = $DB->get_field_sql($sql,$params,'id');
+
+	$DB->update_record('news_entry',$record);
+	redirect(new moodle_url('/local/news/index.php'));
+}
+
+if(!empty($id)){
+	$entry = new stdClass();
+
+	$entry->id = $id;
+
+	$draftitemid = file_get_submitted_draft_itemid('image');
+	 
+	file_prepare_draft_area($draftitemid, 1, 'local_news', 'image', $entry->id);
+	 
+	$entry->image = $draftitemid;
+	 
+	$mform->set_data($entry);
+
+}
+    
+echo $OUTPUT->header();
+
+	$mform->display();
+
+echo $OUTPUT->footer();	
+
+

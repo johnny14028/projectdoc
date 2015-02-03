@@ -1,0 +1,12 @@
+<?php
+
+$string['eliminar:view'] = 'Ver Plugin';
+$string['pluginname'] = 'Eliminar Usuario';
+$string['items'] = 'Eliminar';
+$string['user'] = 'Usuario';
+$string['type'] = 'Tipo';
+$string['intro'] = 'Introduccion';
+$string['courses'] = 'Curso';
+$string['grade'] = 'Nota';
+$string['scorm'] = 'Actividad Scorm';
+$string['delete'] = 'Eliminar';

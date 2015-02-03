@@ -1,0 +1,49 @@
+<div id="pap_seccion">
+    <div class="pap_titulo" style="border-bottom:1px solid #135092;">
+        <h2 class="pap_blue">Repositorio de Roles</h2>
+    </div>
+    <span class="pap_leyend">Aquí podrás encontrar los roles y responsabilidades creados para tu consulta.</span>
+
+    <div class="stripe">
+        <form action="" method="POST" name="frmBuscar" onsubmit="findRoles();return false;">
+            <input class="pap_left" name="txtBuscar" id="txtBuscar" type="search" placeholder="Buscar Roles y Responsabilidades">
+            <input class="pap_right" type="submit" value="Buscar" name="btnSearch" id="btnSearch" onclick="findRoles();return false;"  />
+            <input type="hidden" name="urlAjax" id="urlAjax" value="<?php echo $CFG->wwwroot . '/mod/workstation/ajax.php' ?>" >
+            <input type="hidden" name="subject" id="subject" value="find" />
+            <input type="hidden" name="workstationId" id="workstationId" value="<?php echo $workstationId ?>" />
+            <input type="hidden" name="txtfind" id="txtfind" value="" />            
+        </form>
+    </div>
+
+    <table>
+        <thead class="pap-bg-blue">
+            <tr>
+                <th>#</th>
+                <th>Puesto</th>
+                <th>Área</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="divResulta2">
+            <?php if (is_array($puestos) && count($puestos) > 0): ?>
+                <?php $cont = 0; ?>
+                <?php foreach ($puestos as $indice => $objPuesto): ?>
+                    <tr>
+                        <td><?php echo $cont + 1; ?></td>
+                        <td><?php echo $objPuesto->chr_name ?></td>
+                        <td><?php echo $objPuesto->chr_unidad ?></td>
+                        <td>
+                            <a target="_blank" href="?puestoId=<?php echo $objPuesto->id ?>" class="pap_create">&nbsp;</a>
+                        </td>
+                    </tr>
+                    <?php $cont++; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <div id="pap_pager">
+    </div>
+    <button name="btnCancel" onclick="cancel_repository(<?php echo $workstationId ?>);
+            return false;">Volver a la lista de puestos</button>
+</div>
+

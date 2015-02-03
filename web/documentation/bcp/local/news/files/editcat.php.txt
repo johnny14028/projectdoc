@@ -1,0 +1,63 @@
+<?php
+
+include('../../config.php');
+include('forms.php');
+include('model.php');
+
+$id = required_param('id',PARAM_INT);
+
+$url = new moodle_url('/local/news/editcat.php',array('id'=>$id));
+
+$PAGE->set_url($url);
+
+require_login();
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+$PAGE->set_context($context);
+
+require_capability('local/news:create',$context);
+
+$name = get_string('addnewcat','local_news');
+
+$model = new news_Model();
+
+$mform = new news_form_categorie($url,array('id'=>$id));
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($name);
+
+$PAGE->set_title($name);
+
+$PAGE->set_heading($name);
+
+
+if($mform->is_cancelled()){
+	redirect(new moodle_url('/local/news/index.php'));
+}elseif($data = $mform->get_data()){
+
+	$record = new stdClass();
+
+	if(!empty($data->id)){
+		$record->id = $data->id;
+		$type = 'update_record';
+	}else{
+		$record->id = null;
+		$type = 'insert_record';
+	}
+
+	$record->name = $data->name;
+
+	$record->timecreated = time();
+
+	$id = $DB->$type('news_categories',$record,true);
+
+	redirect(new moodle_url('/local/news/category.php'));
+}
+    
+echo $OUTPUT->header();
+
+	$mform->display();
+
+echo $OUTPUT->footer();	

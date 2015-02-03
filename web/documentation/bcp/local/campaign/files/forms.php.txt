@@ -1,0 +1,109 @@
+<?php
+
+require_once($CFG->libdir.'/formslib.php');
+
+class oferta_form extends moodleform {
+
+    function definition() {
+    	global $DB;
+
+        $mform =& $this->_form;
+        $data = $this->_customdata;
+
+        $yesno = array('1'=>get_string('yes'), '0'=>get_string('no'));
+
+        $mform->addElement('hidden','id',$data['id']);
+
+        $mform->addElement('editor', 'content', 'Descripción',null);
+        
+        $mform->addElement('filemanager', 'image','Imagen', null,array('subdirs' => 0,'maxfiles' => 1));
+        
+        $mform->addElement('date_selector', 'dateini','Inicio', array('startyear' => 2014, 
+                                                                                    'stopyear'  => 2020,
+                                                                                    'optional'  => false
+                                                                                     ));
+
+
+        $mform->addElement('date_selector', 'dateend','Fin', array('startyear' => 2014, 
+                                                                                    'stopyear'  => 2020,
+                                                                                    'optional'  => false
+                                                                                     ));
+
+        $mform->addElement('select','hidden','Visible',$yesno); 
+        $mform->addElement('text','vacante','Vacantes');
+        $mform->setType('vacante',PARAM_TEXT);
+        $mform->setType('id',PARAM_INT);
+
+
+       
+        $mform->addRule('image',get_string('required'),'required','','cliente',false,false);
+        $mform->addRule('content',get_string('required'),'required','','cliente',false,false);
+
+        if(!empty($data['id'])){
+            $data = $DB->get_record('news_entry',array('id'=>$data['id']), 'id,title,image,body,categoryid');
+            $mform->setDefault('title',$data->title);
+            $mform->setDefault('content',array('text'=>$data->body));
+            $mform->setDefault('category',$data->categoryid);
+        }
+
+        $this->add_action_buttons();
+
+    }
+}
+
+
+class courses_form extends moodleform {
+
+    function definition() {
+        global $DB;
+
+        $mform =& $this->_form;
+        $data = $this->_customdata;
+        $yesno = array('1'=>get_string('yes'), '0'=>get_string('no'));
+
+        $mform->addElement('hidden','id',$data['id']);
+        $mform->addElement('text','name','Nombre');
+        $mform->addElement('editor', 'content', 'Descripción',null);
+        $mform->addElement('select','hidden','Visible',$yesno);
+        $mform->addElement('text','url','Link');
+        
+        $mform->setType('name',PARAM_TEXT);
+        $mform->setType('id',PARAM_INT);
+
+
+        $mform->addRule('name',get_string('required'),'required','','cliente',false,false);
+
+        if(!empty($data['id'])){
+            $data = $DB->get_record('local_campaign_courses',array('id'=>$data['id']), 'id,name,fullname,url,visible');
+            $mform->setDefault('name',$data->name);
+            $mform->setDefault('content',array('text'=>$data->fullname));
+            $mform->setDefault('visible',$data->visible);
+            $mform->setDefault('url',$data->url);
+        }
+
+        $this->add_action_buttons();
+
+    }
+}
+
+
+class ranking_form extends moodleform {
+
+    function definition() {
+        global $DB;
+
+        $mform =& $this->_form;
+        $data = $this->_customdata;
+       
+
+        $mform->addElement('hidden','id',$data['id']);
+        $mform->addElement('filemanager', 'image','Imagen', null,array('subdirs' => 0,'maxfiles' => 1));
+        
+     
+        $mform->setType('id',PARAM_INT);
+
+        $this->add_action_buttons();
+
+    }
+}
+

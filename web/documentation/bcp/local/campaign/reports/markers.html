@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Markers
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Plugin Campaña</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">45</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">112</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                        <li><a href="#course.php"><i class="icon-file"></i> course.php</a></li>
+                                                                                                                                                        <li><a href="#lang/en/local_campaign.php"><i class="icon-file"></i> lang/en/local_campaign.php</a></li>
+                                                                                                <li><a href="#controller.php"><i class="icon-file"></i> controller.php</a></li>
+                                                                                                                                                        <li><a href="#rankg.php"><i class="icon-file"></i> rankg.php</a></li>
+                                                                                                <li><a href="#message.php"><i class="icon-file"></i> message.php</a></li>
+                                                                                                                                                        <li><a href="#views/regulation.php"><i class="icon-file"></i> views/regulation.php</a></li>
+                                                                                                <li><a href="#views/ranking.php"><i class="icon-file"></i> views/ranking.php</a></li>
+                                                                                                <li><a href="#views/catalog.php"><i class="icon-file"></i> views/catalog.php</a></li>
+                                                                                                <li><a href="#views/oferta.php"><i class="icon-file"></i> views/oferta.php</a></li>
+                                                                                                <li><a href="#views/courses.php"><i class="icon-file"></i> views/courses.php</a></li>
+                                                                                                <li><a href="#model.php"><i class="icon-file"></i> model.php</a></li>
+                                                                                                <li><a href="#settings.php"><i class="icon-file"></i> settings.php</a></li>
+                                                                                                <li><a href="#edit.php"><i class="icon-file"></i> edit.php</a></li>
+                                                                                                <li><a href="#view.php"><i class="icon-file"></i> view.php</a></li>
+                                                                                                <li><a href="#version.php"><i class="icon-file"></i> version.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-map-marker"></i></a><span class="divider">\</span></li>
+                <li>Markers</li>
+            </ul>
+
+            
+            <div id="marker-accordion">
+                                                            <div class="package-contents">
+                            <a name="course.php" id="course.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                course.php
+                                <small style="float: right;padding-right: 10px;">3</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>include(&#039;model.php&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>19</td>
+                                            <td>require_capability(&#039;local/news:create&#039;,$context);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>23</td>
+                                            <td>$model = new news_Model();</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="lang/en/local_campaign.php" id="lang/en/local_campaign.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                lang/en/local_campaign.php
+                                <small style="float: right;padding-right: 10px;">14</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="controller.php" id="controller.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                controller.php
+                                <small style="float: right;padding-right: 10px;">3</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>22</td>
+                                            <td>verificamos si el usuario es administrador</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>24</td>
+                                            <td>verificamos si la pagina es editable</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>obetenemos el html del contenido</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="rankg.php" id="rankg.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                rankg.php
+                                <small style="float: right;padding-right: 10px;">3</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>include(&#039;model.php&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>21</td>
+                                            <td>require_capability(&#039;local/news:create&#039;,$context);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>25</td>
+                                            <td>$model = new news_Model();</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="message.php" id="message.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                message.php
+                                <small style="float: right;padding-right: 10px;">3</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>36</td>
+                                            <td>redirect(new moodle_url(&#039;/local/campaign/view.php&#039;,array(&#039;page&#039;=&gt;&#039;oferta&#039;)));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>67</td>
+                                            <td>echo html_writer::tag(&#039;p&#039;, &#039;Usted podrá acceder a la Induccion digital a partir del Lunes 20 de octubre.&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>77</td>
+                                            <td>echo html_writer::tag(&#039;p&#039;, &#039;Usted podrá acceder a la Induccion digital a partir del Lunes 20 de octubre.&#039;);</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="views/regulation.php" id="views/regulation.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/regulation.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>filtramos si se va visualizar el link de editar vista</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="views/ranking.php" id="views/ranking.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/ranking.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>filtramos si se va visualizar el link de editar vista</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="views/catalog.php" id="views/catalog.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/catalog.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>filtramos si se va visualizar el link de editar vista</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="views/oferta.php" id="views/oferta.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/oferta.php
+                                <small style="float: right;padding-right: 10px;">7</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td>filtramos si se va visualizar el link de editar vista</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>www.formmail-maker.com/var/demo/jquery-popup-form/colorbox.css&quot; /&gt;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>www.formmail-maker.com/var/demo/jquery-popup-form/jquery.colorbox-min.js&quot;&gt;&lt;/script&gt;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>55</td>
+                                            <td>lorempixel.com/output/people-q-c-130-130-9.jpg&quot; alt=&quot;&quot;&gt;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>82</td>
+                                            <td>lorempixel.com/output/people-q-c-130-130-9.jpg&quot; alt=&quot;&quot;&gt;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>95</td>
+                                            <td>lorempixel.com/output/people-q-c-130-130-9.jpg&quot; alt=&quot;&quot;&gt;</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="views/courses.php" id="views/courses.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/courses.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td>filtramos si se va visualizar el link de editar vista</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="model.php" id="model.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                model.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>verificamos si el userId esta en el array de admins</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="settings.php" id="settings.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                settings.php
+                                <small style="float: right;padding-right: 10px;">38</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>23</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>31</td>
+                                            <td>New settings page</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>35</td>
+                                            <td>Document directory</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>38</td>
+                                            <td>Create document directory widget</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>42</td>
+                                            <td>Apache rewrite</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>45</td>
+                                            <td>Create apache rewrite control widget</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>49</td>
+                                            <td>Get previously configured plugin config</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>53</td>
+                                            <td>Show Document list - Do only when settings page is shown, otherwise local_campaign would crawl the document directory at each and every Moodle page delivery</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>55</td>
+                                            <td>Do only when document directory is configured and only when campaign document directory exists</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>57</td>
+                                            <td>Open directory</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>59</td>
+                                            <td>Get all enabled language packs</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>62</td>
+                                            <td>Create array for collecting document files information</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>65</td>
+                                            <td>Get all document files</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>67</td>
+                                            <td>Is this a .html file?</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>69</td>
+                                            <td>Is this a supported language based .html file?</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>72</td>
+                                            <td>Remember document information</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>81</td>
+                                            <td>Or is this an unsupported language based .html file?</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>83</td>
+                                            <td>Remember document information</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>91</td>
+                                            <td>Otherwise it&#039;s likely to be an international file</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>92</td>
+                                            <td>Remember document information</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>103</td>
+                                            <td>Do only when there were files found</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>105</td>
+                                            <td>Create heading</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>108</td>
+                                            <td>Create document list</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>146</td>
+                                            <td>Add settings page to navigation tree</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="edit.php" id="edit.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                edit.php
+                                <small style="float: right;padding-right: 10px;">3</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>include(&#039;model.php&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>21</td>
+                                            <td>require_capability(&#039;local/news:create&#039;,$context);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>25</td>
+                                            <td>$model = new news_Model();</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="view.php" id="view.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                view.php
+                                <small style="float: right;padding-right: 10px;">19</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>23</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>defined(&#039;MOODLE_INTERNAL&#039;) || die(); - Must not be called because this script is called from outside moodle</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>28</td>
+                                            <td>Include config.php</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>32</td>
+                                            <td>Globals</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>35</td>
+                                            <td>Get plugin config</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="version.php" id="version.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                version.php
+                                <small style="float: right;padding-right: 10px;">14</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                </div>
+        </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 2nd, 2015 at 15:41.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

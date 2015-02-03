@@ -1,0 +1,26 @@
+<br />
+<form name="frmImport" id="frmImport" action="ajax.php?subject=import" method="post" enctype="multipart/form-data">
+    <div class="dwn-template">
+        <a href="generate.php?subject=plantilla&id=<?php echo $objMetadata->id ?>" name="btnPlantilla">Descargar plantilla</a>
+    </div>
+
+    <fieldset>
+        <legend>Importar datos</legend>
+        <table>
+            <tr>
+                <td>Archivo:</td>
+                <td><input type="file" name="fileCsv" id="fileCsv" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <img style="display:none" id="loader" src="images/loader.gif" alt="Loading...." title="Loading...." />
+                    <div id="preview" style="display:none"></div>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <input type="hidden" name="metadataId" id="metadataId" value="<?php echo $objMetadata->id ?>" />
+    <div class="btnImportar">
+        <button name="btnImportar" id="btnImportar" type="submit">Importar Datos</button>
+    </div>
+</form>

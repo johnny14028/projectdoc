@@ -1,0 +1,39 @@
+		<div id="pap_seccion">
+			<div class="pap_titulo">
+				<h2 class="pap_left">Configuración del Plugin</h2>
+			</div>
+
+			<form>
+				<div class="pap_stripe">
+					<label>Título</label>
+					<input type="text" value ="Roles y Responsabilidades">
+				</div>
+				<div class="pap_stripe">
+					<label>Paginador</label>
+					<input type="text" value ="Roles y Responsabilidades" value="10">
+				</div>
+				<div class="pap_stripe">
+					<label>Verbos</label>
+					<input name="" type="file" />
+				</div>
+				<div class="pap_stripe">
+					<label>Estados</label>
+					<select>
+						<option>Opción 1</option>
+						<option>Opción 2</option>
+						<option>Opción 3</option>
+						<option>Opción 4</option>
+						<option>Opción 5</option>
+						<option>Opción 6</option>
+						<option>Opción 7</option>
+						<option>Opción 8</option>
+						<option>Opción 9</option>
+						<option>Opción 10</option>
+					</select>
+				</div>
+				<div class="pap_stripe">
+					<input class="pap_left" type="submit" value="Enviar">
+					<input class="pap_left" type="submit" value="Cancelar">
+				</div>
+			</form>
+		</div>

@@ -1,0 +1,80 @@
+<br />
+<form name="frmExistingFields" id="frmExistingFields" action="" method="post" enctype="multipart/form-data" onsubmit="return false;">
+    <fieldset>
+        <legend>Campos Existentes</legend>
+        <table>
+            <?php for ($i = 0; $i < ceil(count($fieldGlobalMoodle) / 2); $i++): ?>
+                <tr>
+                    <td>
+                        <?php if ($fieldGlobalMoodle1[0][$i]->id == $this->config['Campos:obligatorios']['nombres'] || $fieldGlobalMoodle1[0][$i]->id == $this->config['Campos:obligatorios']['appaterno'] || $fieldGlobalMoodle1[0][$i]->id == $this->config['Campos:obligatorios']['apmaterno'] || $fieldGlobalMoodle1[0][$i]->id == $this->config['Campos:obligatorios']['matricula']): ?>
+                            <input type="checkbox" name="checkFieldMoodle[]" value="<?php echo $fieldGlobalMoodle1[0][$i]->id ?>" disabled="disabled" readonly="readonly" checked="checked" />
+                        <?php else: ?>
+                            <?php if ($fieldGlobalMoodle1[0][$i]->enabled): ?>
+                                <input type="checkbox" name="checkFieldMoodle[]" value="<?php echo $fieldGlobalMoodle1[0][$i]->id ?>" checked="checked" />
+                            <?php else: ?>
+                                <input type="checkbox" name="checkFieldMoodle[]" value="<?php echo $fieldGlobalMoodle1[0][$i]->id ?>" />
+                            <?php endif; ?>
+                        <?php endif; ?>                
+
+                    </td>
+                    <td><?php echo $fieldGlobalMoodle1[0][$i]->name . '' ?></td>    
+                    <?php if (isset($fieldGlobalMoodle1[1][$i])): ?>
+
+                        <td>
+                            <?php if ($fieldGlobalMoodle1[1][$i]->id == $this->config['Campos:obligatorios']['nombres'] || $fieldGlobalMoodle1[1][$i]->id == $this->config['Campos:obligatorios']['appaterno'] || $fieldGlobalMoodle1[1][$i]->id == $this->config['Campos:obligatorios']['apmaterno'] || $fieldGlobalMoodle1[1][$i]->id == $this->config['Campos:obligatorios']['matricula']): ?>
+                                <input type="checkbox" name="checkFieldMoodle[]" value="<?php echo $fieldGlobalMoodle1[1][$i]->id ?>" disabled="disabled" readonly="readonly" checked="checked" />
+                            <?php else: ?>
+                                <?php if ($fieldGlobalMoodle1[1][$i]->enabled): ?>
+                                    <input type="checkbox" name="checkFieldMoodle[]" value="<?php echo $fieldGlobalMoodle1[1][$i]->id ?>" checked="checked" />
+                                <?php else: ?>
+                                    <input type="checkbox" name="checkFieldMoodle[]" value="<?php echo $fieldGlobalMoodle1[1][$i]->id ?>"  />
+                                <?php endif; ?>
+
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo $fieldGlobalMoodle1[1][$i]->name . '' ?></td>    
+                    <?php endif; ?>
+                </tr>
+            <?php endfor; ?>
+        </table>
+    </fieldset>
+    <?php if ($importFieldOtherCourses): ?>
+    <fieldset>
+        <legend>Campos globales de otros cursos</legend>
+            <?php if (count($fieldGLobalCourses) > 0): ?>
+                <table>
+                    <?php for ($i = 0; $i < ceil(count($fieldGLobalCourses) / 2); $i++): ?>
+                        <tr>
+                            <td><input type="checkbox" name="checkFieldCourse[]" value="<?php echo $fieldGLobalCourses1[0][$i]->id ?>" /></td>
+                            <td><?php echo $fieldGLobalCourses1[0][$i]->chr_title . '' ?></td>    
+                            <?php if (is_object($fieldGLobalCourses1[1][$i])): ?>
+                                <td><input type="checkbox" name="checkFieldCourse[]" value="<?php echo $fieldGLobalCourses1[1][$i]->id ?>" /></td>
+                                <td><?php echo $fieldGLobalCourses1[1][$i]->chr_title . '' ?></td>    
+                            <?php endif; ?>
+                        </tr>
+                    <?php endfor; ?>
+                </table>        
+            <?php else: ?>
+                No se encontró campos globales activos de otros cursos
+            <?php endif; ?>
+        
+    </fieldset>
+    <?php endif; ?>
+    <input type="hidden" name="subject" id="subject" value="addExistingFields" />
+    <input type="hidden" name="course" id="subject" value="<?php echo $courseId ?>" />
+    <input type="hidden" name="metadata" id="subject" value="<?php echo $metadataId ?>" />
+    <div class="btnImportar">
+        <div style="float: right;">
+            <button name="btnExistingFields" id="btnExistingFields">Guardar</button>
+        </div>        
+        <div id="circleG" style="float: right; padding-right: 7px; padding-top: 7px; display: none;">
+            <div id="circleG_1" class="circleG">
+            </div>
+            <div id="circleG_2" class="circleG">
+            </div>
+            <div id="circleG_3" class="circleG">
+            </div>
+        </div>
+
+    </div>
+</form>

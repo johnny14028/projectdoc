@@ -1,0 +1,79 @@
+<?php
+
+
+Class BCP_Model{
+
+	public function BCP_Model(){
+		global $DB;
+		$this->db = $DB;
+	}
+
+
+	public function id4username($usernames = array()){
+
+		if(!count($usernames)) return array();
+
+		$usernames = implode(',', $usernames);
+
+		$sql = "SELECT id,username 
+				FROM {user} 
+				WHERE username IN ($usernames)";
+
+		$params = array();
+
+		$ids = $this->db->get_records_sql_menu($sql,$params);
+
+		return $ids;
+
+	}
+
+	public function addtogroup($id,$groupid){
+
+
+		if(empty($groupid)) throw new Exception('El id del grupo esta vacio*');
+
+		if(empty($id)) throw new Exception('El Id de usuario esta vacio*');
+
+		$insert = array('groupid'=>$groupid,	
+						'userid'=>$id,
+						'timeadded'=>strtotime(date('d-m-Y H:i'))
+					);
+		$this->db->insert_record('groups_members',$insert);
+	}
+
+
+
+	public function get_usertops(){
+
+		$sql = "SELECT u.id,u.username,u.firstname,u.lastname,u.email,ud.data as dni,u.msn as correoPersonal FROM {user} u
+				inner join {user_info_data} ud on u.id= ud.userid
+				where deleted <> 1
+				and ud.fieldid = 15";
+
+		$users = $this->db->get_records_sql($sql,array());
+
+		return $users;
+
+	}
+
+
+   public function get_user_activos(){
+
+       $sql = "SELECT u.id,u.username,u.firstname,u.lastname,u.email,ud.data as dni,msn as correoPersonal 
+				FROM {user} u
+				inner join {user_info_data} ud on u.id= ud.userid
+				where deleted <> 1
+				and ud.fieldid = 15";
+
+		$users = $this->db->get_records_sql($sql,array());
+
+		return $users;
+
+   }
+
+
+
+
+
+}
+

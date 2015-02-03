@@ -1,0 +1,1539 @@
+<?php
+
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Internal library of functions for module metadata
+ *
+ * All the metadata specific functions, needed to implement the module
+ * logic, should go here. Never include this file from your lib.php!
+ *
+ * @package    mod_metadata
+ * @copyright  2011 Your Name
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+defined('MOODLE_INTERNAL') || die();
+require_once("$CFG->dirroot/mod/metadata/lib.php");
+require_once("$CFG->libdir/filelib.php");
+
+/**
+ * Does something really useful with the passed things
+ *
+ * @param array $things
+ * @return object
+ */
+//function metadata_do_something_useful(array $things) {
+//    return new stdClass();
+//}
+
+class locallib {
+
+    public $config;
+
+    public function __construct() {
+        $this->config = parse_ini_file("config/metadata.ini", true);
+        //error_reporting(-1);
+    }
+
+    /**
+     * Método que imprime la vista de la pestaña CAMPOS
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $metadataId
+     * @return string
+     */
+    public function campos($metadataId) {
+        $html = '';
+        $html.='<div id="add-field-type">';
+        //$html.='<div>' . html_writer::select($this->config['fields'], 'tipoCampo') . '</div>';
+        $html.='<div><input type="hidden" name="tipoCampo" id="menutipoCampo" value="text" /></div>';
+        $html.='<div><button name="btnAgregar" id="btnAgregar" onclick="agregarCampo();return false;">Añadir un campo</button></div>';
+        $html.='</div>';
+        $html.='<div id="divFields">';
+        $html.=$this->htmlListaCampos($metadataId);
+        $html.='</div>';
+        return $html;
+    }
+
+    public function vd($var) {
+        echo "<pre>";
+        print_r($var);
+        echo "</pre>";
+    }
+
+    /**
+     * Metodo para obtener los estudiantes de un curso
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int 
+     * @return array  
+     */
+    public function getUserByCourse($courseId, $withcapability = '', $groupid = 0, $userfields = 'u.*', $orderby = '', $limitfrom = 0, $limitnum = 0, $like = '') {
+        $returnValue = array();
+        if ($limitnum == 0) {
+            $limitnum = $this->config['Paginator']['cantidad'];
+        }
+        //$context = get_context_instance(CONTEXT_COURSE, $courseId, MUST_EXIST);
+        $context=0;
+        $returnValue = $this->get_enrolled_users($context, $courseId, $withcapability, $groupid, $userfields, $orderby, $limitfrom, $limitnum, $like);
+        return $returnValue;
+    }
+
+    /**
+     * Cantidad de alumnos inscritos en el curso
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $courseId
+     * @return int
+     */
+    public function countUserByCourse($courseId) {
+        $returnValue = 0;
+        $context = get_context_instance(CONTEXT_COURSE, $courseId, MUST_EXIST);
+        $returnValue = count_enrolled_users($context);
+        return $returnValue;
+    }
+
+    /**
+     * retornamos la cantidad de items q tendrá la pagina
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @return int
+     */
+    public function getCantidadPaginator() {
+        return $this->config['Paginator']['cantidad'];
+    }
+
+    public function htmlTableUserFilter($users, $course = 0, $metadata = 0) {
+        global $DB;
+        $html = '';
+        //$html.=html_writer::start_tag('table', array('id' => 'metadata_table'));
+        $html.= html_writer::start_tag('tr', array('class' => 'metadata_table_title'));
+        //$html.= html_writer::tag('th', 'Apellido / Nombre');
+        //obtenemos los campos adicionales activos
+        $camposAdicionales = array();
+        if ($course > 0) {
+            $camposAdicionales = $this->getFieldsCourse($course, $metadata);
+        }
+        if (count($camposAdicionales) > 0) {
+            foreach ($camposAdicionales as $indiceField => $objField) {
+                $html.= html_writer::tag('th', $objField->chr_title);
+            }
+        }
+        //$html.= html_writer::tag('th', 'Editar');
+        $html.= html_writer::end_tag('tr');
+        if (count($users) > 0) {
+
+            foreach ($users as $indice => $objStudent) {
+
+                $html.= html_writer::start_tag('tr');
+                //$html.= html_writer::tag('td', $objStudent->lastname . ' ' . $objStudent->firstname);
+                if (count($camposAdicionales) > 0) {
+                    foreach ($camposAdicionales as $indiceField => $objField) {
+                        $classCSS = 'fieldDisabled';
+                        if ($objField->chr_origen == 'extra') {
+                            $classCSS = 'fieldEnabled';
+                            //obtenemos el valor que se encuentra en la tabla de valores
+                            $objValue = $DB->get_record('metadata_uservalue', array('user_id' => $objStudent->id, 'field_id' => $objField->id, 'bool_selected' => 1));
+                            if (is_object($objValue)) {
+                                $html.= html_writer::tag('td', html_writer::tag('a', $this->getValueFieldMetadata($objValue, $objField, $objStudent), array('onclick' => 'editValue(' . $objField->id . ',\'' . strip_tags(htmlspecialchars_decode($objField->chr_name)) . '\', ' . $objStudent->id . ');return false;')), array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                            } else {
+                                $html.= html_writer::tag('td', html_writer::tag('a', '...', array('onclick' => 'editValue(' . $objField->id . ',\'' . strip_tags(htmlspecialchars_decode($objField->chr_name)) . '\', ' . $objStudent->id . ');return false;')), array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                            }
+                        } else {
+                            if ($objField->chr_origen == 'moodle') {
+                                $id_data = $this->getUserInfo($objStudent->id, $objField->id_origin_field);
+                                $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                $data = '...';
+                                if (is_object($objInfo)) {
+                                    $data = $objInfo->data;
+                                }
+                                $html.= html_writer::tag('td', $data, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                            } else {
+                                switch ($objField->id_origin_field) {
+                                    case $this->config['Campos:obligatorios']['matricula']:
+                                        $html.= html_writer::tag('td', $objStudent->username, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                    case $this->config['Campos:obligatorios']['nombres']:
+                                        $html.= html_writer::tag('td', $objStudent->firstname, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                    case $this->config['Campos:obligatorios']['appaterno']:
+                                        $id_data = $this->getUserInfo($objStudent->id, $objField->id_origin_field);
+                                        $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                        $data = '...';
+                                        if (is_object($objInfo)) {
+                                            $data = $objInfo->data;
+                                        }
+                                        $html.= html_writer::tag('td', $data, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                    case $this->config['Campos:obligatorios']['apmaterno']:
+                                        $id_data = $this->getUserInfo($objStudent->id, $objField->id_origin_field);
+                                        $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                        $data = '...';
+                                        if (is_object($objInfo)) {
+                                            $data = $objInfo->data;
+                                        }
+                                        $html.= html_writer::tag('td', $data, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+                $html.= html_writer::end_tag('tr');
+            }
+        }
+        //$html.=html_writer::end_tag('table');
+        return $html;
+    }
+
+    /**
+     * pintamos on html la tabla de usuarios
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param array $users
+     * @return string
+     */
+    public function htmlListaUsuario($users, $course = 0, $metadata = 0) {
+        global $DB;
+        $legend.= '<table id="head-table-metadata">';
+        $legend.= '<tr>';
+        $legend.= '<td class="meta20 fieldDisabled" style="text-align:center;">Campos no editables</td>';
+
+        $legend.= '<td class="meta20 fieldEnabled" style="text-align:center;">Campos editables</td>';
+        $legend.= '<td class="meta30">&nbsp;</td>';
+
+        $legend.= '<td class="meta30"><strong>Buscar:</strong><input name="txtFind" id="txtFind" type="text" class="searchBox" placeholder="Por Nombres y Apellidos"></td>';
+        $legend.= '</tr>';
+        $legend.= '</table>';
+        echo $legend;
+        $html.= '';
+        
+        $html.=html_writer::start_tag('div', array('id' => 'box_metadata_table'));
+        $html.=html_writer::start_tag('table', array('id' => 'metadata_table'));
+        $html.= html_writer::start_tag('tr', array('class' => 'metadata_table_title'));
+        
+        //$html.= html_writer::tag('th', 'Apellido / Nombre');
+        //obtenemos los campos adicionales activos
+        $camposAdicionales = array();
+        if ($course > 0) {
+            $camposAdicionales = $this->getFieldsCourse($course, $metadata);
+        }
+        if (count($camposAdicionales) > 0) {
+            foreach ($camposAdicionales as $indiceField => $objField) {
+                $html.= html_writer::tag('th', $objField->chr_title);
+            }
+        }
+        //$html.= html_writer::tag('th', 'Editar');
+        $html.= html_writer::end_tag('tr');
+        if (count($users) > 0) {//restringimos el acceso
+            foreach ($users as $indice => $objStudent) {
+
+                $html.= html_writer::start_tag('tr');
+                //$html.= html_writer::tag('td', $objStudent->lastname . ' ' . $objStudent->firstname);
+                if (count($camposAdicionales) > 0) {
+                    foreach ($camposAdicionales as $indiceField => $objField) {
+                        $classCSS = 'fieldDisabled';
+                        if ($objField->chr_origen == 'extra') {
+                            $classCSS = 'fieldEnabled';
+                            //obtenemos el valor que se encuentra en la tabla de valores
+                            $objValue = $DB->get_record('metadata_uservalue', array('user_id' => $objStudent->id, 'field_id' => $objField->id, 'bool_selected' => 1));
+                            if (is_object($objValue)) {
+                                $html.= html_writer::tag('td', html_writer::tag('a', $this->getValueFieldMetadata($objValue, $objField, $objStudent), array('onclick' => 'editValue(' . $objField->id . ',\'' . strip_tags(htmlspecialchars_decode($objField->chr_name)) . '\', ' . $objStudent->id . ');return false;')), array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                            } else {
+                                $html.= html_writer::tag('td', html_writer::tag('a', '...', array('onclick' => 'editValue(' . $objField->id . ',\'' . strip_tags(htmlspecialchars_decode($objField->chr_name)) . '\', ' . $objStudent->id . ');return false;')), array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                            }
+                        } else {
+                            if ($objField->chr_origen == 'moodle') {
+                                $id_data = $this->getUserInfo($objStudent->id, $objField->id_origin_field);
+                                $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                $data = '...';
+                                if (is_object($objInfo)) {
+                                    $data = $objInfo->data;
+                                }
+                                $html.= html_writer::tag('td', $data, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                            } else {
+                                switch ($objField->id_origin_field) {
+                                    case $this->config['Campos:obligatorios']['matricula']:
+                                        $html.= html_writer::tag('td', $objStudent->username, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                    case $this->config['Campos:obligatorios']['nombres']:
+                                        $html.= html_writer::tag('td', $objStudent->firstname, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                    case $this->config['Campos:obligatorios']['appaterno']:
+                                        $id_data = $this->getUserInfo($objStudent->id, $objField->id_origin_field);
+                                        $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                        $data = '...';
+                                        if (is_object($objInfo)) {
+                                            $data = $objInfo->data;
+                                        }
+                                        $html.= html_writer::tag('td', $data, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                    case $this->config['Campos:obligatorios']['apmaterno']:
+                                        $id_data = $this->getUserInfo($objStudent->id, $objField->id_origin_field);
+                                        $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                        $data = '...';
+                                        if (is_object($objInfo)) {
+                                            $data = $objInfo->data;
+                                        }
+                                        $html.= html_writer::tag('td', $data, array('class' => $classCSS, 'id' => $objField->chr_name . '_' . $objStudent->id));
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+                $html.= html_writer::end_tag('tr');
+            }
+        }
+        $html.=html_writer::end_tag('table');
+        $html.=html_writer::end_tag('div');
+        return $html;
+    }
+
+    /**
+     * Método para obtener el value del campo adicional
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param object $objValue
+     * @param object $objField
+     * @param object $objStudent
+     * @return string
+     */
+    public function getValueFieldMetadata($objValue, $objField, $objStudent) {
+        global $DB;
+        $returnValue = '0';
+        switch ($objField->chr_origen) {
+            case 'script':
+            case 'moodle':
+                if ($objField->id_origin_field == 0) {
+                    //obtenemos el nombre del usuario
+                    $objUser = $DB->get_record('user', array('id' => $objValue->chr_value));
+                    if (is_object($objUser)) {
+                        $returnValue = $objUser->firstname;
+                    }
+                } else {
+                    //obtenemos la data de la tabla user_info_data
+                    $objUserInfoData = $DB->get_record('user_info_data', array('fieldid' => $objField->id_origin_field, 'userid' => $objStudent->id));
+                    if (is_object($objUserInfoData)) {
+                        $returnValue = $objUserInfoData->data;
+                    }
+                }
+                break;
+            case 'extra':
+                if (strlen(trim($objValue->chr_value)) > 0) {
+                    $returnValue = strip_tags($objValue->chr_value);
+                } else {
+                    $returnValue = '...';
+                }
+                break;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * lista de campos creados por el usuario
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $metadataId
+     * @global object $DB
+     * @return string
+     */
+    public function htmlListaCampos($metadataId) {
+        global $DB;
+        $DB->reset_caches();
+        $fields = $DB->get_records('metadata_field', array('metadata_id' => $metadataId), 'int_order ASC');
+        $html = '';
+        $html.=html_writer::start_tag('table', array('id' => 'metadata_table'));
+        $html.= html_writer::start_tag('tr', array('class' => 'metadata_table_title'));
+        $html.= html_writer::tag('th', 'Título', array('width' => '200px'));
+        //$html.= html_writer::tag('th', 'Tipo', array('width' => '160px'));
+        $html.= html_writer::tag('th', 'Nombre', array('width' => '160px'));
+        $html.= html_writer::tag('th', 'Categoría', array('width' => '160px'));
+        $html.= html_writer::tag('th', 'Acción', array('width' => '200px'));
+        $html.= html_writer::end_tag('tr');
+        $arrayObjectCategory = $DB->get_records('metadata_category', array('bool_active' => 1));
+        $arrayOptions[0] = 'Seleccione categoría';
+        if (is_array($arrayObjectCategory) && count($arrayObjectCategory) > 0) {
+            foreach ($arrayObjectCategory as $iCat => $objCategory) {
+                $arrayOptions[$objCategory->id] = $objCategory->chr_name;
+            }
+        }
+        if (count($fields) > 0) {
+            $contRow = 0;
+            foreach ($fields as $indice => $objField) {
+                $color = '#898993';
+                if ($objField->chr_origen == 'extra') {
+                    $color = '#000000';
+                }
+                $icon = 'lock_open.png';
+                $checked = FALSE;
+                if (!$objField->bool_active) {
+                    $icon = 'lock.png';
+                }
+                if ($objField->bool_is_global) {
+                    $checked = TRUE;
+                }
+                //iconos de las flechas de ordenar
+                if ($contRow == 0) {
+                    $htmlArrow = '<div style="float:left;" id="divOrder_' . $objField->id . '">'
+                            . '<a title="Bajar" href="#" onclick="ordenar(' . $objField->id . ',' . $objField->int_order . ',1);return false;">&nbsp;&nbsp;&nbsp;'
+                            . '<img width="16" src="images/down.png" title="Bajar" /></a>'
+                            . ''
+                            . '</div>';
+                } elseif ($contRow == count($fields) - 1) {
+                    $htmlArrow = '<div style="float:left;" id="divOrder_' . $objField->id . '">'
+                            . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+                            . '<a title="Subir" href="#" onclick="ordenar(' . $objField->id . ',' . $objField->int_order . ',0);return false;">'
+                            . '&nbsp;&nbsp;<img width="16" src="images/up.png" title="Subir" /></a>'
+                            . '</div>';
+                } else {
+                    $htmlArrow = '<div style="float:left;" id="divOrder_' . $objField->id . '">'
+                            . '<a title="Bajar" href="#" onclick="ordenar(' . $objField->id . ',' . $objField->int_order . ',1);return false;">&nbsp;&nbsp;&nbsp;'
+                            . '<img width="16" src="images/down.png" title="Bajar" /></a>'
+                            . '<a title="Subir" href="#" onclick="ordenar(' . $objField->id . ',' . $objField->int_order . ',0);return false;">'
+                            . '&nbsp;&nbsp;<img width="16" src="images/up.png" title="Subir" /></a>'
+                            . '</div>';
+                }
+                $html.= html_writer::start_tag('tr', array('id' => 'row' . $objField->id));
+                if ($objField->chr_origen == 'extra') {
+                    $html.= html_writer::tag('td', html_writer::tag('a', $objField->chr_title, array('href' => "#", 'onclick' => 'addValue(' . $objField->id . ', \'title\');return false;')), array('id' => 'title_' . $objField->id));
+                } else {
+                    $html.= html_writer::tag('td', $objField->chr_title, array('id' => 'title_' . $objField->id, 'style' => 'color:' . $color));
+                }
+
+                //$html.= html_writer::tag('td', $objField->chr_type, array('style' => 'color:' . $color));
+                $html.= html_writer::tag('td', $objField->chr_name, array('id' => 'value_' . $objField->id, 'style' => 'color:' . $color));
+                //$html.= html_writer::tag('td', html_writer::tag('a', $objField->chr_name, array('href' => "#", 'onclick' => 'addValue(' . $objField->id . ', \'value\');return false;')), array('id' => 'value_' . $objField->id));
+                //$html.= html_writer::tag('td', html_writer::checkbox('isGlobal', '', $checked, '', array('id' => 'check_' . $objField->id, 'onMouseUp' => 'setGlobal(' . $objField->id . ');')));
+                $html.= html_writer::tag('td', html_writer::select($arrayOptions, 'selectCategory_' . $objField->id, $objField->id_category, '', array('id' => 'select_' . $objField->id, 'onChange' => 'setCategory(this, ' . $objField->id . ');')));
+                $html.= html_writer::tag('td', '<div style="float:left;">'
+                                . '<a title="Eliminar" href="#" onclick="deleteField(' . $objField->id . ',\'' . $objField->chr_origen . '\');return false;">'
+                                . '<img width="16" src="images/trash.png" title="Eliminar" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>'
+                                . '<div style="float:left;" id="divStatus_' . $objField->id . '">'
+                                . '<a title="Activar" href="#" onclick="enabledField(' . $objField->id . ', ' . $objField->bool_active . ');return false;">'
+                                . '<img width="16" src="images/' . $icon . '" title="Activar" /></a>'
+                                . '</div>'
+                                . $htmlArrow
+                                . '');
+                $html.= html_writer::end_tag('tr');
+                $contRow++;
+            }
+        }
+        $html.=html_writer::end_tag('table');
+            
+        return $html;
+    }
+
+    public function setCategory($fieldId, $categoryId) {
+        global $DB;
+        $objField = new stdClass();
+        $objField->id = $fieldId;
+        $objField->id_category = $categoryId;
+        $DB->update_record('metadata_field', $objField);
+    }
+
+    /**
+     * metodo para crear nuevos campos
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param string $field
+     */
+    public function addField($field, $metadata) {
+        global $DB;
+        $objField = new stdClass();
+        //$objField->id = NULL;
+        $objField->metadata_id = $metadata;
+        $objField->chr_type = $field;
+        $objField->chr_origen = 'extra';
+        $objField->chr_title = '...';
+        $objField->chr_name = '...';
+        $objField->date_create = date("Y-m-d H:i:s");
+        $objField->date_update = date("Y-m-d H:i:s");
+        $objField->bool_active = 0;
+        $objField->int_order = $this->getLastOrderField($metadata) + 1;
+        $newid = $DB->insert_record('metadata_field', $objField);
+    }
+
+    /**
+     * Método para obtener el orden último del registro
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @global object $DB
+     * @param int $metadata
+     * @return int
+     */
+    public function getLastOrderField($metadata) {
+        global $DB;
+        $fields = $DB->count_records('metadata_field', array('metadata_id' => $metadata));
+        return $fields + 1;
+    }
+
+    /**
+     * Método para obtener el valor de un campo
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $fieldId
+     * @param int $type
+     * @return string
+     */
+    public function getValueField($fieldId, $type, $user = 0) {
+        $returnValue = '';
+        global $DB;
+        switch ($type) {
+            case 'title':
+                $objField = $DB->get_record('metadata_field', array('id' => $fieldId));
+                $returnValue = $objField->chr_title;
+                break;
+            case 'value':
+                $objField = $DB->get_record('metadata_field', array('id' => $fieldId));
+                $returnValue = $objField->chr_name;
+                break;
+            default:
+                $objField = $DB->get_record('metadata_field', array('id' => $fieldId, 'chr_name' => $type));
+                if (is_object($objField)) {
+                    $objValue = $DB->get_record('metadata_uservalue', array('field_id' => $objField->id, 'user_id' => $user, 'bool_selected' => 1));
+                    if (is_object($objValue)) {
+                        $returnValue = $objValue->chr_value;
+                    }
+                }
+                break;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para actualizar el nombre del campo generado
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $field
+     * @param string $type
+     * @param string $value
+     */
+    public function saveValueField($field, $type, $value) {
+        $returnValue = '';
+        global $DB;
+        $objField = $DB->get_record('metadata_field', array('id' => $field));
+        //verificamos si el nonbre del campo a crear existe
+        if ($this->existsField($this->cureString($value), $objField->metadata_id, $field)) {
+            $returnValue = 0;
+        } else {
+            $objFieldUpdate = new stdClass();
+            $objFieldUpdate->id = $field;
+            if ($type == 'title') {
+                $objFieldUpdate->chr_title = $value;
+                $objFieldUpdate->chr_name = $this->cureString($value);
+            } else {
+                $objFieldUpdate->chr_name = $value;
+            }
+            $objFieldUpdate->bool_active = 1;
+            $DB->update_record('metadata_field', $objFieldUpdate);
+            $returnValue = $objFieldUpdate->chr_name;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para eliminar un campo x su ID
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $field
+     */
+    public function deleteField($field) {
+        global $DB;
+        $DB->delete_records('metadata_field', array('id' => $field));
+        $DB->delete_records('metadata_uservalue', array('field_id' => $field));
+    }
+
+    /**
+     * Método para cambiar el estado de activo
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @global object $DB
+     * @param int $field
+     * @param boolean $status
+     */
+    public function editStatusField($field, $status) {
+        global $DB;
+        $objField = new stdClass();
+        $objField->id = $field;
+        $objField->bool_active = $status;
+        $DB->update_record('metadata_field', $objField);
+    }
+
+    /**
+     * Método para validar si el campo esta apto para ser activado
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $field
+     * @return boolean
+     */
+    public function isValid($field) {
+        $returnValue = FALSE;
+        global $DB;
+        $objField = $DB->get_record('metadata_field', array('id' => $field));
+        if (is_object($objField)) {
+            if ($objField->chr_title != '...' && strlen(trim($objField->chr_title)) > 0) {
+                $returnValue = TRUE;
+            }
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para actualizar el campo adicionar con el atributo de que será un campo global
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @global object $DB
+     * @param int $field
+     * @param int $status
+     */
+    public function setGlobal($field, $status) {
+        global $DB;
+        $objField = new stdClass();
+        $objField->id = $field;
+        $objField->bool_is_global = $status;
+        $DB->update_record('metadata_field', $objField);
+    }
+
+    /**
+     * Método para obtener los campos activos de un curso
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param type $course
+     * @return array
+     */
+    public function getFieldsCourse($course, $metadata) {
+        global $DB;
+        $returnValue = array();
+        if ($metadata > 0) {
+            $fields = $DB->get_records('metadata_field', array('metadata_id' => $metadata, 'bool_active' => 1), 'int_order');
+            if (count($fields) > 0) {
+                $returnValue = $fields;
+            }
+        } else {
+            $objMetadata = $DB->get_record('metadata', array('course' => $course));
+            if (is_object($objMetadata)) {
+                $fields = $DB->get_records('metadata_field', array('metadata_id' => $objMetadata->id, 'bool_active' => 1), 'int_order');
+                if (count($fields) > 0) {
+                    $returnValue = $fields;
+                }
+            }
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para cargar una vista
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $courseId
+     * @return string html
+     */
+    public function ajustesAvanzados($courseId, $metadataId = 0) {
+        global $DB;
+        $include = 'views/ajustesAvanzados.php';
+        if ($metadataId == 0) {
+            $objMetadata = $DB->get_record('metadata', array('course' => $courseId));
+        } else {
+            $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+        }
+        //obtenemos los campos adicionales de Moodle
+        $fieldGlobalMoodle = $this->getFieldMoodle();
+        $fieldGlobalMoodle1 = array_chunk($fieldGlobalMoodle, ceil(count($fieldGlobalMoodle) / 2), FALSE);
+        ob_start();
+        if (is_readable($include))
+            include($include);
+        else
+            include($include);
+        $contenido = ob_get_contents();
+        ob_end_clean();
+        return $contenido;
+    }
+
+    public function camposExistentes($courseId, $metadataId = 0) {
+        //print_object($this->config['Campos:excluyentes']['excluyentes']);
+        global $DB;
+        if ($metadataId == 0) {
+            $objMetadata = $DB->get_record('metadata', array('course' => $courseId));
+        } else {
+            $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+        }
+        $include = 'views/camposExistentes.php';
+        //obtenemos los campos adicionales de Moodle
+        $fieldGlobalMoodle = $this->getFieldMoodle();
+        //agregamos un atributo de que el campo ya existe en el metadata
+        if (count($fieldGlobalMoodle) > 0) {
+            foreach ($fieldGlobalMoodle as $indice => $objCampo) {
+                if (!in_array($objCampo->shortname, $this->config['Campos:excluyentes']['excluyentes'])) {
+                    $objFieldMetadata = $DB->get_record('metadata_field', array('metadata_id' => $objMetadata->id, 'id_origin_field' => $objCampo->id));
+                    if (is_object($objFieldMetadata)) {
+                        $objCampo->enabled = 1;
+                    } else {
+                        $objCampo->enabled = 0;
+                    }
+                    $fieldGlobalMoodle[$indice] = $objCampo;
+                } else {
+                    unset($fieldGlobalMoodle[$indice]);
+                }
+            }
+        }
+        //creamos el obj nombres
+        $objNombres = new stdClass();
+        $objNombres->name = 'nombres';
+        $objNombres->datatype = 'text';
+        $objNombres->id = $this->config['Campos:obligatorios']['nombres'];
+        $objNombres->enabled = 1;
+        array_push($fieldGlobalMoodle, $objNombres);
+        //creamos el obj matricula
+        $objMatricula = new stdClass();
+        $objMatricula->name = 'matricula';
+        $objMatricula->datatype = 'text';
+        $objMatricula->id = $this->config['Campos:obligatorios']['matricula'];
+        $objMatricula->enabled = 1;
+        array_push($fieldGlobalMoodle, $objMatricula);
+        $fieldGlobalMoodle1 = array_chunk($fieldGlobalMoodle, ceil(count($fieldGlobalMoodle) / 2), FALSE);
+
+        //verificamos  si esta activo la importación de campos de otros cursos
+        $importFieldOtherCourses = $this->config['Metadata']['Importar.Cursos'];
+
+        //obtenemos los campos adicionales de otros cursos del plugin metadata
+        $fieldGLobalCourses = $this->getFieldsCourseImport($courseId);
+        if (count($fieldGLobalCourses) > 0) {
+            $fieldGLobalCourses1 = array_chunk($fieldGLobalCourses, ceil(count($fieldGLobalCourses) / 2), FALSE);
+        }
+        ob_start();
+        if (is_readable($include))
+            include($include);
+        else
+            include($include);
+        $contenido = ob_get_contents();
+        ob_end_clean();
+        return $contenido;
+    }
+
+    /**
+     * Método para obtener los campos adicionales creados dentro de moodle
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @global object $DB
+     * @return array
+     */
+    public function getFieldMoodle() {
+        global $DB;
+        $returnValue = array();
+        $fields = $DB->get_records('user_info_field', array('locked' => 0));
+        if (count($fields) > 0) {
+            $returnValue = $fields;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para listar los campos adicionales de cursos restringiendo el curso enviado como parametro
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @global object $DB
+     * @param int $courseId
+     * @return array
+     */
+    public function getFieldsCourseImport($courseId) {
+        global $DB;
+        $returnValue = array();
+        $sql = 'SELECT * FROM {metadata} WHERE course NOT IN (?)';
+        $array_param = array($courseId);
+        $metadatas = $DB->get_records_sql($sql, $array_param);
+        //obtenemos los ID de los metadatas
+        $arrayID = array();
+        foreach ($metadatas as $index => $objMetadata) {
+            array_push($arrayID, $objMetadata->id);
+        }
+        if (count($arrayID) > 0) {
+            //ahora obtenemos los campos activos y globales de los cursos
+            $query = 'SELECT * FROM {metadata_field} WHERE metadata_id IN (?) AND bool_is_global = ? AND bool_active = ?';
+            $query_param = array(implode(',', $arrayID), 1, 1);
+            $returnValue = $DB->get_records_sql($query, $query_param);
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para registrar los campos obligatorios, validando antes si es que estas ya existen
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $metadataId
+     */
+    public function addObligatoryField($metadataId, $courseId) {
+        global $DB;
+        foreach ($this->config['Campos:obligatorios'] as $nameField => $idField) {
+            if (!$this->existsField($nameField, $metadataId)) {
+                $objField = new stdClass();
+                $objField->metadata_id = $metadataId;
+                $objField->chr_type = 'text';
+                $objField->chr_origen = 'script';
+                switch ($idField) {
+                    case 0:
+                        $objField->chr_title = 'Nombres';
+                        $objField->int_order = 2;
+                        break;
+                    case -1:
+                        $objField->chr_title = 'Matricula';
+                        $objField->int_order = 1;
+                        break;
+                    default:
+                        $objField->chr_title = $this->getFieldUserInfo($idField);
+                        $objField->int_order = $this->getLastOrderField($metadataId);
+                        break;
+                }
+                $objField->chr_name = $nameField;
+                $objField->date_create = date("Y-m-d H:i:s");
+                $objField->date_update = date("Y-m-d H:i:s");
+                $objField->bool_active = 1;
+                $objField->bool_is_global = 0;
+                $objField->bool_obligatory = 1;
+                $objField->bool_required = 0;
+                $objField->id_origin_field = $idField;
+                $fieldId = $DB->insert_record('metadata_field', $objField);
+                //seteamos los valores en los campos adicionales iniciales
+                //$this->setValuesInitFields($fieldId, $courseId, $idField);
+            }
+        }
+    }
+
+    /**
+     * Método para registrar los valores de los campos iniciales registrados 
+     * x un script de inicialización
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $fieldId
+     */
+    public function setValuesInitFields($fieldId, $courseId, $oldIdField) {
+        global $DB;
+        $objNewField = $DB->get_record('metadata_field', array('id' => $fieldId));
+        $countUser = $this->countUserByCourse($courseId);
+        $cantidad = 1000;
+        $pages = ceil($countUser / $cantidad);
+        for ($i = 0; $i < $pages; $i++) {
+            $users = $this->getUserByCourse($courseId, '', 0, 'u.id, u.firstname, u.lastname', '', $i * $cantidad, $cantidad);
+            if (count($users) > 0) {
+                foreach ($users as $index => $objUser) {
+                    $objValue = new stdClass();
+                    $objValue->user_id = $objUser->id;
+                    $objValue->field_id = $fieldId;
+                    if ($objNewField->chr_name == 'nombres') {
+                        $objValue->chr_value = $objUser->id;
+                    } else {
+                        if ($objNewField->chr_name == 'appaterno') {
+                            $arraySurname = explode(' ', $objUser->lastname);
+                            if (count($arraySurname) > 0) {
+                                $objValue->chr_value = $this->getUserInfo($objUser->id, $oldIdField);
+                            }
+                        } else {
+                            if ($objNewField->chr_name == 'apmaterno') {
+                                $arraySurname = explode(' ', $objUser->lastname);
+                                if (count($arraySurname) > 0) {
+                                    unset($arraySurname[0]);
+                                    $objValue->chr_value = $this->getUserInfo($objUser->id, $oldIdField);
+                                }
+                            } else {
+                                $objValue->chr_value = $this->getUserInfo($objUser->id, $oldIdField);
+                            }
+                        }
+                    }
+                    $objValue->bool_selected = 1;
+                    $objValue->int_order = 1;
+                    $DB->insert_record('metadata_uservalue', $objValue);
+                }
+            }
+        }
+    }
+
+    /**
+     * Método para obtener el ID del valor del campo adicional
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $userId
+     * @param int $fieldId
+     * @return string
+     */
+    public function getUserInfo($userId, $fieldId) {
+        $returnValue = '';
+        global $DB;
+        $objField = $DB->get_record('user_info_data', array('userid' => $userId, 'fieldid' => $fieldId));
+        if (is_object($objField)) {
+            $returnValue = $objField->id;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para obtener el titulo de un campo extra de moodle
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param int $idField
+     * @return string
+     */
+    public function getFieldUserInfo($idField) {
+        $returnValue = '';
+        global $DB;
+        $objField = $DB->get_record('user_info_field', array('id' => $idField));
+        if (is_object($objField)) {
+            $returnValue = $objField->name;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para verificar si el campo existe en esta metadata
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param string $nameField
+     * @param int $metadataId
+     * @return boolean
+     */
+    public function existsField($nameField, $metadataId, $fieldId = 0) {
+        $returnValue = FALSE;
+        global $DB;
+        if ($fieldId == 0) {
+            $field = $DB->get_record('metadata_field', array('metadata_id' => $metadataId, 'chr_name' => $nameField));
+            if (is_object($field)) {
+                $returnValue = TRUE;
+            }
+        } else {
+            $array_param = array($metadataId, $fieldId);
+            $field = $DB->get_record_sql("SELECT * FROM {metadata_field} WHERE metadata_id=? AND chr_name ='" . $nameField . "' AND id NOT IN(?)", $array_param);
+            if (is_object($field)) {
+                $returnValue = TRUE;
+            }
+        }
+        return $returnValue;
+    }
+
+    /**
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @param array $moodleFields
+     * @param array $courseFields
+     */
+    public function importField($moodleFields, $courseFields, $course, $metadataId = 0) {
+        global $DB;
+        if ($metadataId == 0) {
+            $objMetadata = $DB->get_record('metadata', array('course' => $course));
+        } else {
+            $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+        }
+        //eliminamos los campos que se desactivo
+        $this->deleteFieldsMoodle($moodleFields, $course, $metadataId);
+        if (!is_null($moodleFields)) {
+            if (is_array($moodleFields)) {
+                foreach ($moodleFields as $index => $idField) {
+                    if (!$this->existFieldCourse($idField, $course, $metadataId)) {
+                        $objFieldOld = $DB->get_record('user_info_field', array('id' => $idField));
+                        $objField = new stdClass();
+                        $objField->metadata_id = $objMetadata->id;
+                        $objField->chr_type = $objFieldOld->datatype;
+                        $objField->chr_origen = 'moodle';
+                        $objField->chr_title = $objFieldOld->name;
+                        $objField->chr_name = $objFieldOld->shortname;
+                        $objField->date_create = date("Y-m-d H:i:s");
+                        $objField->date_update = date("Y-m-d H:i:s");
+                        $objField->bool_active = 1;
+                        $objField->int_order = $this->getLastOrderField($objMetadata->id);
+                        $objField->bool_is_global = 0;
+                        $objField->bool_obligatory = 0;
+                        $objField->bool_required = 0;
+                        $objField->id_origin_field = $objFieldOld->id;
+                        $fieldId = $DB->insert_record('metadata_field', $objField);
+                        //seteamos los valores en los campos adicionales iniciales
+                        //$this->setValuesInitFields($fieldId, $course, $idField);
+                    }
+                }
+            }
+        }
+    }
+
+    public function deleteFieldsMoodle($moodleFields, $course, $metadataId = 0) {
+        global $DB;
+        if (is_null($moodleFields)) {
+            $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+            if (is_object($objMetadata)) {
+                $fields = $DB->get_records('metadata_field', array('metadata_id' => $objMetadata->id, 'chr_origen' => 'moodle'));
+                if (count($fields) > 0) {
+                    foreach ($fields as $indice => $oField) {
+                        $this->deleteField($oField->id);
+                    }
+                }
+            }
+        } else {
+            if (count($moodleFields) > 0) {
+                //obtenemos el objeto metadata
+                if ($metadataId == 0) {
+                    $objMetadata = $DB->get_record('metadata', array('course' => $course));
+                } else {
+                    $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+                }
+                if (is_object($objMetadata)) {
+                    //listamos los campos de tipo moodle en las tablas de metadata
+                    $fields = $DB->get_records('metadata_field', array('metadata_id' => $objMetadata->id, 'chr_origen' => 'moodle'));
+                    if (count($fields) > 0) {
+                        //comparamos y eliminamos los ID q no esten
+                        foreach ($fields as $index => $objField) {
+                            if (in_array($objField->id_origin_field, $moodleFields)) {
+                                unset($fields[$index]);
+                            }
+                        }
+                        //eliminamos el 
+                        if (count($fields) > 0) {
+                            foreach ($fields as $indice => $oField) {
+                                $this->deleteField($oField->id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Verifica si el campo existe en los campos adicionales
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @global object $DB
+     * @param int $idField
+     * @param int $course
+     * @return boolean
+     */
+    public function existFieldCourse($idField, $course, $metadataId = 0) {
+        $returnValue = FALSE;
+        global $DB;
+        //obtenemos la metadata
+        if ($metadataId == 0) {
+            $objMetadata = $DB->get_record('metadata', array('course' => $course));
+        } else {
+            $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+        }
+        $objField = $DB->get_record('metadata_field', array('id_origin_field' => $idField, 'metadata_id' => $objMetadata->id));
+        if (is_object($objField)) {
+            $returnValue = TRUE;
+        }
+        return $returnValue;
+    }
+
+    public function generarPlantilla($metadataId) {
+        ini_set('memory_limit', '5G');
+        ini_set('max_execution_time', '300000000');
+        global $CFG, $DB, $USER;
+        /** Include PHPExcel */
+        require_once 'Classes/PHPExcel.php';
+
+
+// Create new PHPExcel object
+        $objPHPExcel = new PHPExcel();
+
+// Set document properties
+        $objPHPExcel->getProperties()->setCreator("BCP")
+                ->setLastModifiedBy("BCP")
+                ->setTitle("Plantilla metadata")
+                ->setSubject("Plantilla metadata")
+                ->setDescription("Plantilla generada para importar datos en forma masiva")
+                ->setKeywords("office 2007 openxml php")
+                ->setCategory("Plantilla metadata");
+
+        $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+        $fields = $DB->get_records('metadata_field', array('metadata_id' => $metadataId, 'bool_active' => 1), 'int_order');
+        if (count($fields) > 0) {
+            $row = 1;
+            $letra = 'C';
+            $objPHPExcel->setActiveSheetIndex()->setCellValue('A1', 'ID');
+            $objPHPExcel->setActiveSheetIndex()->setCellValue('B1', 'matricula');
+            foreach ($fields as $indice => $objField) {
+                $objPHPExcel->setActiveSheetIndex()->setCellValue($letra . $row, $objField->chr_name);
+                $objPHPExcel->getActiveSheet()->getColumnDimension($letra)->setAutoSize(true);
+                $letra++;
+            }
+            if (TRUE) {//evitamos el relleno de los usuarios en la plantilla
+                //generamos los contenidos para los datos
+                $countUser = $this->countUserByCourse($objMetadata->course);
+                $cantidad = 3000;
+                $pages = ceil($countUser / $cantidad);
+                $row = 2;
+                for ($i = 0; $i < $pages; $i++) {
+                    $users = $this->getUserByCourse($objMetadata->course, '', 0, 'u.id, u.username, u.firstname, u.lastname', 'je.timecreated DESC', $i * $cantidad, $cantidad);
+                    if (count($users) > 0) {
+                        foreach ($users as $index => $objUser) {
+                            $objPHPExcel->setActiveSheetIndex()->setCellValue('A' . $row, $objUser->id);
+                            $objPHPExcel->setActiveSheetIndex()->setCellValue('B' . $row, $objUser->username);
+                            $contUser = 'C';
+//                            foreach ($fields as $indice => $objField) {
+//                                if ($objField->chr_origen == 'extra') {
+//                                    $objValue = $DB->get_record('metadata_uservalue', array('user_id' => $objUser->id, 'field_id' => $objField->id, 'bool_selected' => 1));
+//                                    if (is_object($objValue)) {
+//                                        $value = $this->getValueFieldMetadata($objValue, $objField, $objUser);
+//                                        $objPHPExcel->setActiveSheetIndex()->setCellValue($contUser . $row, $value);
+//                                        //$myxls->write_string($row, $contUser, $value);
+//                                    } else {
+//                                        //$myxls->write_string($row, $contUser, '');
+//                                        $objPHPExcel->setActiveSheetIndex()->setCellValue($contUser . $row, '');
+//                                    }
+//                                } else {
+//                                    if ($objField->chr_origen == 'moodle') {
+//                                        $id_data = $this->getUserInfo($objUser->id, $objField->id_origin_field);
+//                                        $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+//                                        $data = '';
+//                                        if (is_object($objInfo)) {
+//                                            $data = $objInfo->data;
+//                                        }
+//                                        //$myxls->write_string($row, $contUser, $data);
+//                                        $objPHPExcel->setActiveSheetIndex()->setCellValue($contUser . $row, $data);
+//                                    } else {
+//                                        switch ($objField->id_origin_field) {
+//                                            case $this->config['Campos:obligatorios']['nombres']:
+//                                                //$myxls->write_string($row, $contUser, $objUser->firstname);
+//                                                $objPHPExcel->setActiveSheetIndex()->setCellValue($contUser . $row, $objUser->firstname);
+//                                                break;
+//                                            case $this->config['Campos:obligatorios']['appaterno']:
+//                                                $id_data = $this->getUserInfo($objUser->id, $objField->id_origin_field);
+//                                                $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+//                                                $data = '';
+//                                                if (is_object($objInfo)) {
+//                                                    $data = $objInfo->data;
+//                                                }
+//                                                //$myxls->write_string($row, $contUser, $data);
+//                                                $objPHPExcel->setActiveSheetIndex()->setCellValue($contUser . $row, $data);
+//                                                break;
+//                                            case $this->config['Campos:obligatorios']['apmaterno']:
+//                                                $id_data = $this->getUserInfo($objUser->id, $objField->id_origin_field);
+//                                                $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+//                                                $data = '';
+//                                                if (is_object($objInfo)) {
+//                                                    $data = $objInfo->data;
+//                                                }
+//                                                //$myxls->write_string($row, $contUser, $data);
+//                                                $objPHPExcel->setActiveSheetIndex()->setCellValue($contUser . $row, $data);
+//                                                break;
+//                                        }
+//                                    }
+//                                }
+//                                $contUser++;
+//                            }
+                            $row++;
+                        }
+                    }
+                }
+            }
+        }
+// Add some data
+        /* $objPHPExcel->setActiveSheetIndex(0)
+          ->setCellValue('A1', 'Hello')
+          ->setCellValue('B2', 'world!')
+          ->setCellValue('C1', 'Hello')
+          ->setCellValue('D2', 'world!');
+
+          // Miscellaneous glyphs, UTF-8
+          $objPHPExcel->setActiveSheetIndex(0)
+          ->setCellValue('A4', 'Miscellaneous glyphs')
+          ->setCellValue('A5', 'éàèùâêîôûëïüÿäöüç'); */
+
+// Rename worksheet
+        $objPHPExcel->getActiveSheet()->setTitle('Plantilla metadata');
+
+
+// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+        $objPHPExcel->setActiveSheetIndex(0);
+
+
+// Redirect output to a client’s web browser (Excel5)
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="Plantilla.xls"');
+        header('Cache-Control: max-age=0');
+// If you're serving to IE 9, then the following may be needed
+        header('Cache-Control: max-age=1');
+
+// If you're serving to IE over SSL, then the following may be needed
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+        header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header('Pragma: public'); // HTTP/1.0
+
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+        exit;
+    }
+
+    /**
+     * Método para generar una plantilla para el upload
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     */
+    public function generarPlantilla2($metadataId) {
+        global $CFG, $DB;
+        require_once("$CFG->libdir/excellib.class.php");
+        $filename = 'plantilla';
+        $filename .= '.xls';
+        $this->HeaderingExcel($filename);
+        /// Creating a workbook
+        //$workbook = new MoodleExcelWorkbook();
+        $workbook = new MoodleExcelWorkbook();
+        /// Sending HTTP headers
+        $workbook->send($filename);
+        //gereramos los titulos de los campos
+        $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+        $fields = $DB->get_records('metadata_field', array('metadata_id' => $metadataId, 'bool_active' => 1), 'int_order');
+        $myxls = $workbook->add_worksheet('Plantilla');
+        if (count($fields) > 0) {
+            $myxls->write_string(0, 0, 'ID');
+            $myxls->write_string(0, 1, 'matricula');
+            $cont = 2;
+            foreach ($fields as $indice => $objField) {
+                $myxls->write_string(0, $cont, $objField->chr_name);
+                $cont++;
+            }
+            //generamos los contenidos para los datos
+            $countUser = $this->countUserByCourse($objMetadata->course);
+            $cantidad = 1000;
+            $pages = ceil($countUser / $cantidad);
+            $row = 1;
+            for ($i = 0; $i < $pages; $i++) {
+                $users = $this->getUserByCourse($objMetadata->course, '', 0, 'u.id, u.username, u.firstname, u.lastname', 'je.timecreated DESC', $i * $cantidad, $cantidad);
+                if (count($users) > 0) {
+                    foreach ($users as $index => $objUser) {
+                        $myxls->write_string($row, 0, $objUser->id);
+                        $myxls->write_string($row, 1, $objUser->username);
+                        $contUser = 2;
+                        foreach ($fields as $indice => $objField) {
+                            if ($objField->chr_origen == 'extra') {
+                                $objValue = $DB->get_record('metadata_uservalue', array('user_id' => $objUser->id, 'field_id' => $objField->id, 'bool_selected' => 1));
+                                if (is_object($objValue)) {
+                                    $value = $this->getValueFieldMetadata($objValue, $objField, $objUser);
+                                    $myxls->set_column($row, $contUser, 50);
+                                    $myxls->write_string($row, $contUser, $value);
+                                } else {
+                                    $myxls->write_string($row, $contUser, '');
+                                }
+                            } else {
+                                if ($objField->chr_origen == 'moodle') {
+                                    $id_data = $this->getUserInfo($objUser->id, $objField->id_origin_field);
+                                    $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                    $data = '';
+                                    if (is_object($objInfo)) {
+                                        $data = $objInfo->data;
+                                    }
+                                    $myxls->set_column($row, $contUser, 50);
+                                    $myxls->write_string($row, $contUser, $data);
+                                } else {
+                                    switch ($objField->id_origin_field) {
+                                        case $this->config['Campos:obligatorios']['nombres']:
+                                            $myxls->set_column($row, $contUser, 50);
+                                            $myxls->write_string($row, $contUser, $objUser->firstname);
+                                            break;
+                                        case $this->config['Campos:obligatorios']['appaterno']:
+                                            $id_data = $this->getUserInfo($objUser->id, $objField->id_origin_field);
+                                            $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                            $data = '';
+                                            if (is_object($objInfo)) {
+                                                $data = $objInfo->data;
+                                            }
+                                            $myxls->set_column($row, $contUser, 50);
+                                            $myxls->write_string($row, $contUser, $data);
+                                            break;
+                                        case $this->config['Campos:obligatorios']['apmaterno']:
+                                            $id_data = $this->getUserInfo($objUser->id, $objField->id_origin_field);
+                                            $objInfo = $DB->get_record('user_info_data', array('id' => $id_data));
+                                            $data = '';
+                                            if (is_object($objInfo)) {
+                                                $data = $objInfo->data;
+                                            }
+                                            $myxls->set_column($row, $contUser, 50);
+                                            $myxls->write_string($row, $contUser, $data);
+                                            break;
+                                    }
+                                }
+                            }
+                            $contUser++;
+                        }
+                        $row++;
+                    }
+                }
+            }
+        }
+        $workbook->close();
+    }
+
+    public function HeaderingExcel($filename) {
+        header('Content-Description: File Transfer');
+        header("Content-type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+        header("Pragma: public");
+    }
+
+    /**
+     * 
+     * @param int $metadataId
+     */
+    public function readCsv($metadataId) {
+        global $CFG, $DB;
+        $path = 'uploads/' . $_SESSION['USER']->id . '.csv';
+        $fila = 1;
+        if (($gestor = fopen($path, "r")) !== FALSE) {
+            while (($datos = fgetcsv($gestor, 0, ",")) !== FALSE) {
+                if (count($datos) > 0) {
+                    if ($fila == 1) {
+                        $header = $datos;
+                    } else {
+                        $numero = count($datos);
+                        if (isset($datos[0])) {
+                            for ($c = 0; $c < $numero; $c++) {
+                                $userId = $datos[0];
+                                if ($this->isEnrollment($userId, $metadataId)) {
+                                    if ($this->isExtraField($header[$c], $metadataId)) {
+                                        if (strlen(trim($datos[$c])) > 0) {
+                                            //obtenemos el objeto campo para actualizarlo
+                                            $objField = $DB->get_record('metadata_field', array('chr_name' => $header[$c], 'metadata_id' => $metadataId));
+                                            if (is_object($objField)) {
+                                                //obtenemos el objeto value del campo
+                                                $objValue = $DB->get_record('metadata_uservalue', array('field_id' => $objField->id, 'user_id' => $userId));
+                                                if (is_object($objValue)) {
+                                                    $objNewValue = new stdClass();
+                                                    $objNewValue->id = $objValue->id;
+                                                    $objNewValue->chr_value = $datos[$c];
+                                                    $DB->update_record('metadata_uservalue', $objNewValue);
+                                                } else {
+                                                    $objNewValue = new stdClass();
+                                                    $objNewValue->user_id = $userId;
+                                                    $objNewValue->field_id = $objField->id;
+                                                    $objNewValue->chr_value = $datos[$c];
+                                                    $objNewValue->bool_selected = 1;
+                                                    $objNewValue->int_order = 1;
+                                                    $DB->insert_record('metadata_uservalue', $objNewValue);
+                                                }
+                                            }
+                                        } else {
+                                            //verificamos si tiene un registro para eliminarlo
+                                            //obtenemos el objeto campo para actualizarlo
+                                            $objField = $DB->get_record('metadata_field', array('chr_name' => $header[$c], 'metadata_id' => $metadataId));
+                                            if (is_object($objField)) {
+                                                //obtenemos el objeto value del campo
+                                                $objValue = $DB->get_record('metadata_uservalue', array('field_id' => $objField->id, 'user_id' => $userId));
+                                                if (is_object($objValue)) {
+                                                    $DB->delete_records('metadata_uservalue', array('id' => $objValue->id));
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $fila++;
+                }
+            }
+            fclose($gestor);
+        }
+    }
+
+    /**
+     * Método para verificar si el usuario esta matriculado en el curso
+     * @author Johnny Huamani<johnny1402@gmail.com>
+     * @global array $CFG
+     * @global object $DB
+     * @param int $userId
+     * @param int $metadataId
+     * @return boolean
+     */
+    public function isEnrollment($userId, $metadataId) {
+        $returnValue = FALSE;
+        global $CFG, $DB;
+        $objMetadata = $DB->get_record('metadata', array('id' => $metadataId));
+        if (is_object($objMetadata)) {
+            $context = get_context_instance(CONTEXT_COURSE, $objMetadata->course, MUST_EXIST);
+            if (is_enrolled($context, $userId)) {
+                $returnValue = TRUE;
+            }
+        }
+        return $returnValue;
+    }
+
+    public function isExtraField($nameField, $metadataId) {
+        $returnValue = FALSE;
+        global $CFG, $DB;
+        $field = $DB->get_record('metadata_field', array('metadata_id' => $metadataId, 'chr_name' => $nameField));
+        if (is_object($field)) {
+            if ($field->chr_origen == 'extra') {
+                $returnValue = TRUE;
+            }
+        }
+        return $returnValue;
+    }
+
+    public function saveValueFieldExtra($field, $name, $value, $user) {
+        $returnValue = '';
+        global $DB;
+        $objField = $DB->get_record('metadata_field', array('id' => $field, 'chr_name' => $name));
+        if (is_object($objField)) {
+            //buscamos el objeto que contiene el valor
+            $objValue = $DB->get_record('metadata_uservalue', array('user_id' => $user, 'field_id' => $field));
+            if (is_object($objValue)) {
+                $objFieldUpdate = new stdClass();
+                $objFieldUpdate->id = $objValue->id;
+                $objFieldUpdate->chr_value = $value;
+                $DB->update_record('metadata_uservalue', $objFieldUpdate);
+                $returnValue = $objFieldUpdate->chr_value;
+            } else {
+                $objNewField = new stdClass();
+                $objNewField->user_id = $user;
+                $objNewField->field_id = $objField->id;
+                $objNewField->chr_value = $value;
+                $objNewField->bool_selected = 1;
+                $objNewField->int_order = 1;
+                $DB->insert_record('metadata_uservalue', $objNewField);
+                $returnValue = $objNewField->chr_value;
+            }
+        }
+        return $returnValue;
+    }
+
+    public function order($field, $order, $mode) {
+        global $DB;
+
+        if ($mode) {//subir
+            $objFieldCurrent = $DB->get_record('metadata_field', array('id' => $field));
+            $array_param = array($order, $objFieldCurrent->metadata_id);
+            $objFieldUp = $DB->get_record_sql("SELECT * FROM {metadata_field} WHERE int_order > ? AND metadata_id = ? ORDER BY int_order ASC LIMIT 1", $array_param);
+            if (is_object($objFieldCurrent) && is_object($objFieldUp)) {
+                $objSubir = new stdClass();
+                $objSubir->id = $objFieldCurrent->id;
+                $objSubir->int_order = $objFieldUp->int_order;
+                $DB->update_record('metadata_field', $objSubir);
+                $objBajar = new stdClass();
+                $objBajar->id = $objFieldUp->id;
+                $objBajar->int_order = $objFieldCurrent->int_order;
+                $DB->update_record('metadata_field', $objBajar);
+            }
+        } else {//bajar
+            //obtenemos el objeto a bajar
+            $objFieldCurrent = $DB->get_record('metadata_field', array('id' => $field));
+            $array_param = array($order, $objFieldCurrent->metadata_id);
+            $objFieldUp = $DB->get_record_sql("SELECT * FROM {metadata_field} WHERE int_order < (?) AND metadata_id = ? ORDER BY int_order DESC LIMIT 1", $array_param);
+            if (is_object($objFieldCurrent) && is_object($objFieldUp)) {
+                $objSubir = new stdClass();
+                $objSubir->id = $objFieldCurrent->id;
+                $objSubir->int_order = $objFieldUp->int_order;
+                $DB->update_record('metadata_field', $objSubir);
+                $objBajar = new stdClass();
+                $objBajar->id = $objFieldUp->id;
+                $objBajar->int_order = $objFieldCurrent->int_order;
+                $DB->update_record('metadata_field', $objBajar);
+            }
+        }
+    }
+
+    public function getMetadataByField($field) {
+        $returnValue = NULL;
+        global $DB;
+        $objField = $DB->get_record('metadata_field', array('id' => $field));
+        if (is_object($objField)) {
+            $returnValue = $objField->metadata_id;
+        }
+        return $returnValue;
+    }
+
+    public function get_enrolled_users($context, $courseId, $withcapability = '', $groupid = 0, $userfields = 'u.*', $orderby = '', $limitfrom = 0, $limitnum = 0, $like = '') {
+        global $DB;
+        /* AND eu1_u.id <> :eu1_guestid */
+        $sql2 = 'SELECT ' . $userfields . '
+                FROM mdl_user u
+                JOIN (SELECT DISTINCT eu1_u.id, eu1_ue.timecreated
+                FROM mdl_user eu1_u
+                JOIN mdl_user_enrolments eu1_ue ON eu1_ue.userid = eu1_u.id
+                JOIN mdl_enrol eu1_e ON (eu1_e.id = eu1_ue.enrolid AND eu1_e.courseid = ? )
+                WHERE eu1_u.deleted = 0) je ON je.id = u.id
+                WHERE u.deleted = 0';
+
+
+
+        /*$sql = 'SELECT DISTINCT u.id, u.username, u.firstname, u.lastname
+                FROM mdl_user u
+                INNER JOIN mdl_user_enrolments ue ON ue.userid = u.id
+                INNER JOIN mdl_enrol e ON e.id = ue.enrolid AND e.courseid = ?
+                INNER JOIN mdl_role_assignments ra ON ra.userid = ue.userid
+                WHERE ra.roleid = ?  and u.deleted = 0 and ra.contextid=' . $context->id;*/
+
+
+        $sql = 'SELECT u.id, u.username, u.firstname,u.lastname FROM mdl_user u 
+                INNER JOIN mdl_user_enrolments ue ON ue.userid = u.id 
+                INNER JOIN mdl_enrol e ON e.id = ue.enrolid 
+                INNER JOIN mdl_role_assignments r ON u.id = r.userid INNER JOIN mdl_context ctx ON ctx.id = r.contextid AND contextlevel = 50 
+                INNER JOIN mdl_course c ON c.id = ctx.instanceid AND c.id=e.courseid WHERE r.roleid = 5 AND c.id = ?';
+
+
+
+        if (strlen(trim($like)) > 0) {
+            $sql.=" AND (u.firstname LIKE '%" . $like . "%' OR u.lastname LIKE '%" . $like . "%') ";
+        }
+        $sql.=' ORDER BY ue.timecreated ASC';
+        $params = array($courseId);
+        $list = $DB->get_records_sql($sql, $params, $limitfrom, $limitnum);
+        return $list;
+    }
+
+    //get_records($table, array $conditions=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0)
+    public function accessTab($userId) {
+        global $DB;
+        $returnValue = TRUE;
+        $role = $DB->get_records('role', null, '', 'id');
+        $arrayRole = array();
+        if (is_array($role) && count($role) > 0) {
+            foreach ($role as $indice => $objRole) {
+                array_push($arrayRole, $objRole->id);
+            }
+        }
+        //obtenemos el rol del usuario
+        $idRole = 0;
+        $objRolAssignment = $DB->get_record('role_assignments', array('userid' => $userId));
+        if (is_object($objRolAssignment)) {
+            $idRole = $objRolAssignment->roleid;
+        }
+        if (in_array($idRole, $arrayRole)) {
+            $returnValue = FALSE;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Reemplaza todos los acentos por sus equivalentes sin ellos
+     * @param $string string la cadena a sanear
+     * @return $string string saneada
+     */
+    public function cureString($string) {
+
+        $string = trim($string);
+
+        $string = str_replace(
+                array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'), array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'), $string
+        );
+
+        $string = str_replace(
+                array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'), array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'), $string
+        );
+
+        $string = str_replace(
+                array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'), array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'), $string
+        );
+
+        $string = str_replace(
+                array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'), array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'), $string
+        );
+
+        $string = str_replace(
+                array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'), array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'), $string
+        );
+
+        $string = str_replace(
+                array('ñ', 'Ñ', 'ç', 'Ç'), array('n', 'N', 'c', 'C',), $string
+        );
+
+        //Esta parte se encarga de eliminar cualquier caracter extraño
+        $string = str_replace(
+                array("\\", "¨", "º", "-", "~",
+            "#", "@", "|", "!", "\"",
+            "·", "$", "%", "&", "/",
+            "(", ")", "?", "'", "¡",
+            "¿", "[", "^", "`", "]",
+            "+", "}", "{", "¨", "´",
+            ">", "< ", ";", ",", ":",
+            ".", " "), '', $string
+        );
+
+
+        return $string;
+    }
+
+}
+

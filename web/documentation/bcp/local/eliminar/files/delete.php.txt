@@ -1,0 +1,78 @@
+<?php
+
+include('../../config.php');
+include('form.php');
+
+
+$PAGE->set_url('/local/eliminar/delete.php');
+
+require_login();
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add(get_string('pluginname','local_eliminar'));
+
+$PAGE->set_title(get_string('pluginname','local_eliminar'));
+
+$PAGE->set_heading(get_string('pluginname','local_eliminar'));
+echo $OUTPUT->header();
+
+$mform = new alex_delete_form();
+
+if($data = $mform->get_data()){
+
+   $content = $mform->get_file_content('users');
+   $cont = explode("\n",$content);
+ 
+  
+    $sql = "SELECT n.id,n.username 
+            FROM {user} n
+            WHERE n.username = ?";	
+  	
+   foreach ($cont as $v ) {
+           $parameters=array(trim($v)); 
+
+          $usuario= $DB->get_record_sql($sql,$parameters);
+       	
+
+      if($usuario!=NULL){
+
+		    $DB->delete_records('user', array('username'=>$usuario->username));   
+		    $DB->delete_records('role_assignments', array('userid'=>$usuario->id));
+	        $DB->delete_records('cohort_members', array('userid'=>$usuario->id));
+			$DB->delete_records('groups_members', array('userid'=>$usuario->id));
+			$DB->delete_records('user_enrolments', array('userid'=>$usuario->id));
+			$DB->delete_records('user_preferences', array('userid'=>$usuario->id));
+			$DB->delete_records('user_info_data', array('userid'=>$usuario->id));
+			$DB->delete_records('user_lastaccess', array('userid'=>$usuario->id));
+			$DB->delete_records('external_tokens', array('userid'=>$usuario->id));
+			$DB->delete_records('external_services_users', array('userid'=>$usuario->id));
+			$DB->delete_records('scorm_scoes_track', array('userid'=>$usuario->id));
+			$DB->delete_records('scorm_aicc_session', array('userid'=>$usuario->id));
+		    $DB->delete_records('repository_instances', array('userid'=>$usuario->id));
+        	$DB->delete_records('quiz_attempts', array('userid'=>$usuario->id));
+			$DB->delete_records('quiz_grades', array('userid'=>$usuario->id));
+     	    $DB->delete_records('quiz_overrides', array('userid'=>$usuario->id));
+     	    $DB->delete_records('message_contacts', array('userid'=>$usuario->id));
+     	    $DB->delete_records('mnetservice_enrol_enrolments', array('userid'=>$usuario->id));
+
+
+  
+         }  
+
+    }       
+        
+
+	}else{
+
+			$mform->display();	
+	}
+
+      echo $OUTPUT->footer(); //Imprime el Footer de pagina
+
+
+?>
+		
+	

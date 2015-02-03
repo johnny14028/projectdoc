@@ -1,0 +1,60 @@
+<?php
+
+
+Class news_Model{
+
+	public function news_Model(){
+		global $DB;
+		$this->db = $DB;
+	}
+
+	public function get_all(){
+
+		$sql = "SELECT n.id,n.title,n.timecreated,n.image, c.name category
+				FROM {news_entry} n 
+				LEFT JOIN {news_categories} c ON n.categoryid = c.id 
+				where n.title <> 'banner'
+				ORDER BY n.timecreated";
+
+		$params = array();
+
+		return $this->db->get_records_sql($sql,$params);
+	}
+
+	public function get_image($image){
+		return $this->db->get_record('files',array('id'=>$image));	
+	}	
+
+	public function get_new($id){
+		return $this->db->get_record('news_entry',array('id'=>$id));	
+	}	
+
+
+
+	public function get_news($category = 0){
+		$params = array();
+		if(!empty($category)) $params['categoryid'] = $category;
+		return $this->db->get_records('news_entry',$params);
+	}
+	
+	public function get_all_category(){
+		return $this->db->get_records('news_categories',array(),'name','id,name');
+	}
+
+    public function get_one(){
+
+		$sql = "SELECT n.id,n.title,n.body,n.image
+				FROM {news_entry} n 
+				where n.title ='banner'
+				";
+
+		$params = array();
+
+		return $this->db->get_records_sql($sql,$params);
+	}
+
+
+
+}
+
+

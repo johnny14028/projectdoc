@@ -1,0 +1,335 @@
+<html>
+    <head>
+        <style type="text/css">
+            body { 
+                font-size: 10pt; 
+                line-height: 1; 
+                padding: 0; 
+                margin: 0; 
+            }
+
+            .bcp-blue-txt{
+                color: #135092;
+            }
+            .bcp-orange-txt{
+                color: #F36E29;
+            }
+            .bcp-gray-txt{
+                color: #666666;
+            }
+            .bcp-white-txt{
+                color: #ffffff;
+            }
+
+            .bcp-blue{
+                background-color: #135092;
+            }
+            .bcp-orange{
+                background-color: #F36E29;
+            }
+            .bcp-gray{
+                background-color: #666666;
+            }
+            .cien{
+                width: 100%;
+            }
+            .veinteCinco{
+                width: 25%;
+            }
+            .treinta{
+                width: 30%;
+            }
+            .cuarenta{
+                width: 40%;
+            }
+            .sesenta{
+                width: 60%;
+            }
+            .setenta{
+                width: 70%;
+            }
+            #data-user{
+                /*border-bottom: 1px solid #135092;
+                border-top: 1px solid #135092;*/
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                margin-top: 20px;
+                padding-top: 10px;
+            }
+            .pap_data_hito{
+                border: 1px solid #cccccc;
+                width: 150px;
+                padding: 5px;
+                float: left;
+            }
+            .pap_mes{
+                text-align: center;
+                font-size: 20px;
+            }
+            .pap_hitos{
+                text-align: center;
+            }
+            .pap_hitos .pap_punto_hito{
+                background-color: #135092;
+                color: #ffffff;
+                padding: 7px;
+                border-radius: 5px;
+                display: block;
+                font-size: 11px;
+            }
+                .hito_blanco{
+                    background-color: #ffffff;
+                }
+            .pap_semanas .pap_semana{
+                font-size: 12px;
+                padding: 6px;
+                background-color: #ededed;
+            }
+
+            /*HITOS*/
+            .pap_leyenda{
+                padding: 10px;
+                width: 95%;
+                margin: 10px 0;
+                /*border-bottom:1px solid #666666;*/
+            }
+            .pap_leyenda .pap_title_pdf{
+                font-size: 17px;
+                border-bottom: 2px solid #F36E29;
+            }
+            .pap_leyenda .pap_subtitle_pdf{
+                font-size: 14px;
+            }
+            .pap_leyenda .pap_data_hitos{}
+
+            .pap_leyenda .pap_sprite_hito{
+                border-bottom: 1px solid #cccccc;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+            }
+            .pap_leyenda .pap_sprite_hito .pap_title_hito{}
+            .pap_leyenda .pap_sprite_hito .pap_title_hito p{}
+            .pap_leyenda .pap_sprite_hito ul{}
+            .pap_leyenda .pap_sprite_hito ul li{}
+
+            /*ACTIVIDADES*/
+            .pap_actividad{}
+            .pap_actividad h3{
+                font-size: 14px;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <!-- <div id="pap_cabecera" style="width: 100%;padding: 10px;height: 45px;background-color: #014785;">
+            <img src="img/logo-bcp-blue.jpg" style="margin: 5px 15px 5px 0;float:right">
+        </div> -->
+
+        <div id="pap_titulo" style="width: 100%;padding: 0px;margin:0px;height: 45px;color: #014785;font-size:13px; text-align:center;">
+            <p>Cronograma de Seguimiento</p>
+        </div>
+        <div id="data-user">
+            <p class="bcp-blue-txt">Cargo / Puesto: <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;"><?php echo $objPuesto->chr_name ?></span></p>
+            
+
+            <p class="bcp-blue-txt">Nombre: <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;"><?php echo $nombreUser ?></span></p>
+            
+        </div>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="treinta bcp-white-txt" style="background-color:#135092; padding:10px; text-align:center;border-right:1px solid #ffffff;">Actividades del puesto</td>
+                <td class="setenta bcp-white-txt" style="background-color:#135092; padding:10px; text-align:center;">Hitos de Seguimiento</td>
+            </tr>
+            <?php if (is_array($activities) && count($activities) > 0): ?>
+                <?php $cont = 1 ?>
+                <?php $contHito = 1 ?>
+                <?php foreach ($activities as $index => $objActivity): ?>
+                    <?php $hitos = $objActivity->hitos ?>
+                    
+                    <tr>
+                        <td class="bcp-blue-txt treinta" style="padding-left:20px;"><?php echo $cont.' '.$objActivity->chr_name ?></td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>						
+                                        <!-- MES 1 -->					
+                                        <div class="pap_data_hito">
+                                            <div class="pap_mes bcp-blue-txt" style="font-size:13px;">Mes 1</div>
+                                            <div class="pap_hitos">
+                                                <table cellpadding="0" cellspacing="10">
+                                                    <tr>
+                                                        <?php for($j=1;$j<5;$j++): ?>
+                                                            <?php if(isset($hitos[$j])): ?>
+                                                                <td class="pap_punto_hito">H<?php echo $contHito ?></td>
+                                                                <?php $contHito++ ?>
+                                                            <?php else: ?>
+                                                                <td class="pap_punto_hito hito_blanco">0</td>
+                                                            <?php endif; ?>
+                                                        <?php endfor; ?>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="pap_semanas">
+                                                <table cellpadding="0" cellspacing="6">
+                                                    <tr>
+                                                        <td class="pap_semana bcp-blue-txt">S01</td>
+                                                        <td class="pap_semana bcp-blue-txt">S02</td>
+                                                        <td class="pap_semana bcp-blue-txt">S03</td>
+                                                        <td class="pap_semana bcp-blue-txt">S04</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <!-- MES 2 -->					
+                                        <div class="pap_data_hito">
+                                            <div class="pap_mes bcp-blue-txt" style="font-size:13px;">Mes 2</div>
+                                            <div class="pap_hitos">
+                                                <table cellpadding="0" cellspacing="10">
+                                                    <tr>
+                                                        <?php for($j=5;$j<9;$j++): ?>
+                                                            <?php if(isset($hitos[$j])): ?>
+                                                                <td class="pap_punto_hito"><?php echo $contHito ?></td>
+                                                                <?php $contHito++ ?>
+                                                            <?php else: ?>
+                                                                <td class="pap_punto_hito hito_blanco">0</td>
+                                                            <?php endif; ?>
+                                                        <?php endfor; ?>                                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="pap_semanas">
+                                                <table cellpadding="0" cellspacing="6">
+                                                    <tr>
+                                                        <td class="pap_semana bcp-blue-txt">S05</td>
+                                                        <td class="pap_semana bcp-blue-txt">S06</td>
+                                                        <td class="pap_semana bcp-blue-txt">S07</td>
+                                                        <td class="pap_semana bcp-blue-txt">S08</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+                                        <!-- MES 3 -->					
+                                        <div class="pap_data_hito">
+                                            <div class="pap_mes bcp-blue-txt" style="font-size:13px;">Mes 3</div>
+                                            <div class="pap_hitos">
+                                                <table cellpadding="0" cellspacing="10">
+                                                    <tr>
+                                                        <?php for($j=9;$j<13;$j++): ?>
+                                                            <?php if(isset($hitos[$j])): ?>
+                                                                <td class="pap_punto_hito"><?php echo $contHito ?></td>
+                                                                <?php $contHito++ ?>
+                                                            <?php else: ?>
+                                                                <td class="pap_punto_hito hito_blanco">0</td>
+                                                            <?php endif; ?>
+                                                        <?php endfor; ?>                                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                        <td class="pap_punto_hito hito_blanco">0</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="pap_semanas">
+                                                <table cellpadding="0" cellspacing="6">
+                                                    <tr>
+                                                        <td class="pap_semana bcp-blue-txt">S09</td>
+                                                        <td class="pap_semana bcp-blue-txt">S10</td>
+                                                        <td class="pap_semana bcp-blue-txt">S11</td>
+                                                        <td class="pap_semana bcp-blue-txt">S12</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>						
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <?php $cont++ ?>
+                <?php endforeach; ?>
+            <?php endif; ?>                
+        </table>
+
+        <div class="pap_leyenda">
+            <div class="pap_title_pdf">
+                <h2 class="bcp-blue-txt" style="font-size:13px;">Leyenda</h2>
+            </div>
+
+            <div class="pap_actividad bcp-blue-txt">
+                <h3 style="font-size:13px;">Actividad 1 - Control de indicadores</h3>
+                <p class="bcp-blue-txt"><strong>Técnica de aprendizaje:</strong>
+                    <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;">Expositivo</span>
+                </p>
+                <p class="bcp-blue-txt"><strong>Quién te enseñará:</strong>
+                    <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;">Ylenia</span>
+                </p>
+                <p class="bcp-blue-txt"><strong>Cómo y por cuanto tiempo:</strong>
+                    <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;">Lorem ipsun dolor sit amet</span>
+                </p>
+                <p class="bcp-blue-txt"><strong>Material/Herramientas:</strong>
+                    <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;">PC</span>
+                </p>
+                <p class="bcp-blue-txt"><strong>Apoyo del jefe directo:</strong>
+                    <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;">Lorem ipsun dolor sit amet</span>
+                </p>
+                <p class="bcp-blue-txt"><strong>Factores críticos de éxito:</strong>
+                    <span class="bcp-blue-txt" style="text-transform:capitalize; font-size:13px;">Acceso a la herramienta SAP</span>
+                </p>
+            </div>
+            
+            <?php if(is_array($hitosList) && count($hitosList)>0): ?>
+            <?php foreach($hitosList as $puntero=>$hito): ?>
+                <div class="pap_subtitle_pdf">
+                    <h3 class="bcp-gray-txt" style="font-size:11px;">Hito <?php echo intval($puntero+1) ?> - <?php echo $hito->txt_description ?></h3>
+                </div>
+                <div class="pap_data_hitos">
+                    <div class="pap_sprite_hito">
+                        <div class="pap_title_hito bcp-gray-txt" style="font-size:11px;">
+                            <p>Fecha: <span class="bcp-gray-txt" >Semana <?php echo $hito->int_timedeadline ?></span></p>
+                        </div>                    
+                    </div>
+
+                    <div class="pap_sprite_hito">
+                        <div class="pap_title_hito bcp-gray-txt" style="font-size:11px;">
+                            <p>Objetivos: <span class="bcp-gray-txt" ><?php echo $hito->txt_target ?></span></p>
+                        </div>                    
+                    </div>
+
+                    <div class="pap_sprite_hito">
+                        <div class="pap_title_hito bcp-gray-txt" style="font-size:11px;">
+                            <p>Participantes: <span><?php echo $hito->txt_participant ?></span></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
+
+        </div>
+    </body>
+</html>
+
+
+
+

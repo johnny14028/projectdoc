@@ -1,0 +1,19 @@
+<?php
+
+$string['addnew'] = 'Agregar noticia';
+$string['addnewcat'] = 'Agregar Categoría';
+$string['category'] = 'Categoría';
+$string['content'] = 'Contenido';
+$string['date'] = 'Fecha';
+$string['image'] = 'Imagen';
+$string['name'] = 'Nombre';
+$string['news'] = 'Noticias';
+$string['news:create'] = 'Crear noticias';
+$string['norecords'] = 'No existen noticias creadas';
+$string['norecordscat'] = 'No existen categorias creadas';
+$string['options'] = 'Opciones';
+$string['pluginname'] = 'Campus BCP: Noticias';
+$string['title'] = 'Titulo';
+$string['view'] = 'Ver más >';
+
+

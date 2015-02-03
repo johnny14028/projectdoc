@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Compilation errors
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Plugin Metadata</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">149</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">469</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                            <li><a href="#lang/en/metadata.php"><i class="icon-file"></i> lang/en/metadata.php</a></li>
+                                                                                                    <li><a href="#lang/es/metadata.php"><i class="icon-file"></i> lang/es/metadata.php</a></li>
+                                                                                                    <li><a href="#db/install.php"><i class="icon-file"></i> db/install.php</a></li>
+                                                                                                    <li><a href="#db/log.php"><i class="icon-file"></i> db/log.php</a></li>
+                                                                                                    <li><a href="#db/access.php"><i class="icon-file"></i> db/access.php</a></li>
+                                                                                                    <li><a href="#db/upgrade.php"><i class="icon-file"></i> db/upgrade.php</a></li>
+                                                                                                    <li><a href="#db/uninstall.php"><i class="icon-file"></i> db/uninstall.php</a></li>
+                                                                                                    <li><a href="#lib.php"><i class="icon-file"></i> lib.php</a></li>
+                                                                                                    <li><a href="#views/ajustesAvanzados.php"><i class="icon-file"></i> views/ajustesAvanzados.php</a></li>
+                                                                                                    <li><a href="#views/camposExistentes.php"><i class="icon-file"></i> views/camposExistentes.php</a></li>
+                                                                                                    <li><a href="#grade.php"><i class="icon-file"></i> grade.php</a></li>
+                                                                                                    <li><a href="#config/metadata.php"><i class="icon-file"></i> config/metadata.php</a></li>
+                                                                                                    <li><a href="#locallib.php"><i class="icon-file"></i> locallib.php</a></li>
+                                                                                                    <li><a href="#ajax.php"><i class="icon-file"></i> ajax.php</a></li>
+                                                                                                    <li><a href="#mod_form.php"><i class="icon-file"></i> mod_form.php</a></li>
+                                                                                                    <li><a href="#generate.php"><i class="icon-file"></i> generate.php</a></li>
+                                                                                                    <li><a href="#index.php"><i class="icon-file"></i> index.php</a></li>
+                                                                                                    <li><a href="#view.php"><i class="icon-file"></i> view.php</a></li>
+                                                                                                    <li><a href="#version.php"><i class="icon-file"></i> version.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li>Compilation Errors</li>
+            </ul>
+
+            
+                            <div class="package-contents">
+                                            <a name="lang/en/metadata.php" id="lang/en/metadata.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lang/en/metadata.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lang/es/metadata.php" id="lang/es/metadata.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lang/es/metadata.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="db/install.php" id="db/install.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            db/install.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="db/log.php" id="db/log.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            db/log.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="db/access.php" id="db/access.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            db/access.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="db/upgrade.php" id="db/upgrade.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            db/upgrade.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>41</td>
+                                        <td>Argument $oldversion is missing from the Docblock of xmldb_metadata_upgrade</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="db/uninstall.php" id="db/uninstall.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            db/uninstall.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="lib.php" id="lib.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            lib.php
+                            <small style="float: right;padding-right: 10px;">29</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>48</td>
+                                        <td>Argument $feature is missing from the Docblock of metadata_supports</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>69</td>
+                                        <td>Argument $metadata is missing from the Docblock of metadata_add_instance</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>90</td>
+                                        <td>Argument $metadata is missing from the Docblock of metadata_update_instance</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>111</td>
+                                        <td>Argument $id is missing from the Docblock of metadata_delete_instance</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>134</td>
+                                        <td>Argument $course is missing from the Docblock of metadata_user_outline</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>134</td>
+                                        <td>Argument $user is missing from the Docblock of metadata_user_outline</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>134</td>
+                                        <td>Argument $mod is missing from the Docblock of metadata_user_outline</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>134</td>
+                                        <td>Argument $metadata is missing from the Docblock of metadata_user_outline</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>152</td>
+                                        <td>Argument $course is missing from the Docblock of metadata_user_complete</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>162</td>
+                                        <td>Argument $course is missing from the Docblock of metadata_print_recent_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>162</td>
+                                        <td>Argument $viewfullnames is missing from the Docblock of metadata_print_recent_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>162</td>
+                                        <td>Argument $timestart is missing from the Docblock of metadata_print_recent_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>182</td>
+                                        <td>Argument $activities is missing from the Docblock of metadata_get_recent_mod_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>190</td>
+                                        <td>Argument $activity is missing from the Docblock of metadata_print_recent_mod_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>190</td>
+                                        <td>Argument $courseid is missing from the Docblock of metadata_print_recent_mod_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>190</td>
+                                        <td>Argument $detail is missing from the Docblock of metadata_print_recent_mod_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>190</td>
+                                        <td>Argument $modnames is missing from the Docblock of metadata_print_recent_mod_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>190</td>
+                                        <td>Argument $viewfullnames is missing from the Docblock of metadata_print_recent_mod_activity</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>230</td>
+                                        <td>Argument $metadataid is missing from the Docblock of metadata_scale_used</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>230</td>
+                                        <td>Argument $scaleid is missing from the Docblock of metadata_scale_used</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>249</td>
+                                        <td>Argument $scaleid is missing from the Docblock of metadata_scale_used_anywhere</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>269</td>
+                                        <td>Argument $metadata is missing from the Docblock of metadata_grade_item_update</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>292</td>
+                                        <td>Argument $metadata is missing from the Docblock of metadata_update_grades</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>317</td>
+                                        <td>Argument $course is missing from the Docblock of metadata_get_file_areas</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>338</td>
+                                        <td>Argument $browser is missing from the Docblock of metadata_get_file_info</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>356</td>
+                                        <td>Argument $course is missing from the Docblock of metadata_pluginfile</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>382</td>
+                                        <td>Argument $navref is missing from the Docblock of metadata_extend_navigation</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>394</td>
+                                        <td>Argument $settingsnav is missing from the Docblock of metadata_extend_settings_navigation</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="views/ajustesAvanzados.php" id="views/ajustesAvanzados.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            views/ajustesAvanzados.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="views/camposExistentes.php" id="views/camposExistentes.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            views/camposExistentes.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="grade.php" id="grade.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            grade.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="config/metadata.php" id="config/metadata.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            config/metadata.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="locallib.php" id="locallib.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            locallib.php
+                            <small style="float: right;padding-right: 10px;">101</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>42</td>
+                                        <td>No summary for class &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>46</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>57</td>
+                                        <td>Argument $metadataId is missing from the Docblock of campos</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>70</td>
+                                        <td>Argument $var is missing from the Docblock of vd</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>70</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $courseId is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $withcapability is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $groupid is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $userfields is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $orderby is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $limitfrom is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $limitnum is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $like is missing from the Docblock of getUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>99</td>
+                                        <td>Argument $courseId is missing from the Docblock of countUserByCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>115</td>
+                                        <td>Argument $users is missing from the Docblock of htmlTableUserFilter</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>115</td>
+                                        <td>Argument $course is missing from the Docblock of htmlTableUserFilter</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>115</td>
+                                        <td>Argument $metadata is missing from the Docblock of htmlTableUserFilter</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>115</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>204</td>
+                                        <td>Argument $users is missing from the Docblock of htmlListaUsuario</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>204</td>
+                                        <td>Argument $course is missing from the Docblock of htmlListaUsuario</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>204</td>
+                                        <td>Argument $metadata is missing from the Docblock of htmlListaUsuario</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>309</td>
+                                        <td>Argument $objValue is missing from the Docblock of getValueFieldMetadata</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>347</td>
+                                        <td>Argument $metadataId is missing from the Docblock of htmlListaCampos</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>433</td>
+                                        <td>Argument $fieldId is missing from the Docblock of setCategory</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>433</td>
+                                        <td>Argument $categoryId is missing from the Docblock of setCategory</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>433</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>446</td>
+                                        <td>Argument $field is missing from the Docblock of addField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>446</td>
+                                        <td>Argument $metadata is missing from the Docblock of addField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>469</td>
+                                        <td>Argument $metadata is missing from the Docblock of getLastOrderField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>482</td>
+                                        <td>Argument $fieldId is missing from the Docblock of getValueField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>482</td>
+                                        <td>Argument $user is missing from the Docblock of getValueField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>514</td>
+                                        <td>Argument $field is missing from the Docblock of saveValueField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>542</td>
+                                        <td>Argument $field is missing from the Docblock of deleteField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>555</td>
+                                        <td>Argument $field is missing from the Docblock of editStatusField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>569</td>
+                                        <td>Argument $field is missing from the Docblock of isValid</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>588</td>
+                                        <td>Argument $field is missing from the Docblock of setGlobal</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>602</td>
+                                        <td>The type for the param tag $course in getFieldsCourse() is either &quot;type&quot; or &quot;unknown&quot;; isn&#039;t this an IDE default?</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>602</td>
+                                        <td>Argument $course is missing from the Docblock of getFieldsCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>602</td>
+                                        <td>Argument $metadata is missing from the Docblock of getFieldsCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>628</td>
+                                        <td>Argument $courseId is missing from the Docblock of ajustesAvanzados</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>628</td>
+                                        <td>Argument $metadataId is missing from the Docblock of ajustesAvanzados</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>649</td>
+                                        <td>Argument $courseId is missing from the Docblock of camposExistentes</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>649</td>
+                                        <td>Argument $metadataId is missing from the Docblock of camposExistentes</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>649</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>733</td>
+                                        <td>Argument $courseId is missing from the Docblock of getFieldsCourseImport</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>758</td>
+                                        <td>Argument $metadataId is missing from the Docblock of addObligatoryField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>758</td>
+                                        <td>Argument $courseId is missing from the Docblock of addObligatoryField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>801</td>
+                                        <td>Argument $fieldId is missing from the Docblock of setValuesInitFields</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>801</td>
+                                        <td>Argument $courseId is missing from the Docblock of setValuesInitFields</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>801</td>
+                                        <td>Argument $oldIdField is missing from the Docblock of setValuesInitFields</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>849</td>
+                                        <td>Argument $userId is missing from the Docblock of getUserInfo</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>865</td>
+                                        <td>Argument $idField is missing from the Docblock of getFieldUserInfo</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>882</td>
+                                        <td>Argument $nameField is missing from the Docblock of existsField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>882</td>
+                                        <td>Argument $fieldId is missing from the Docblock of existsField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>905</td>
+                                        <td>Argument $moodleFields is missing from the Docblock of importField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>905</td>
+                                        <td>Argument $course is missing from the Docblock of importField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>905</td>
+                                        <td>Argument $metadataId is missing from the Docblock of importField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>905</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>942</td>
+                                        <td>Argument $moodleFields is missing from the Docblock of deleteFieldsMoodle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>942</td>
+                                        <td>Argument $course is missing from the Docblock of deleteFieldsMoodle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>942</td>
+                                        <td>Argument $metadataId is missing from the Docblock of deleteFieldsMoodle</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>942</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>992</td>
+                                        <td>Argument $idField is missing from the Docblock of existFieldCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>992</td>
+                                        <td>Argument $metadataId is missing from the Docblock of existFieldCourse</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1008</td>
+                                        <td>Argument $metadataId is missing from the Docblock of generarPlantilla</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1008</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1153</td>
+                                        <td>Argument $metadataId is missing from the Docblock of generarPlantilla2</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1247</td>
+                                        <td>Argument $filename is missing from the Docblock of HeaderingExcel</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1247</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1260</td>
+                                        <td>Argument $metadataId is missing from the Docblock of readCsv</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1260</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1330</td>
+                                        <td>Argument $userId is missing from the Docblock of isEnrollment</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1343</td>
+                                        <td>Argument $nameField is missing from the Docblock of isExtraField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1343</td>
+                                        <td>Argument $metadataId is missing from the Docblock of isExtraField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1343</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1355</td>
+                                        <td>Argument $field is missing from the Docblock of saveValueFieldExtra</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1355</td>
+                                        <td>Argument $name is missing from the Docblock of saveValueFieldExtra</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1355</td>
+                                        <td>Argument $value is missing from the Docblock of saveValueFieldExtra</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1355</td>
+                                        <td>Argument $user is missing from the Docblock of saveValueFieldExtra</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1355</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1382</td>
+                                        <td>Argument $field is missing from the Docblock of order</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1382</td>
+                                        <td>Argument $order is missing from the Docblock of order</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1382</td>
+                                        <td>Argument $mode is missing from the Docblock of order</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1382</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1417</td>
+                                        <td>Argument $field is missing from the Docblock of getMetadataByField</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1417</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $context is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $courseId is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $withcapability is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $groupid is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $userfields is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $orderby is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $limitfrom is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $limitnum is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>Argument $like is missing from the Docblock of get_enrolled_users</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1427</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1467</td>
+                                        <td>Argument $userId is missing from the Docblock of accessTab</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1467</td>
+                                        <td>No summary for method &quot;&quot;</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>1494</td>
+                                        <td>Argument $string is missing from the Docblock of cureString</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>No summary for property $config</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="ajax.php" id="ajax.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            ajax.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="mod_form.php" id="mod_form.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            mod_form.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="generate.php" id="generate.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            generate.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="index.php" id="index.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            index.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="view.php" id="view.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            view.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="version.php" id="version.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            version.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>Only one @package tag is allowed</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                    </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 2nd, 2015 at 16:01.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

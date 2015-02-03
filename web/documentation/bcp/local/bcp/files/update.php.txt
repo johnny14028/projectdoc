@@ -1,0 +1,99 @@
+<?php
+
+include('../../config.php');
+//include('lib.php');
+//include('model.php');
+include('form.php');
+global $DB;
+
+$PAGE->set_url('/local/bcp/update.php');
+
+require_login();
+
+$context = context_system::instance();
+
+$name = 'Actualizar Matricula';
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($name);
+
+$PAGE->set_title($name);
+
+$PAGE->set_heading($name);
+
+
+$mform = new add_form();
+
+echo $OUTPUT->header();
+
+if (!($data = $mform->get_data())){
+  $mform->display();
+  echo $OUTPUT->footer();
+  exit;
+}else{
+
+$content = $mform->get_file_content('users');
+    $cont = explode("\n",$content);
+
+
+    $sql = "SELECT u.id
+       FROM  {user} u 
+       WHERE  u.username = ?
+       ";
+
+
+    $i=0;
+    $numero_fila=0;
+    $existentes = array();
+
+
+
+    while($cont[$i]!=NULL){
+
+        $value = $cont[$i]; 
+        $cont1 = explode(',',$value);
+
+        //var_dump($cont1);
+
+        $username = array_shift($cont1);
+        $cambio = array_pop($cont1);
+
+            $iduser = strtolower($username);
+            $parameters=array($iduser); 
+         	//var_dump($sql);
+		//var_dump($iduser);
+            $usu= $DB->get_record_sql($sql,$parameters);
+
+            //var_dump($usu);
+
+            if($usu!=NULL){
+                
+
+                   $dataobject=array('id'=>$usu->id,'username'=>trim($cambio));
+
+                    $DB->update_record('user', $dataobject);
+  
+
+                      $search  = array('s', 'e','u');
+                      $replace = array('S', 'E','U');
+           
+                    $idNumber = str_replace($search, $replace,$cambio);
+
+                    $dataobject1=array('id'=>$usu->id ,'idnumber'=>trim($idNumber));
+
+                    $DB->update_record('user', $dataobject1);
+
+             }
+        
+        $i++;
+        $numero_fila++; 
+
+    }
+
+
+    echo $OUTPUT->footer(); 
+    exit;
+}
+
+

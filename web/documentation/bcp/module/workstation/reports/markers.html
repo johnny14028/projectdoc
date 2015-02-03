@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Markers
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Plugin Worstation - PAP</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">21</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">143</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                        <li><a href="#db/install.php"><i class="icon-file"></i> db/install.php</a></li>
+                                                                                                <li><a href="#db/log.php"><i class="icon-file"></i> db/log.php</a></li>
+                                                                                                <li><a href="#db/access.php"><i class="icon-file"></i> db/access.php</a></li>
+                                                                                                <li><a href="#db/upgrade.php"><i class="icon-file"></i> db/upgrade.php</a></li>
+                                                                                                <li><a href="#db/uninstall.php"><i class="icon-file"></i> db/uninstall.php</a></li>
+                                                                                                <li><a href="#lang/en/workstation.php"><i class="icon-file"></i> lang/en/workstation.php</a></li>
+                                                                                                <li><a href="#views/email.php"><i class="icon-file"></i> views/email.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li><a href="#views/lista.php"><i class="icon-file"></i> views/lista.php</a></li>
+                                                                                                <li><a href="#views/email_OLD.php"><i class="icon-file"></i> views/email_OLD.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </div>
+
+        <div class="span10 offset2">
+
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-map-marker"></i></a><span class="divider">\</span></li>
+                <li>Markers</li>
+            </ul>
+
+            
+            <div id="marker-accordion">
+                                                            <div class="package-contents">
+                            <a name="db/install.php" id="db/install.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/install.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>23</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/log.php" id="db/log.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/log.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/access.php" id="db/access.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/access.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>44</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/upgrade.php" id="db/upgrade.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/upgrade.php
+                                <small style="float: right;padding-right: 10px;">65</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>29</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>51</td>
+                                            <td>loads ddl manager and xmldb classes</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>53</td>
+                                            <td>And upgrade begins here. For each one, you&#039;ll need one</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>54</td>
+                                            <td>block of code similar to the next one. Please, delete</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>55</td>
+                                            <td>this comment lines once this file start handling proper</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>56</td>
+                                            <td>upgrade code.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>58</td>
+                                            <td>if ($oldversion &lt; YYYYMMDD00) { //New version in version.php</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>59</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>60</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>62</td>
+                                            <td>Lines below (this included)  MUST BE DELETED once you get the first version</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>63</td>
+                                            <td>of your module ready to be installed. They are here only</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>64</td>
+                                            <td>for demonstrative purposes and to show how the workstation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>65</td>
+                                            <td>iself has been upgraded.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>67</td>
+                                            <td>For each upgrade block, the file workstation/version.php</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>68</td>
+                                            <td>needs to be updated . Such change allows Moodle to know</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>69</td>
+                                            <td>that this file has to be processed.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>71</td>
+                                            <td>To know more about how to write correct DB upgrade scripts it&#039;s</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>72</td>
+                                            <td>highly recommended to read information available at:</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>73</td>
+                                            <td>http://docs.moodle.org/en/Development:XMLDB_Documentation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>74</td>
+                                            <td>and to play with the XMLDB Editor (in the admin menu) and its</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>75</td>
+                                            <td>PHP generation posibilities.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>77</td>
+                                            <td>First example, some fields were added to install.xml on 2007/04/01</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>80</td>
+                                            <td>Define field course to be added to workstation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>84</td>
+                                            <td>Add field course</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>89</td>
+                                            <td>Define field intro to be added to workstation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>93</td>
+                                            <td>Add field intro</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>98</td>
+                                            <td>Define field introformat to be added to workstation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>103</td>
+                                            <td>Add field introformat</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>108</td>
+                                            <td>Once we reach this point, we can store the new version and consider the module</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>109</td>
+                                            <td>upgraded to the version 2007040100 so the next time this block is skipped</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>113</td>
+                                            <td>Second example, some hours later, the same day 2007/04/01</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>114</td>
+                                            <td>two more fields and one index were added to install.xml (note the micro increment</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>115</td>
+                                            <td>&quot;01&quot; in the last two digits of the version</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>118</td>
+                                            <td>Define field timecreated to be added to workstation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>123</td>
+                                            <td>Add field timecreated</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>128</td>
+                                            <td>Define field timemodified to be added to workstation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>133</td>
+                                            <td>Add field timemodified</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>138</td>
+                                            <td>Define index course (not unique) to be added to workstation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>142</td>
+                                            <td>Add index to course field</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>147</td>
+                                            <td>Another save point reached</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>151</td>
+                                            <td>Third example, the next day, 2007/04/02 (with the trailing 00), some actions were performed to install.php,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>152</td>
+                                            <td>related with the module</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>155</td>
+                                            <td>insert here code to perform some actions (same as in install.php)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>160</td>
+                                            <td>And that&#039;s all. Please, examine and understand the 3 example blocks above. Also</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>161</td>
+                                            <td>it&#039;s interesting to look how other modules are using this script. Remember that</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>162</td>
+                                            <td>the basic idea is to have &quot;blocks&quot; of code (each one being executed only once,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>163</td>
+                                            <td>when the module version (version.php) is updated.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>165</td>
+                                            <td>Lines above (this included) MUST BE DELETED once you get the first version of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>166</td>
+                                            <td>yout module working. Each time you need to modify something in the module (DB</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>167</td>
+                                            <td>related, you&#039;ll raise the version and add one upgrade block here.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>169</td>
+                                            <td>Final return of upgrade result (true, all went good) to Moodle.</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/uninstall.php" id="db/uninstall.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/uninstall.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>22</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="lang/en/workstation.php" id="lang/en/workstation.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                lang/en/workstation.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="views/email.php" id="views/email.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/email.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>22</td>
+                                            <td>www.campusbcp.com&#039;&gt;Campus BCP&lt;/a&gt; para realizar el ajuste a tu trabajo.&lt;/span&gt;</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="package-contents">
+                            <a name="views/lista.php" id="views/lista.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/lista.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="views/email_OLD.php" id="views/email_OLD.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                views/email_OLD.php
+                                <small style="float: right;padding-right: 10px;">1</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>21</td>
+                                            <td>www.campusbcp.com&#039;&gt;Campus BCP&lt;/a&gt; para realizar el ajuste a tu trabajo.&lt;/span&gt;</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                                                                                                    </div>
+        </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 2nd, 2015 at 12:01.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

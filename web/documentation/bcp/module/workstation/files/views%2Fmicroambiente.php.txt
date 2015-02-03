@@ -1,0 +1,63 @@
+<div id="pap_lista">
+    <ul>
+        <li>
+            <a href="javascript:mcomunicacion(<?php echo $workstationId ?>,<?php echo $puestoId ?>);">Método de comunicación</a>
+            <span class="flecha">&nbsp;</span>
+        </li>
+        <li>
+            <a href="javascript:microambiente(<?php echo $workstationId ?>,<?php echo $puestoId ?>);" class="pap_active_menu">Arquitectura de microambiente</a>
+            <span class="flecha">&nbsp;</span>
+        </li>
+        <li>
+            <a href="javascript:adaptacion(<?php echo $workstationId ?>,<?php echo $puestoId ?>, <?php echo $objPuesto->id_status ?>);">Plan de adaptación al puesto</a>
+            <span class="flecha">&nbsp;</span>
+        </li>
+<!--        <li>
+            <a href="javascript:cronograma(<?php echo $workstationId ?>,<?php echo $puestoId ?>);">Cronograma seguimiento</a>
+        </li>-->
+    </ul>    
+</div>
+<div id="pap_seccion">
+    <div class="pap_titulo">
+        <h2 class="pap_left">Cargo / Puesto: <?php echo $objPuesto->chr_name ?></h2>
+    </div>
+
+    <form name="frmMicroambiente" method="POST">
+        <input type="hidden" name="subject" value="saveMicroambiente" />
+        <input type="hidden" name="puestoId" value="<?php echo $objPuesto->id ?>" />
+        <div>
+            <label>Unidad a la que pertenece el puesto</label>
+            <input type="text" name="txt_unidad" placeholder="Unidad" value="<?php echo $objPuesto->chr_unidad; ?>">
+            <table id="pap_table_planificacion" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="border-bottom:1px solid #135092; border-right:1px solid #135092; ">
+                        <p class="pap_subtitle">Misión<span class="pap_alert" title=" Colocar la misión de la Unidad donde se ubica el cargo."></span></p>
+                        <textarea name="txt_mision"><?php echo $objPuesto->txt_microambiente_mision; ?></textarea>
+                    </td>
+                    <td style="border-bottom:1px solid #135092; border-left:1px solid #135092; ">
+                        <p class="pap_subtitle">Principios<span class="pap_alert" title="Responder a las preguntas: ¿Bajo qué preceptos va a trabajar el equipo? Colocar aquellos que sean de alta recordación."></span></p>
+                        <textarea name="txt_principios"><?php echo $objPuesto->txt_microambiente_principios; ?></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top:1px solid #135092; border-right:1px solid #135092; ">
+                        <p class="pap_subtitle">Estructura<span class="pap_alert" title="Haz un esquema de viñetas de la estructura jerárquica en la que se encuentra el puesto, con la finalidad de que el nuevo colaborador tenga claridad sobre su ubicación. Luego adjúntala en esta sección."></span></p>
+                        <textarea name="txt_estructura"><?php echo $objPuesto->txt_microambiente_estructura; ?></textarea>
+                    </td>
+                    <td style="border-top:1px solid #135092; border-left:1px solid #135092; ">
+                        <p class="pap_subtitle">Características<span class="pap_alert" title="Redactar las creencias que tenemos en nuestra unidad y la forma cómo hacemos las cosas. Utilizar siempre frases positivas.
+
+"></span></p>
+                        <textarea name="txt_caracteristica"><?php echo $objPuesto->txt_microambiente_caract; ?></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+<!--        <input class="pap_left" type="submit" value="Enviar">
+        <input class="pap_left" type="submit" value="Cancelar">-->
+        <button name="btnSave" onclick="saveMicroambiente();
+                return false;">Guardar avance</button>
+        <button name="btnCancel" onclick="cancelComunicacion(<?php echo $workstationId ?>);
+                return false;">Volver a la lista de puestos</button>         
+    </form>
+</div>

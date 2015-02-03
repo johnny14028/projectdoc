@@ -1,0 +1,172 @@
+<div id="pap_seccion">
+    <div class="pap_titulo">
+        <h2 class="pap_left">Identificación del puesto</h2>
+    </div>
+    <span class="pap_leyend">Ingresa el nombre y la misión del puesto elegido.</span>
+    <form name="frmPuesto" method="POST" action="">
+        <input type="hidden" name="puestoId" id="puestoId" value="<?php echo $objPuesto->id ?>" />
+        <input type="hidden" name="subject" id="puestoId" value="save" />
+        <input type="hidden" name="role" id="role" value="<?php echo $strRole ?>" />
+        <div class="pap_stripe">
+            <label>Nombre del Puesto</label>
+            <span class="pap_left">
+                <a id="linkNameWork" title="Señala cuál es el puesto para el cual se están formulando los roles y responsabilidades." class="pap_alert" href="#">&nbsp;</a>
+            </span>
+            <input type="text" name="txtName" placeholder="El nombre del puesto" value="<?php echo $objPuesto->chr_name ?>">
+        </div>
+        <?php if (/* $objWorkstation->tutor == 1 && $objPuesto->id_status > 1 */false): ?>
+            <?php $disabled = '' ?>
+            <?php if ($objPuesto->id_status == 6): ?>
+                <?php $disabled = 'disabled="disabled" class="pap_disabled"' ?>
+            <?php endif; ?>        
+            <div class="pap_stripe_button">
+                <button <?php echo $disabled ?> onclick="showFeedback(<?php echo $objPuesto->id ?>, 'name', <?php echo $objWorkstation->tutor ?>, <?php echo $objPuesto->id_status ?>, 0);
+                        return false;" name="btnFeedback">Mensaje del tutor</button>
+            </div>        
+        <?php endif; ?>
+
+        <div class="pap_stripe">
+            <label>Área</label>
+            <span class="tooltip pap_left">
+                <a class="pap_alert" href="#" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                   consequat.)">&nbsp;</a>
+            </span>
+            <input type="text" name="txtArea" placeholder="El nombre del área" value="<?php echo $objPuesto->chr_unidad ?>" />
+        </div>
+
+        <div class="pap_stripe">
+            <label>Misión del Puesto</label>
+            <span class="tooltip pap_left">
+                <a class="pap_alert" href="#" title="Redacta la razón de ser del puesto en la Unidad. Esta debe contener: 
+                   1 ó 2 verbos de acción que indiquen la actividad que cumple, El ámbito o procesos de la organización sobre los que el puesto actúa, La finalidad y el resultado global que se espera del puesto
+                   Consideraciones que permitan entender mejor la misión (opcional)">&nbsp;</a>
+            </span>
+            <textarea rows="5" cols="25" name="txtDescription" placeholder="La misión del puesto"><?php echo $objPuesto->txt_vision ?></textarea>
+        </div>
+        <?php if ($objWorkstation->tutor == 1 && $objPuesto->id_status > 1): ?>
+            <div class="pap_stripe_button">
+                <?php $disabled = '' ?>
+                <?php if ($objPuesto->id_status == 6): ?>
+                    <?php $disabled = 'disabled="disabled" class="pap_disabled"' ?>
+                <?php endif; ?>
+                <button <?php echo $disabled ?> onclick="showFeedback(<?php echo $objPuesto->id ?>, 'mision', <?php echo $objWorkstation->tutor ?>, <?php echo $objPuesto->id_status ?>, 0);
+                        return false;" name="btnFeedback">Mensaje del tutor</button>
+            </div>
+        <?php endif; ?>
+        <div class="pap_titulo">
+<!--            <span class="pap_left">
+                <a class="pap_alert" href="#" title="Ingresa en la siguiente tabla las 5 ó 6 actividades que necesita
+realizar el colaborador para cumplir el propósito de su puesto.
+Ingresa una actividad por fila y para cada una señala los pasos
+clave para cumplirla y los resultados esperados de la actividad.">&nbsp;</a>
+            </span>            -->
+            <h2 class="pap_left">Actividades principales</h2>
+        </div>
+<!--        <span class="pap_leyend">Para editar hacer <strong>clic</strong> en el texto.</span>-->
+        <span class="pap_leyend">Ingresa en la siguiente tabla las 5 ó 6 actividades que necesita
+            realizar el colaborador para cumplir el propósito de su puesto.
+            Ingresa una actividad por fila y para cada una señala los pasos
+            clave para cumplirla y los resultados esperados de la actividad.</span>
+        <div class="pap_contenido">
+            <table  id="tableCategory">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Actividad</th>
+                        <th>Pasos claves</th>
+                        <th>Resultados esperados</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>                
+                <tbody>
+                    <?php $cont = 0 ?>
+                    <?php foreach ($objPuesto->activities as $index => $oActivity): ?>
+                        <tr id="row_<?php echo $oActivity->id ?>">
+                            <td><?php echo intval($cont + 1) ?></td>
+                            <td>
+                                <div class="pap_box" id="activity_activityname_<?php echo $oActivity->id ?>" onclick="showBox('activityname',<?php echo $oActivity->id ?>, 'Actividad');
+                                        return false;">
+                                         <?php
+                                         if ((strlen(trim($oActivity->chr_name))) == 0) {
+                                             echo '<span class="pap_gray">Ingresar texto...</span>';
+                                         } else {
+                                             if ((strlen(trim($oActivity->chr_name))) <= 55) {
+                                                 echo $oActivity->chr_name;
+                                             } else {
+                                                 echo substr($oActivity->chr_name, 0, 55) . '...';
+                                             }
+                                         }
+                                         ?>
+                                </div>
+                            </td>                             
+                            <td>
+                                <div class="pap_box" id="activity_logro_<?php echo $oActivity->id ?>" onclick="showBox('logro',<?php echo $oActivity->id ?>, 'Pasos claves');
+                                        return false;">
+                                         <?php
+                                         if (strlen(trim($oActivity->txt_como_lo_logro)) == 0) {
+                                             echo '<span class="pap_gray">Escribe los pasos claves apra el logro de esa actividad 1)... 2)... 3)....</span>';
+                                         } else {
+                                             if (strlen(trim($oActivity->txt_como_lo_logro)) <= 55) {
+                                                 echo $oActivity->txt_como_lo_logro;
+                                             } else {
+                                                 echo substr($oActivity->txt_como_lo_logro, 0, 55) . '...';
+                                             }
+                                         }
+                                         ?>
+                                </div>
+                            </td>                             
+                            <td>
+                                <div class="pap_box" id="activity_resultado_<?php echo $oActivity->id ?>" onclick="showBox('resultado',<?php echo $oActivity->id ?>, 'Resultados esperados');
+                                        return false;">
+                                         <?php
+                                         if (strlen(trim($oActivity->txt_resultado_trabajo)) == 0) {
+                                             echo '<span class="pap_gray">Ingresar texto...</span>';
+                                         } else {
+                                             if (strlen(trim($oActivity->txt_resultado_trabajo)) <= 55) {
+                                                 echo $oActivity->txt_resultado_trabajo;
+                                             } else {
+                                                 echo substr($oActivity->txt_resultado_trabajo, 0, 55) . '...';
+                                             }
+                                         }
+                                         ?>
+                                </div>
+                            </td>                             
+                            <td>
+                                <button name="btnDeleteCategory" id="btnDeleteCategory" onclick="deleteCategory(<?php echo $oActivity->id ?>);
+                                        return false;">Quitar fila</button>
+                                        <?php if ($objWorkstation->tutor == 1 && $objPuesto->id_status > 1): ?>
+                                    <button onclick="showFeedback(<?php echo $objPuesto->id ?>, 'activity', <?php echo $objWorkstation->tutor ?>, <?php echo $objPuesto->id_status ?>,<?php echo $oActivity->id ?>);
+                                            return false;" name="btnFeedback">Mensaje del tutor</button>
+                                        <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php $cont++ ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="stripe">                
+                <button name="btnNewCategory" id='btnNewCategory' onclick="addActivity(<?php echo $objPuesto->id ?>);
+                        return false;">+Añadir actividad</button>
+            </div>
+        </div>
+
+        <div class="stripe">
+
+            <button name="btnSave" onclick="save();
+                    return false;">Guardar avance</button>
+            <button name="btnCancel" onclick="cancel_create_puesto(<?php echo $objPuesto->id_workstation ?>);
+                    return false;">Volver a la lista de puestos</button>
+            <div id="divLoading"></div>
+            <?php if ($strRole == 'tutor'): ?>
+                <?php if ($objWorkstation->tutor == 1 && $objPuesto->id_status > 1): ?>
+                    <button name="btnSave" onclick="validate();
+                            return false;">Validar puesto</button>
+                        <?php endif; ?>
+                    <?php endif; ?>
+        </div>
+    </form>
+</div>
+<div id="pap_dialog"></div>
+<div id="pap_dialog_feedback"></div>

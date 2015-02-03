@@ -1,0 +1,18 @@
+<?php
+
+$string['addnew'] = 'Add New';
+$string['addnewcat'] = 'Add Category';
+$string['category'] = 'Category';
+$string['content'] = 'Content';
+$string['date'] = 'Date';
+$string['image'] = 'Image';
+$string['name'] = 'Name';
+$string['news'] = 'News';
+$string['news:create'] = 'Create news';
+$string['norecords'] = 'There are no news created';
+$string['norecordscat'] = 'There are no categories created';
+$string['options'] = 'Options';
+$string['pluginname'] = 'News';
+$string['title'] = 'Title';
+$string['view'] = 'View more >';
+

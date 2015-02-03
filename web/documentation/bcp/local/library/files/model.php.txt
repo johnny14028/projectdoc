@@ -1,0 +1,190 @@
+<?php 
+
+
+Class library_Model{
+	private $db;
+
+	public function library_Model(){
+		global $DB;
+		$this->db = $DB;
+	}
+
+	public function get_polls($id=0){
+		if($id == 0) return $this->db->get_records('local_library',array(),'name','id,name,state');
+		else  return (array)$this->db->get_record('local_library',array('id'=>$id),'*',MUST_EXIST);
+	}
+
+
+
+
+	public function get_categories($i=0,$c=0){
+		if(empty($c)){
+			return $this->db->get_records('local_library_categories',array('vid'=>$i));
+		}else{
+			return (array)$this->db->get_record('local_library_categories',array('id'=>$c));	
+		}
+		
+	}
+
+
+
+	public function edit_poll($i,$record){
+
+		if(empty($i)){
+
+			$this->db->insert_record('local_library',$record);
+		}else{
+			$record['id'] = $i;
+			$this->db->update_record('local_library',$record);
+		}
+
+	}
+
+
+	public function edit_cat($c,$record){
+
+		if(empty($c)){
+
+			$this->db->insert_record('local_library_categories',$record);
+		}else{
+			$record['id'] = $c;
+			$this->db->update_record('local_library_categories',$record);
+		}
+
+	}
+
+	public function edit_qst($q,$record){
+
+		if(empty($q)){
+
+			$this->db->insert_record('local_library_questions',$record);
+		}else{
+			$record['id'] = $q;
+			$this->db->update_record('local_library_questions',$record);
+		}
+
+	}
+
+
+	public function del_poll($i){
+
+		
+		$this->db->delete_records('local_library',array('id'=>$i));
+	
+
+}
+
+
+	
+	public function get_users($data){
+
+		$sql = "SELECT ui.userid  FROM {user_info_data} ui 
+		        INNER JOIN {user} u 
+                ON u.id=ui.userid WHERE ui.data = ?
+                ";
+
+		$params = array($data);
+
+		return $this->db->get_records_sql($sql,$params);
+	}
+
+
+	public function delete_permission($idli,$idrol){
+		
+
+        $sql = "SELECT id FROM {local_library_rol} 
+		        WHERE libraryid = ?
+		        AND rolid = ?
+                ";
+
+        $params = array($idli,$idrol);
+
+		$permission = $this->db->get_records_sql($sql,$params);
+
+		foreach($permission as $p){
+
+			$this->db->delete_records('local_library_rol',array('id'=>$p->id));
+			$this->db->delete_records('local_library_permission',array('libraryid'=>$p->id));
+
+		}
+
+	}
+
+	public function get_users_permission($user){
+
+		$sql = "SELECT  ll.name,lr.libraryid
+				FROM {local_library} ll
+				INNER JOIN {local_library_rol} lr 
+				ON ll.id = lr.libraryid
+				INNER JOIN {local_library_permission} lp
+				ON lp.libraryid = lr.id
+				WHERE lp.userid = ?
+				AND ll.state = 1
+				";
+
+		$params = array($user);
+
+		return $this->db->get_records_sql($sql,$params);
+	}
+
+
+     public function get_rol($id){
+		return $this->db->get_records('local_library',array('id'=>$id),'name','id,name,state');
+		
+	}
+
+	public function get_function(){
+
+			$query = "SELECT d1.data AS funcion FROM {user_info_data} d1
+			                INNER JOIN {user_info_data} d2 
+			                ON d2.userid = d1.userid 
+			                WHERE d2.fieldid=3
+			                AND d1.fieldid=2
+			                AND d2.data in ('DIVISION COMERCIAL','GERENCIA DE DIVISION GESTION DE PATRIMON')
+			                AND d1.data<>''
+			                ORDER BY d1.data
+
+			               ";
+
+			     return (array) $this->db->get_records_sql($query,array());
+
+}
+
+
+public function get_roles($id){
+
+			$sql = "SELECT ru.userid FROM {role_assignments} ru
+			        INNER JOIN  {user} u ON u.id = ru.userid
+		              WHERE ru.roleid = 23
+		              AND ru.userid = ?
+			         ";
+
+				$params = array($id);
+
+				return $this->db->get_records_sql($sql,$params);
+		
+		
+	}
+
+
+
+	public function get_courses($id){
+
+			$sql = "SELECT ll.id,r.userid, ll.name,lr.libraryid
+					FROM {local_library} ll
+					INNER JOIN {local_library_rol} lr 
+					ON ll.id = lr.libraryid 
+					INNER JOIN {user_info_data} r
+					ON r.data = lr.rolid WHERE r.fieldid = 2 AND ll.state=1
+					AND r.userid = ?";
+
+				$params = array($id);
+
+				return $this->db->get_records_sql($sql,$params);
+		
+		
+	}
+
+
+}
+

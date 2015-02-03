@@ -1,0 +1,110 @@
+<?php
+
+include('../../config.php');
+//include('lib.php');
+//include('model.php');
+include('form.php');
+global $DB;
+
+if(!is_siteadmin()){
+ redirect('/index.php');
+}
+
+$PAGE->set_url('/local/bcp/order.php');
+
+require_login();
+
+$context = context_system::instance();
+
+$name = 'Ordenar Usuarios';
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add($name);
+
+$PAGE->set_title($name);
+
+$PAGE->set_heading($name);
+
+
+$mform = new order_form();
+
+echo $OUTPUT->header();
+
+if (!($data = $mform->get_data())){
+  $mform->display();
+  echo $OUTPUT->footer();
+  exit;
+}else{
+
+    $content = $mform->get_file_content('users');
+    $cont = explode("\n",$content);
+
+    $course =$data->courseid;
+    $enrolid = $DB->get_record('enrol',array('enrol'=>'manual','courseid'=>$course),'id','id,enrol');
+
+    
+
+     $sql = "SELECT MIN(timecreated) AS primero 
+             FROM {user_enrolments}
+             WHERE enrolid = ?";
+
+       $parameters=array($enrolid->id);
+
+       $first = $DB->get_record_sql($sql,$parameters);
+
+
+
+  $sql1 = "SELECT ue.id, u.username FROM {user} u 
+           INNER JOIN {user_enrolments} ue ON ue.userid = u.id 
+           INNER JOIN {enrol} e ON e.id = ue.enrolid 
+           INNER JOIN {role_assignments} r ON u.id = r.userid 
+           INNER JOIN {context} ctx ON ctx.id = r.contextid 
+           INNER JOIN {course} c ON c.id = ctx.instanceid AND c.id=e.courseid WHERE r.roleid = 5 AND ctx.contextlevel = 50 AND c.id = ?
+           AND u.username = ? ";
+
+
+ $i=1;
+    foreach ($cont as $value){
+
+
+            $param=array($course,trim($value)); 
+
+               $usu = $DB->get_record_sql($sql1,$param);
+
+
+      
+            try{
+
+                $dataobject1=array('id'=>$usu->id ,'timecreated'=>$first->primero+$i);
+
+                $DB->update_record('user_enrolments', $dataobject1);
+
+
+                echo "Orden correcto de Usuarios  \n";
+
+              }catch(Exception $e) {
+
+                    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+              }
+
+          
+
+               // $dataobject1=array('id'=>$usu->id ,'timecreated'=>$first->primero+$i);
+
+               // $DB->update_record('user_enrolments', $dataobject1);
+
+
+      $i++;
+    }
+
+
+
+
+
+
+    echo $OUTPUT->footer(); 
+    exit;
+}
+
+

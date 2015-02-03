@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Markers
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Plugin Metadata</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">149</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">469</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                        <li><a href="#lang/en/metadata.php"><i class="icon-file"></i> lang/en/metadata.php</a></li>
+                                                                                                <li><a href="#lang/es/metadata.php"><i class="icon-file"></i> lang/es/metadata.php</a></li>
+                                                                                                <li><a href="#db/install.php"><i class="icon-file"></i> db/install.php</a></li>
+                                                                                                <li><a href="#db/log.php"><i class="icon-file"></i> db/log.php</a></li>
+                                                                                                <li><a href="#db/access.php"><i class="icon-file"></i> db/access.php</a></li>
+                                                                                                <li><a href="#db/upgrade.php"><i class="icon-file"></i> db/upgrade.php</a></li>
+                                                                                                <li><a href="#db/uninstall.php"><i class="icon-file"></i> db/uninstall.php</a></li>
+                                                                                                <li><a href="#lib.php"><i class="icon-file"></i> lib.php</a></li>
+                                                                                                                                                                                                                <li><a href="#grade.php"><i class="icon-file"></i> grade.php</a></li>
+                                                                                                                                                        <li><a href="#locallib.php"><i class="icon-file"></i> locallib.php</a></li>
+                                                                                                <li><a href="#ajax.php"><i class="icon-file"></i> ajax.php</a></li>
+                                                                                                <li><a href="#mod_form.php"><i class="icon-file"></i> mod_form.php</a></li>
+                                                                                                                                                        <li><a href="#index.php"><i class="icon-file"></i> index.php</a></li>
+                                                                                                <li><a href="#view.php"><i class="icon-file"></i> view.php</a></li>
+                                                                                                <li><a href="#version.php"><i class="icon-file"></i> version.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-map-marker"></i></a><span class="divider">\</span></li>
+                <li>Markers</li>
+            </ul>
+
+            
+            <div id="marker-accordion">
+                                                            <div class="package-contents">
+                            <a name="lang/en/metadata.php" id="lang/en/metadata.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                lang/en/metadata.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>27</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="lang/es/metadata.php" id="lang/es/metadata.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                lang/es/metadata.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>27</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/install.php" id="db/install.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/install.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>24</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/log.php" id="db/log.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/log.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>27</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/access.php" id="db/access.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/access.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>45</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/upgrade.php" id="db/upgrade.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/upgrade.php
+                                <small style="float: right;padding-right: 10px;">65</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>30</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>44</td>
+                                            <td>loads ddl manager and xmldb classes</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>46</td>
+                                            <td>And upgrade begins here. For each one, you&#039;ll need one</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>47</td>
+                                            <td>block of code similar to the next one. Please, delete</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>48</td>
+                                            <td>this comment lines once this file start handling proper</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>49</td>
+                                            <td>upgrade code.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>51</td>
+                                            <td>if ($oldversion &lt; YYYYMMDD00) { //New version in version.php</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>52</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>53</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>55</td>
+                                            <td>Lines below (this included)  MUST BE DELETED once you get the first version</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>56</td>
+                                            <td>of your module ready to be installed. They are here only</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>57</td>
+                                            <td>for demonstrative purposes and to show how the metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>58</td>
+                                            <td>iself has been upgraded.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>60</td>
+                                            <td>For each upgrade block, the file metadata/version.php</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>61</td>
+                                            <td>needs to be updated . Such change allows Moodle to know</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>62</td>
+                                            <td>that this file has to be processed.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>64</td>
+                                            <td>To know more about how to write correct DB upgrade scripts it&#039;s</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>65</td>
+                                            <td>highly recommended to read information available at:</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>66</td>
+                                            <td>http://docs.moodle.org/en/Development:XMLDB_Documentation</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>67</td>
+                                            <td>and to play with the XMLDB Editor (in the admin menu) and its</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>68</td>
+                                            <td>PHP generation posibilities.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>70</td>
+                                            <td>First example, some fields were added to install.xml on 2007/04/01</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>73</td>
+                                            <td>Define field course to be added to metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>77</td>
+                                            <td>Add field course</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>82</td>
+                                            <td>Define field intro to be added to metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>86</td>
+                                            <td>Add field intro</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>91</td>
+                                            <td>Define field introformat to be added to metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>96</td>
+                                            <td>Add field introformat</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>101</td>
+                                            <td>Once we reach this point, we can store the new version and consider the module</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>102</td>
+                                            <td>upgraded to the version 2007040100 so the next time this block is skipped</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>106</td>
+                                            <td>Second example, some hours later, the same day 2007/04/01</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>107</td>
+                                            <td>two more fields and one index were added to install.xml (note the micro increment</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>108</td>
+                                            <td>&quot;01&quot; in the last two digits of the version</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>111</td>
+                                            <td>Define field timecreated to be added to metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>116</td>
+                                            <td>Add field timecreated</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>121</td>
+                                            <td>Define field timemodified to be added to metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>126</td>
+                                            <td>Add field timemodified</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>131</td>
+                                            <td>Define index course (not unique) to be added to metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>135</td>
+                                            <td>Add index to course field</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>140</td>
+                                            <td>Another save point reached</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>144</td>
+                                            <td>Third example, the next day, 2007/04/02 (with the trailing 00), some actions were performed to install.php,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>145</td>
+                                            <td>related with the module</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>148</td>
+                                            <td>insert here code to perform some actions (same as in install.php)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>153</td>
+                                            <td>And that&#039;s all. Please, examine and understand the 3 example blocks above. Also</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>154</td>
+                                            <td>it&#039;s interesting to look how other modules are using this script. Remember that</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>155</td>
+                                            <td>the basic idea is to have &quot;blocks&quot; of code (each one being executed only once,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>156</td>
+                                            <td>when the module version (version.php) is updated.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>158</td>
+                                            <td>Lines above (this included) MUST BE DELETED once you get the first version of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>159</td>
+                                            <td>yout module working. Each time you need to modify something in the module (DB</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>160</td>
+                                            <td>related, you&#039;ll raise the version and add one upgrade block here.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>162</td>
+                                            <td>Final return of upgrade result (true, all went good) to Moodle.</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="db/uninstall.php" id="db/uninstall.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                db/uninstall.php
+                                <small style="float: right;padding-right: 10px;">15</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>23</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="lib.php" id="lib.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                lib.php
+                                <small style="float: right;padding-right: 10px;">31</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>29</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>35</td>
+                                            <td>define(&#039;NEWMODULE_ULTIMATE_ANSWER&#039;, 42);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>37</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>38</td>
+                                            <td>Moodle core API                                                            //</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>39</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>163</td>
+                                            <td>True if anything was printed, otherwise false</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>215</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>216</td>
+                                            <td>Gradebook API                                                              //</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>217</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>297</td>
+                                            <td>populate array of grade objects indexed by userid</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>302</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>303</td>
+                                            <td>File API                                                                   //</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>304</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>368</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>369</td>
+                                            <td>Navigation API                                                             //</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>370</td>
+                                            <td>//////////////////////////////////////////////////////////////////////////////</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>TODO</td>
+                                            <td>201</td>
+                                            <td>Finish documenting this function</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                                                        <div class="package-contents">
+                            <a name="grade.php" id="grade.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                grade.php
+                                <small style="float: right;padding-right: 10px;">19</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>23</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>28</td>
+                                            <td>Course module ID</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>29</td>
+                                            <td>Item number, may be != 0 for activities that allow more than one grade per user</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>30</td>
+                                            <td>Graded user ID (optional)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>32</td>
+                                            <td>in the simplest case just redirect to the view page</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="locallib.php" id="locallib.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                locallib.php
+                                <small style="float: right;padding-right: 10px;">148</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>38</td>
+                                            <td>function metadata_do_something_useful(array $things) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>39</td>
+                                            <td>return new stdClass();</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>40</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>48</td>
+                                            <td>error_reporting(-1);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>60</td>
+                                            <td>$html.=&#039;&lt;div&gt;&#039; . html_writer::select($this-&gt;config[&#039;fields&#039;], &#039;tipoCampo&#039;) . &#039;&lt;/div&gt;&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>87</td>
+                                            <td>$context = get_context_instance(CONTEXT_COURSE, $courseId, MUST_EXIST);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>118</td>
+                                            <td>$html.=html_writer::start_tag(&#039;table&#039;, array(&#039;id&#039; =&gt; &#039;metadata_table&#039;));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>120</td>
+                                            <td>$html.= html_writer::tag(&#039;th&#039;, &#039;Apellido / Nombre&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>121</td>
+                                            <td>obtenemos los campos adicionales activos</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>131</td>
+                                            <td>$html.= html_writer::tag(&#039;th&#039;, &#039;Editar&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>138</td>
+                                            <td>$html.= html_writer::tag(&#039;td&#039;, $objStudent-&gt;lastname . &#039; &#039; . $objStudent-&gt;firstname);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>144</td>
+                                            <td>obtenemos el valor que se encuentra en la tabla de valores</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>194</td>
+                                            <td>$html.=html_writer::end_tag(&#039;table&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>223</td>
+                                            <td>$html.= html_writer::tag(&#039;th&#039;, &#039;Apellido / Nombre&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>224</td>
+                                            <td>obtenemos los campos adicionales activos</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>234</td>
+                                            <td>$html.= html_writer::tag(&#039;th&#039;, &#039;Editar&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>236</td>
+                                            <td>restringimos el acceso</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>240</td>
+                                            <td>$html.= html_writer::tag(&#039;td&#039;, $objStudent-&gt;lastname . &#039; &#039; . $objStudent-&gt;firstname);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>246</td>
+                                            <td>obtenemos el valor que se encuentra en la tabla de valores</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>316</td>
+                                            <td>obtenemos el nombre del usuario</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>322</td>
+                                            <td>obtenemos la data de la tabla user_info_data</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>355</td>
+                                            <td>$html.= html_writer::tag(&#039;th&#039;, &#039;Tipo&#039;, array(&#039;width&#039; =&gt; &#039;160px&#039;));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>382</td>
+                                            <td>iconos de las flechas de ordenar</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>410</td>
+                                            <td>$html.= html_writer::tag(&#039;td&#039;, $objField-&gt;chr_type, array(&#039;style&#039; =&gt; &#039;color:&#039; . $color));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>412</td>
+                                            <td>$html.= html_writer::tag(&#039;td&#039;, html_writer::tag(&#039;a&#039;, $objField-&gt;chr_name, array(&#039;href&#039; =&gt; &quot;#&quot;, &#039;onclick&#039; =&gt; &#039;addValue(&#039; . $objField-&gt;id . &#039;, \&#039;value\&#039;);return false;&#039;)), array(&#039;id&#039; =&gt; &#039;value_&#039; . $objField-&gt;id));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>413</td>
+                                            <td>$html.= html_writer::tag(&#039;td&#039;, html_writer::checkbox(&#039;isGlobal&#039;, &#039;&#039;, $checked, &#039;&#039;, array(&#039;id&#039; =&gt; &#039;check_&#039; . $objField-&gt;id, &#039;onMouseUp&#039; =&gt; &#039;setGlobal(&#039; . $objField-&gt;id . &#039;);&#039;)));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>449</td>
+                                            <td>$objField-&gt;id = NULL;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>518</td>
+                                            <td>verificamos si el nonbre del campo a crear existe</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>636</td>
+                                            <td>obtenemos los campos adicionales de Moodle</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>650</td>
+                                            <td>print_object($this-&gt;config[&#039;Campos:excluyentes&#039;][&#039;excluyentes&#039;]);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>658</td>
+                                            <td>obtenemos los campos adicionales de Moodle</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>660</td>
+                                            <td>agregamos un atributo de que el campo ya existe en el metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>676</td>
+                                            <td>creamos el obj nombres</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>683</td>
+                                            <td>creamos el obj matricula</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>692</td>
+                                            <td>verificamos  si esta activo la importación de campos de otros cursos</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>695</td>
+                                            <td>obtenemos los campos adicionales de otros cursos del plugin metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>739</td>
+                                            <td>obtenemos los ID de los metadatas</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>745</td>
+                                            <td>ahora obtenemos los campos activos y globales de los cursos</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>789</td>
+                                            <td>seteamos los valores en los campos adicionales iniciales</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>790</td>
+                                            <td>$this-&gt;setValuesInitFields($fieldId, $courseId, $idField);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>912</td>
+                                            <td>eliminamos los campos que se desactivo</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>934</td>
+                                            <td>seteamos los valores en los campos adicionales iniciales</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>935</td>
+                                            <td>$this-&gt;setValuesInitFields($fieldId, $course, $idField);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>956</td>
+                                            <td>obtenemos el objeto metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>963</td>
+                                            <td>listamos los campos de tipo moodle en las tablas de metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>966</td>
+                                            <td>comparamos y eliminamos los ID q no esten</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>972</td>
+                                            <td>eliminamos el </td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>995</td>
+                                            <td>obtenemos la metadata</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1016</td>
+                                            <td>Create new PHPExcel object</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1019</td>
+                                            <td>Set document properties</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1040</td>
+                                            <td>evitamos el relleno de los usuarios en la plantilla</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1041</td>
+                                            <td>generamos los contenidos para los datos</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1053</td>
+                                            <td>foreach ($fields as $indice =&gt; $objField) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1054</td>
+                                            <td>if ($objField-&gt;chr_origen == &#039;extra&#039;) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1055</td>
+                                            <td>$objValue = $DB-&gt;get_record(&#039;metadata_uservalue&#039;, array(&#039;user_id&#039; =&gt; $objUser-&gt;id, &#039;field_id&#039; =&gt; $objField-&gt;id, &#039;bool_selected&#039; =&gt; 1));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1056</td>
+                                            <td>if (is_object($objValue)) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1057</td>
+                                            <td>$value = $this-&gt;getValueFieldMetadata($objValue, $objField, $objUser);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1058</td>
+                                            <td>$objPHPExcel-&gt;setActiveSheetIndex()-&gt;setCellValue($contUser . $row, $value);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1059</td>
+                                            <td>//$myxls-&gt;write_string($row, $contUser, $value);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1060</td>
+                                            <td>} else {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1061</td>
+                                            <td>//$myxls-&gt;write_string($row, $contUser, &#039;&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1062</td>
+                                            <td>$objPHPExcel-&gt;setActiveSheetIndex()-&gt;setCellValue($contUser . $row, &#039;&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1063</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1064</td>
+                                            <td>} else {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1065</td>
+                                            <td>if ($objField-&gt;chr_origen == &#039;moodle&#039;) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1066</td>
+                                            <td>$id_data = $this-&gt;getUserInfo($objUser-&gt;id, $objField-&gt;id_origin_field);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1067</td>
+                                            <td>$objInfo = $DB-&gt;get_record(&#039;user_info_data&#039;, array(&#039;id&#039; =&gt; $id_data));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1068</td>
+                                            <td>$data = &#039;&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1069</td>
+                                            <td>if (is_object($objInfo)) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1070</td>
+                                            <td>$data = $objInfo-&gt;data;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1071</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1072</td>
+                                            <td>//$myxls-&gt;write_string($row, $contUser, $data);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1073</td>
+                                            <td>$objPHPExcel-&gt;setActiveSheetIndex()-&gt;setCellValue($contUser . $row, $data);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1074</td>
+                                            <td>} else {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1075</td>
+                                            <td>switch ($objField-&gt;id_origin_field) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1076</td>
+                                            <td>case $this-&gt;config[&#039;Campos:obligatorios&#039;][&#039;nombres&#039;]:</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1077</td>
+                                            <td>//$myxls-&gt;write_string($row, $contUser, $objUser-&gt;firstname);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1078</td>
+                                            <td>$objPHPExcel-&gt;setActiveSheetIndex()-&gt;setCellValue($contUser . $row, $objUser-&gt;firstname);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1079</td>
+                                            <td>break;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1080</td>
+                                            <td>case $this-&gt;config[&#039;Campos:obligatorios&#039;][&#039;appaterno&#039;]:</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1081</td>
+                                            <td>$id_data = $this-&gt;getUserInfo($objUser-&gt;id, $objField-&gt;id_origin_field);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1082</td>
+                                            <td>$objInfo = $DB-&gt;get_record(&#039;user_info_data&#039;, array(&#039;id&#039; =&gt; $id_data));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1083</td>
+                                            <td>$data = &#039;&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1084</td>
+                                            <td>if (is_object($objInfo)) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1085</td>
+                                            <td>$data = $objInfo-&gt;data;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1086</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1087</td>
+                                            <td>//$myxls-&gt;write_string($row, $contUser, $data);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1088</td>
+                                            <td>$objPHPExcel-&gt;setActiveSheetIndex()-&gt;setCellValue($contUser . $row, $data);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1089</td>
+                                            <td>break;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1090</td>
+                                            <td>case $this-&gt;config[&#039;Campos:obligatorios&#039;][&#039;apmaterno&#039;]:</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1091</td>
+                                            <td>$id_data = $this-&gt;getUserInfo($objUser-&gt;id, $objField-&gt;id_origin_field);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1092</td>
+                                            <td>$objInfo = $DB-&gt;get_record(&#039;user_info_data&#039;, array(&#039;id&#039; =&gt; $id_data));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1093</td>
+                                            <td>$data = &#039;&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1094</td>
+                                            <td>if (is_object($objInfo)) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1095</td>
+                                            <td>$data = $objInfo-&gt;data;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1096</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1097</td>
+                                            <td>//$myxls-&gt;write_string($row, $contUser, $data);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1098</td>
+                                            <td>$objPHPExcel-&gt;setActiveSheetIndex()-&gt;setCellValue($contUser . $row, $data);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1099</td>
+                                            <td>break;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1100</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1101</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1102</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1103</td>
+                                            <td>$contUser++;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1104</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1111</td>
+                                            <td>Add some data</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1118</td>
+                                            <td>Miscellaneous glyphs, UTF-8</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1123</td>
+                                            <td>Rename worksheet</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1127</td>
+                                            <td>Set active sheet index to the first sheet, so Excel opens this as the first sheet</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1131</td>
+                                            <td>Redirect output to a client’s web browser (Excel5)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1135</td>
+                                            <td>If you&#039;re serving to IE 9, then the following may be needed</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1138</td>
+                                            <td>If you&#039;re serving to IE over SSL, then the following may be needed</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1139</td>
+                                            <td>Date in the past</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1140</td>
+                                            <td>always modified</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1141</td>
+                                            <td>HTTP/1.1</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1142</td>
+                                            <td>HTTP/1.0</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1145</td>
+                                            <td>output&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1159</td>
+                                            <td>/ Creating a workbook</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1160</td>
+                                            <td>$workbook = new MoodleExcelWorkbook();</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1162</td>
+                                            <td>/ Sending HTTP headers</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1164</td>
+                                            <td>gereramos los titulos de los campos</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1176</td>
+                                            <td>generamos los contenidos para los datos</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1277</td>
+                                            <td>obtenemos el objeto campo para actualizarlo</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1280</td>
+                                            <td>obtenemos el objeto value del campo</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1298</td>
+                                            <td>verificamos si tiene un registro para eliminarlo</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1299</td>
+                                            <td>obtenemos el objeto campo para actualizarlo</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1302</td>
+                                            <td>obtenemos el objeto value del campo</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1360</td>
+                                            <td>buscamos el objeto que contiene el valor</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1385</td>
+                                            <td>subir</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1399</td>
+                                            <td>bajar</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1400</td>
+                                            <td>obtenemos el objeto a bajar</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1466</td>
+                                            <td>get_records($table, array $conditions=null, $sort=&#039;&#039;, $fields=&#039;*&#039;, $limitfrom=0, $limitnum=0)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1477</td>
+                                            <td>obtenemos el rol del usuario</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>1522</td>
+                                            <td>Esta parte se encarga de eliminar cualquier caracter extraño</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="ajax.php" id="ajax.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                ajax.php
+                                <small style="float: right;padding-right: 10px;">17</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>if ($isXmlHttpRequest) {</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>111</td>
+                                            <td>Agregamos los campos adicionales</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>161</td>
+                                            <td>var_dump($_GET[&#039;subject&#039;]);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>162</td>
+                                            <td>var_dump($_REQUEST[&#039;subject&#039;]);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>166</td>
+                                            <td>valid extensions</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>167</td>
+                                            <td>max file size</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>168</td>
+                                            <td>upload directory</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>172</td>
+                                            <td>get uploaded file extension</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>174</td>
+                                            <td>looking for format and size validity</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>176</td>
+                                            <td>$path = $path . uniqid() . &#039;.&#039; . $ext;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>178</td>
+                                            <td>move uploaded file from temp to uploads directory</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>180</td>
+                                            <td>echo &quot;&lt;img src=&#039;$path&#039; /&gt;&quot;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>181</td>
+                                            <td>&#039;Porfavor espere un momento mientras procesamos la data...&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>184</td>
+                                            <td>&#039;Archivo invalido, solo formatos CSV&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>187</td>
+                                            <td>&#039;No es posible subir este archivo&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>190</td>
+                                            <td>&#039;Error: No es posible ejecutar el requerimiento de subida de archivos&#039;;</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>197</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="mod_form.php" id="mod_form.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                mod_form.php
+                                <small style="float: right;padding-right: 10px;">30</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>22</td>
+                                            <td>docs.moodle.org/en/Development:lib/formslib.php</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>45</td>
+                                            <td>-------------------------------------------------------------------------------</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>46</td>
+                                            <td>Adding the &quot;general&quot; fieldset, where all the common settings are showed</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>49</td>
+                                            <td>Adding the standard &quot;name&quot; field</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>60</td>
+                                            <td>Adding the standard &quot;intro&quot; and &quot;introformat&quot; fields</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>63</td>
+                                            <td>-------------------------------------------------------------------------------</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>64</td>
+                                            <td>Adding the rest of metadata settings, spreeading all them into this fieldset</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>65</td>
+                                            <td>or adding more fieldsets (&#039;header&#039; elements) if needed for better logic</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>66</td>
+                                            <td>$mform-&gt;addElement(&#039;static&#039;, &#039;label1&#039;, &#039;metadatasetting1&#039;, &#039;Your metadata fields go here. Replace me!&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>68</td>
+                                            <td>$mform-&gt;addElement(&#039;header&#039;, &#039;metadatafieldset&#039;, get_string(&#039;metadatafieldset&#039;, &#039;metadata&#039;));</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>69</td>
+                                            <td>$mform-&gt;addElement(&#039;static&#039;, &#039;label2&#039;, &#039;metadatasetting2&#039;, &#039;Your metadata fields go here. Replace me!&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>71</td>
+                                            <td>-------------------------------------------------------------------------------</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>72</td>
+                                            <td>add standard elements, common to all modules</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>74</td>
+                                            <td>-------------------------------------------------------------------------------</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>75</td>
+                                            <td>add standard buttons, common to all modules</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="index.php" id="index.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                index.php
+                                <small style="float: right;padding-right: 10px;">17</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>29</td>
+                                            <td>/ Replace metadata with the name of your module and remove this line</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>34</td>
+                                            <td>course</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="view.php" id="view.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                view.php
+                                <small style="float: right;padding-right: 10px;">33</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>26</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>29</td>
+                                            <td>/ (Replace metadata with the name of your module and remove this line)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>35</td>
+                                            <td>course_module ID, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>36</td>
+                                            <td>metadata instance ID - it should be named as the first character of the module</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>56</td>
+                                            <td>agregar los campos obligatorios</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>58</td>
+                                            <td>/ Print the page header</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>65</td>
+                                            <td>other things you may want to set - remove if not needed</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>66</td>
+                                            <td>$PAGE-&gt;set_cacheable(false);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>67</td>
+                                            <td>$PAGE-&gt;set_focuscontrol(&#039;some-html-id&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>68</td>
+                                            <td>$PAGE-&gt;add_body_class(&#039;metadata-&#039;.$somevar);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>74</td>
+                                            <td>Output starts here</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>77</td>
+                                            <td>if ($metadata-&gt;intro) { // Conditions to show the intro can change to look for own settings or whatever</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>78</td>
+                                            <td>echo $OUTPUT-&gt;box(format_module_intro(&#039;metadata&#039;, $metadata, $cm-&gt;id), &#039;generalbox mod_introbox&#039;, &#039;metadataintro&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>79</td>
+                                            <td>}</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>81</td>
+                                            <td>Replace the following lines with you own code</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>82</td>
+                                            <td>echo $OUTPUT-&gt;heading(&#039;Yay! It works!&#039;);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>86</td>
+                                            <td>obtenemos la lista de alumnos matriculados en el curso</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>126</td>
+                                            <td>echo $objLocalLib-&gt;camposExistentes($course-&gt;id, $metadata-&gt;id);</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>134</td>
+                                            <td>Finish the page</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                <div class="package-contents">
+                            <a name="version.php" id="version.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                version.php
+                                <small style="float: right;padding-right: 10px;">19</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>This file is part of Moodle - http://moodle.org/</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>4</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>5</td>
+                                            <td>Moodle is free software: you can redistribute it and/or modify</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>6</td>
+                                            <td>it under the terms of the GNU General Public License as published by</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>7</td>
+                                            <td>the Free Software Foundation, either version 3 of the License, or</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>8</td>
+                                            <td>(at your option) any later version.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>9</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>10</td>
+                                            <td>Moodle is distributed in the hope that it will be useful,</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>11</td>
+                                            <td>but WITHOUT ANY WARRANTY; without even the implied warranty of</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>12</td>
+                                            <td>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>13</td>
+                                            <td>GNU General Public License for more details.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>14</td>
+                                            <td></td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>15</td>
+                                            <td>You should have received a copy of the GNU General Public License</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>16</td>
+                                            <td>along with Moodle.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>27</td>
+                                            <td>www.gnu.org/copyleft/gpl.html GNU GPL v3 or later</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>32</td>
+                                            <td>The current module version (Date: YYYYMMDDXX)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>33</td>
+                                            <td>Requires this Moodle version</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>34</td>
+                                            <td>Period for cron to check this module (secs)</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td></td>
+                                            <td>35</td>
+                                            <td>To check on upgrade, that module sits in correct place</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                </div>
+        </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 2nd, 2015 at 16:01.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

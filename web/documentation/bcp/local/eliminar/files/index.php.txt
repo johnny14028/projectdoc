@@ -1,0 +1,26 @@
+<?php
+
+include('../../config.php');
+include('form.php');
+
+
+$PAGE->set_url('/local/eliminar/index.php');
+
+require_login();
+
+$context = get_context_instance(CONTEXT_SYSTEM);
+
+$PAGE->set_context($context);
+
+$PAGE->navbar->add(get_string('pluginname','local_eliminar'));
+$PAGE->navbar->add('fxfxdf','http://www.google.com');
+
+$PAGE->set_title(get_string('pluginname','local_eliminar'));
+
+$PAGE->set_heading(get_string('pluginname','local_eliminar'));
+
+$PAGE->requires->js('/local/eliminar/js/jquery.js');
+$PAGE->requires->js('/local/eliminar/js/main.js');
+echo $OUTPUT->header();
+echo $OUTPUT->footer();
+

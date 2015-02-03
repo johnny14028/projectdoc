@@ -1,0 +1,76 @@
+<?php
+
+function local_news_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
+    // Check the contextlevel is as expected - if your plugin is a block, this becomes CONTEXT_BLOCK, etc.
+    if ($context->contextlevel != CONTEXT_SYSTEM) {
+        return false; 
+    }
+
+    if ($filearea !== 'image'){
+        return false;
+    }
+
+    $itemid = array_shift($args);
+ 
+    $filename = array_pop($args); // The last item in the $args array.
+    if (!$args) {
+        $filepath = '/'; // $args is empty => the path is '/'
+    } else {
+        $filepath = '/'.implode('/', $args).'/'; // $args contains elements of the filepath
+    }
+ 
+    // Retrieve the file from the Files API.
+    $fs = get_file_storage();
+    $file = $fs->get_file($context->id, 'local_news', $filearea, $itemid, $filepath, $filename);
+    if (!$file) {
+        return false; 
+    }
+    send_stored_file($file, 86400, 0, $forcedownload, $options);
+}
+
+
+function print_news($category = 0, $total = 10,$title = '',$class=''){
+    global $CFG;
+   require('model.php');
+
+
+    $model = new news_Model();
+    $news = $model->get_news($category,$total);
+
+    $class = 'main-news '.$class;
+
+    echo html_writer::start_tag('div',array('class'=> $class));
+
+    if(!empty($title)) echo html_writer::tag('h1',$title);
+
+    foreach($news as $n){
+
+        $n->image = $model->get_image($n->image);
+        $uri = $CFG->wwwroot.'/pluginfile.php/'.$n->image->contextid.'/'.$n->image->component.'/'.$n->image->filearea.'/'.$n->image->itemid.'/'.$n->image->filename;
+
+        $view = new moodle_url('/local/news/view.php',array('id'=>$n->id));
+        
+        echo html_writer::start_tag('div',array('class'=> 'row-new'));
+
+            echo html_writer::start_tag('div',array('class'=> 'new-title'));
+                echo html_writer::tag('h2',$n->title);
+            echo html_writer::end_tag('div');
+
+            echo html_writer::start_tag('div',array('class'=> 'new-image'));
+                echo html_writer::empty_tag('img',array('src'=>$uri));
+            echo html_writer::end_tag('div');
+
+            echo html_writer::start_tag('div',array('class'=> 'new-content'));
+                echo html_writer::tag('div',$n->body);
+            echo html_writer::end_tag('div');
+
+            echo html_writer::start_tag('div',array('class'=> 'new-view'));
+                echo html_writer::tag('a',get_string('view','local_news'),array('href'=>$view));
+            echo html_writer::end_tag('div');
+
+        echo html_writer::end_tag('div');
+
+    }
+
+    echo html_writer::end_tag('div');
+}

@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * 
+ */
+require_once 'model.php';
+
+class campaign {
+
+    private $model;
+
+    public function __construct() {
+        $this->model = new model();
+    }
+
+    public function vista($view,$action) {
+        global $DB, $USER, $CFG;
+        $include = 'views/' . $view . '.php';
+        $notfound = 'views/404.php';
+        ob_start();
+        if (is_readable($include)) {
+            //verificamos si el usuario es administrador
+            $isAdmin = $this->model->isAdmin($USER->id);
+            //verificamos si la pagina es editable
+            $isEdited = $this->model->isEdited($view);
+            //obetenemos el html del contenido
+            $moc = $this->model->get_all();
+            $imagerank = $this->model->get_one();
+            foreach ($imagerank as $img) {
+               $image = $this->model->get_image($img->image);
+            }
+            
+
+            $listacursos = $DB->get_records('course',array('category'=>27),'fullname','id,fullname,summary');
+            
+            $html = '';
+            if($isEdited){
+                $html = $this->getHtmlContent($view, $action);
+            }
+            include($include);
+        } else {
+            include($notfound);
+        }
+        $contenido = ob_get_contents();
+        ob_end_clean();
+        return $contenido;
+    }
+    
+    public function getHtmlContent($view, $action){
+        $returnValue = '';
+        
+        return $returnValue;
+    }
+
+    public function getRequest($page, $default = 'catalog') {
+        $returnValue = '';
+        if (isset($_GET['page'])) {
+            if (strlen(trim($_GET['page'])) > 0) {
+                $returnValue = $_GET['page'];
+            } else {
+                $returnValue = '404';
+            }
+        } else {
+            $returnValue = $default;
+        }
+        return $returnValue;
+    }
+    
+    
+
+}
+
