@@ -7,3 +7,12 @@ core_default_descargas:
 core_default_documentacion:
     pattern: /documentacion/
     defaults: { _controller: CoreDefaultBundle:Default:documentacion }
+core_default_catalogo:
+    pattern: /catalogo/
+    defaults: { _controller: CoreDefaultBundle:Default:catalogo }
+core_default_involucrarse:
+    pattern: /catalogo/
+    defaults: { _controller: CoreDefaultBundle:Default:involucrarse }
+core_default_buscar:
+    pattern: /buscar/
+    defaults: { _controller: CoreDefaultBundle:Default:involucrarse }
