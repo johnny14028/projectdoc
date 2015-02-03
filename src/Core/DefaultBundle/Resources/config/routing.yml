@@ -4,12 +4,15 @@ core_default_homepage:
 core_default_descargas:
     pattern: /descargas/
     defaults: { _controller: CoreDefaultBundle:Default:descargas }
+core_default_manuales:
+    pattern: /manuales/
+    defaults: { _controller: CoreDefaultBundle:Default:manuales }
+core_default_involucrarse:
+    pattern: /involucrarse/
+    defaults: { _controller: CoreDefaultBundle:Default:involucrarse }    
 core_default_catalogo:
     pattern: /catalogo/
     defaults: { _controller: CoreDefaultBundle:Default:catalogo }
-core_default_involucrarse:
-    pattern: /involucrarse/
-    defaults: { _controller: CoreDefaultBundle:Default:involucrarse }
 core_default_buscar:
     pattern: /buscar/
     defaults: { _controller: CoreDefaultBundle:Default:involucrarse }
