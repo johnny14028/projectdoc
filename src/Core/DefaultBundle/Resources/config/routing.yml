@@ -15,7 +15,7 @@ core_default_catalogo:
     defaults: { _controller: CoreDefaultBundle:Default:catalogo }
 core_default_buscar:
     pattern: /buscar/
-    defaults: { _controller: CoreDefaultBundle:Default:involucrarse }
+    defaults: { _controller: CoreDefaultBundle:Default:buscar }
 #URL de la documentación de cada proyecto
 core_default_documentacion:
     pattern: /documentacion/{project}/

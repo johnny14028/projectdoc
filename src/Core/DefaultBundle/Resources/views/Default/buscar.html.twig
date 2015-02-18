@@ -1,0 +1,30 @@
+{% extends "Theme"~theme|capitalize~"Bundle::public.html.twig" %}
+{% block content %}
+    <h1>Resultados de la busqueda</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Archivo</th>
+                <th>Proyecto</th>
+                <th>Tipo</th>
+                <th>Plugin</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key,rfile in result %}
+                <tr>
+                    <th scope="row">{{key+1}}</th>
+                    <td>{{rfile.file_public}}</td>
+                    <td>{{rfile.project}}</td>
+                    <td>{{rfile.type}}</td>
+                    <td>{{rfile.plugin}}</td>
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>    
+{% endblock %}
+{% block header %}
+    {% include "ThemeDefaultBundle::menu.html.twig" %}
+    {% include "ThemeDefaultBundle::breadcrumb.html.twig" %}
+{% endblock %}

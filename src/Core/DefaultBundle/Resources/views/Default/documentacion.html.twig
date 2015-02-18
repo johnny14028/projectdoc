@@ -1,24 +1,15 @@
 {% extends "Theme"~theme|capitalize~"Bundle::public.html.twig" %}
 {% block content %}
     <ol>
-        <li>Local
+    {% for subproject in subprojects %}
+        <li>{{subproject.name}}
             <ul>
-                <li><a href="{{path('core_default_viewdoc', {'project': project,'type':'local','name':'library'})}}">Library</a></li>
-                <li><a href="{{path('core_default_viewdoc', {'project': project,'type':'local','name':'eliminar'})}}">Eliminar</a></li>
-                <li><a href="{{path('core_default_viewdoc', {'project': project,'type':'local','name':'bcp'})}}">Bcp</a></li>
-                <li><a href="{{path('core_default_viewdoc', {'project': project,'type':'local','name':'campaign'})}}">Campaña</a></li>
-                <li><a href="{{path('core_default_viewdoc', {'project': project,'type':'local','name':'news'})}}">News</a></li>
-            </ul>            
-        </li>
-        <li>Módulo
-            <ul>
-                <li><a href="{{path('core_default_viewdoc', {'project': project,'type':'module','name':'metadata'})}}">Metadata</a></li>
-                <li><a href="{{path('core_default_viewdoc', {'project': project,'type':'module','name':'workstation'})}}">PAP</a></li>
+                {% for plugin in subproject.plugin %}
+                    <li><a href="{{path('core_default_viewdoc', {'project': project,'type':subproject.name,'name':plugin.name})}}">{{plugin.name}}</a></li>
+                {% endfor %}
             </ul>
         </li>
-        <li>Reporte
-
-        </li>
+    {% endfor %}
     </ol>
 {% endblock %}
 {% block header %}

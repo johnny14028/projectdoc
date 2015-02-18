@@ -3,29 +3,33 @@
         <div class="container">
             <div class="row">
                 <div class="navbar-header">
-                    <button type="button" data-toggle="collapse" data-target="#menu-top-header" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="{{path('core_default_homepage')}}" class="navbar-brand"><img src="{{ asset('bundles/themedefault/img/logo.png') }}" alt="{{siteName}}" title="{{siteName}}"></a>
+                        <button type="button" data-toggle="collapse" data-target="#menu-top-header" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="{{path('core_default_homepage')}}" class="navbar-brand"><img src="{{ asset('bundles/themedefault/img/logo.png') }}" alt="{{siteName}}" title="{{siteName}}"></a>
                 </div>
                 <div id="menu-top-header" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{{path('core_default_descargas')}}" class="{{menuActive.descargas}}">Descargas</a></li>
                         <li><a href="{{path('core_default_manuales')}}" class="{{menuActive.manuales}}">Manuales</a></li>
-                        <li><a href="{{path('core_default_involucrarse')}}" class="{{menuActive.involucrarse}}">Involucrarse</a></li>
+                        {#<li><a href="{{path('core_default_involucrarse')}}" class="{{menuActive.involucrarse}}">Involucrarse</a></li>#}
                         <li><a href="{{path('core_default_catalogo')}}" class="{{menuActive.catalogo}}">Catálogo</a></li>
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle {{menuActive.documentacion}}" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             Documentación <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{path('core_default_documentacion', {'project': 'bcp'})}}">BCP</a></li>
+                                {% for project in projects %}
+                                    
+                                    <li><a href="{{path('core_default_documentacion', {'project': project.name})}}">{{project.name | capitalize}}</a></li>
+                                {% endfor%}
+{#                                <li><a href="{{path('core_default_documentacion', {'project': 'bcp'})}}">BCP</a></li>
                                 <li><a href="{{path('core_default_documentacion', {'project': 'bbva'})}}">BBVA</a></li>
                                 <li><a href="{{path('core_default_documentacion', {'project': 'mibanco'})}}">Mibanco</a></li>
-                                <li><a href="{{path('core_default_documentacion', {'project': 'unesco'})}}">Unesco</a></li>
+                                <li><a href="{{path('core_default_documentacion', {'project': 'unesco'})}}">Unesco</a></li>#}
                             </ul>
                         </li>
                     </ul>
-                    <form action="{{path('core_default_buscar')}}" role="buscar" class="navbar-form pull-right col-xs-12">
+                    <form action="{{path('core_default_buscar')}}" method="post" name="frmBuscar" id="frmBuscar" role="buscar" class="navbar-form pull-right col-xs-12">
                         <div class="form-group">
-                            <input type="text" placeholder="Buscar" class="form-control pull-left">
+                            <input type="text" placeholder="Buscar" name="txtBuscar" class="form-control pull-left">
                         </div>
                     </form>
                 </div>
