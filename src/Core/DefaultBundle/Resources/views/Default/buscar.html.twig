@@ -15,7 +15,7 @@
             {% for key,rfile in result %}
                 <tr>
                     <th scope="row">{{key+1}}</th>
-                    <td>{{rfile.file_public}}</td>
+                    <td><a href="{{ app.request.getBaseURL() }}{{rfile.url}}">{{rfile.file_public}}</a></td>
                     <td>{{rfile.project}}</td>
                     <td>{{rfile.type}}</td>
                     <td>{{rfile.plugin}}</td>

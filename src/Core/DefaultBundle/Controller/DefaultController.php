@@ -158,8 +158,9 @@ class DefaultController extends Controller {
                             if (strlen(trim($file)) > 0) {
                                 $array['project'] = $project['name'];
                                 $array['type'] = $subproject['name'];
-                                $array['plugin'] = array_pop($strRutas);
+                                $array['plugin'] = $strRutas[count($strRutas)-1];
                                 $array['file'] = $file;
+                                $array['url'] = '/documentacion/'.$project['name'].'/'.$subproject['name'].'/'.$strRutas[count($strRutas)-1];
                                 $file_public = explode("/", $file);
                                 foreach($file_public as $ind=>$f){
                                     if($f=='documentation'){
